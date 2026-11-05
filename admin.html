@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>로컬핀 신청 관리</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root {
+  --bg: #F6F9F7; --surface: #FFFFFF; --ink: #14171D; --text: #303338; --muted: #5B626C; --line: #E6EAE7;
+  --accent: #17603C; --accent-ink: #FFFFFF; --mint: #DDF3E4; --soft: #EEF6F0; --bad: #C24A35;
+  --s-new: #17603C; --s-new-bg: #DDF3E4;
+  --s-called: #8A5A00; --s-called-bg: #FFF1D6;
+  --s-done: #1F4FB0; --s-done-bg: #E3ECFF;
+  --s-won: #FFFFFF; --s-won-bg: #17603C;
+  --s-hold: #5B626C; --s-hold-bg: #ECEEF0;
+  --f: "Pretendard Variable", Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0F1411; --surface: #161D19; --ink: #EEF2EF; --text: #D5DBD7; --muted: #A3ADA7; --line: #26302A;
+    --accent: #3DCB72; --accent-ink: #0F1411; --mint: #1F3D2B; --soft: #18241D; --bad: #E58A74;
+    --s-new: #9BE8B8; --s-new-bg: #1F3D2B; --s-called: #F2C46B; --s-called-bg: #3A2F14;
+    --s-done: #9DB8FF; --s-done-bg: #1C2747; --s-won: #0F1411; --s-won-bg: #3DCB72; --s-hold: #A3ADA7; --s-hold-bg: #232A26;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.6 var(--f); letter-spacing: -0.02em; }
+button, input, select, textarea { font: inherit; letter-spacing: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 max(16px, env(safe-area-inset-right, 0px)) 0 max(16px, env(safe-area-inset-left, 0px)); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid transparent; border-radius: 999px; padding: 11px 18px; font-weight: 600; cursor: pointer; text-decoration: none; white-space: nowrap; }
+.btn-primary { background: var(--accent); color: var(--accent-ink); }
+.btn-ghost { background: var(--surface); border-color: var(--line); color: var(--ink); }
+.btn-sm { padding: 8px 13px; font-size: 14px; }
+.btn-danger { background: var(--surface); border-color: var(--bad); color: var(--bad); }
+.btn[disabled] { opacity: .55; cursor: default; }
+input[type=text], input[type=email], input[type=password], input[type=search], select, textarea {
+  width: 100%; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 11px 13px; }
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent); border-color: transparent; }
+.logo { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 18px; color: var(--ink); }
+.logo svg { width: 22px; height: 22px; }
+
+/* 로그인 */
+.login { min-height: 100vh; display: grid; place-items: center; padding: 24px 16px; }
+.login-card { width: 100%; max-width: 400px; background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 32px 28px; display: grid; gap: 14px; }
+.login-card h1 { margin: 6px 0 0; font-size: 24px; color: var(--ink); letter-spacing: -0.03em; }
+.login-card p { margin: 0; color: var(--muted); font-size: 14px; }
+.login-card label { display: grid; gap: 6px; font-size: 14px; font-weight: 600; color: var(--ink); }
+.err { color: var(--bad); font-size: 14px; font-weight: 600; margin: 0; }
+
+/* 상단 */
+.top { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--surface) 94%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; gap: 12px; height: 62px; }
+.top .who { margin-left: auto; font-size: 13px; color: var(--muted); }
+@media (max-width: 600px) { .top .who { display: none; } .top .wrap { gap: 8px; } .top .btn { padding: 8px 11px; } .top-actions { margin-left: auto; } }
+.top-actions { display: flex; gap: 6px; }
+main { padding: 24px 0 60px; }
+h2 { margin: 0 0 4px; font-size: 24px; color: var(--ink); letter-spacing: -0.03em; }
+.sub { color: var(--muted); font-size: 14px; margin: 0 0 18px; }
+
+/* 상태 요약 */
+.stats { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.stat { border: 1px solid var(--line); background: var(--surface); border-radius: 14px; padding: 10px 14px; cursor: pointer; display: grid; gap: 0; min-width: 92px; text-align: left; }
+.stat b { font-size: 22px; color: var(--ink); line-height: 1.2; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 13px; color: var(--muted); font-weight: 600; }
+.stat[aria-pressed="true"] { border: 2px solid var(--accent); background: var(--soft); }
+
+/* 도구 */
+.tools { display: grid; grid-template-columns: minmax(0, 1fr) 200px auto; gap: 8px; margin-bottom: 16px; }
+@media (max-width: 700px) { .tools { grid-template-columns: 1fr 1fr; } .tools input { grid-column: 1 / -1; } }
+
+/* 목록 */
+.list { display: grid; gap: 10px; }
+.lead { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+.lead.is-new { border-left: 4px solid var(--accent); }
+.lead-head { width: 100%; background: none; border: 0; padding: 16px 18px; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 6px 14px; align-items: center; text-align: left; cursor: pointer; }
+.lead-main { min-width: 0; display: grid; gap: 2px; }
+.lead-main b { font-size: 17px; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lead-main span { font-size: 13.5px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lead-date { font-size: 13px; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+.badge { font-size: 12.5px; font-weight: 700; padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
+.st-신규 { color: var(--s-new); background: var(--s-new-bg); }
+.st-연락함 { color: var(--s-called); background: var(--s-called-bg); }
+.st-상담 { color: var(--s-done); background: var(--s-done-bg); }
+.st-계약 { color: var(--s-won); background: var(--s-won-bg); }
+.st-보류 { color: var(--s-hold); background: var(--s-hold-bg); }
+.lead-body { border-top: 1px solid var(--line); padding: 16px 18px 18px; display: grid; gap: 16px; }
+.facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 20px; margin: 0; }
+.facts div { min-width: 0; }
+.facts dt { font-size: 12.5px; color: var(--muted); font-weight: 600; }
+.facts dd { margin: 2px 0 0; color: var(--ink); overflow-wrap: anywhere; white-space: pre-wrap; }
+.facts .full { grid-column: 1 / -1; }
+.facts a { color: var(--accent); font-weight: 600; }
+@media (max-width: 600px) { .facts { grid-template-columns: 1fr; } .lead-head { grid-template-columns: minmax(0, 1fr) auto; } .lead-head .badge { grid-row: 1; grid-column: 1; justify-self: start; } .lead-main { grid-column: 1 / -1; } .lead-date { grid-row: 1; grid-column: 2; } }
+.edit { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 10px; align-items: start; background: var(--bg); border-radius: 12px; padding: 12px; }
+.edit label { display: grid; gap: 4px; font-size: 13px; font-weight: 600; color: var(--ink); }
+.edit textarea { min-height: 76px; resize: vertical; }
+.edit-actions { grid-column: 1 / -1; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.edit-actions .spacer { flex: 1; }
+@media (max-width: 600px) { .edit { grid-template-columns: 1fr; } }
+.empty { text-align: center; padding: 48px 16px; color: var(--muted); background: var(--surface); border: 1px dashed var(--line); border-radius: 16px; }
+.toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 10px 18px; border-radius: 999px; font-size: 14px; font-weight: 600; z-index: 20; }
+.note { font-size: 13px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- 로그인 화면 -->
+<section class="login" id="loginView">
+  <form class="login-card" id="loginForm" novalidate>
+    <div class="logo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Z" fill="#17603C"/><circle cx="12" cy="9" r="2.6" fill="#DDF3E4"/></svg>로컬핀 마케팅</div>
+    <h1>신청 관리</h1>
+    <p>관리자 계정으로 로그인하세요.</p>
+    <label for="email">이메일<input type="email" id="email" autocomplete="username" required></label>
+    <label for="password">비밀번호<input type="password" id="password" autocomplete="current-password" required></label>
+    <p class="err" id="loginErr" hidden></p>
+    <button class="btn btn-primary" type="submit" id="loginBtn">로그인</button>
+  </form>
+</section>
+
+<!-- 관리 화면 -->
+<div id="appView" hidden>
+  <header class="top">
+    <div class="wrap">
+      <div class="logo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Z" fill="#17603C"/><circle cx="12" cy="9" r="2.6" fill="#DDF3E4"/></svg>신청 관리</div>
+      <span class="who" id="whoAmI"></span>
+      <div class="top-actions">
+        <button class="btn btn-ghost btn-sm" type="button" id="refreshBtn">새로고침</button>
+        <button class="btn btn-ghost btn-sm" type="button" id="logoutBtn">로그아웃</button>
+      </div>
+    </div>
+  </header>
+  <main class="wrap">
+    <h2>무료 진단 신청</h2>
+    <p class="sub" id="subLine">불러오는 중…</p>
+    <div class="stats" id="stats" role="group" aria-label="상태별 보기"></div>
+    <div class="tools">
+      <input type="search" id="q" placeholder="업체명, 연락처, 지역, 메모로 검색">
+      <select id="catFilter" aria-label="업종"><option value="">모든 업종</option></select>
+      <button class="btn btn-ghost" type="button" id="csvBtn">엑셀(CSV) 다운로드</button>
+    </div>
+    <div class="list" id="list"></div>
+  </main>
+</div>
+
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+/* ===== 설정: 홈페이지 index.html과 같은 값 (Publishable key만 넣습니다. Secret key 금지) ===== */
+const SUPABASE_URL = "https://ywgfhqyxravvtaowjqkm.supabase.co";
+const SUPABASE_KEY = "sb_publishable_7EgQesIgP8jZlik1rZD5sg_xjjpS71C";
+const STATUSES = ["신규", "연락함", "상담 완료", "계약", "보류"];
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const badgeClass = s => "badge st-" + String(s).split(" ")[0];
+let leads = [], filterStatus = "", openId = null;
+
+/* ---------- 로그인 세션 (브라우저를 닫으면 로그아웃) ---------- */
+const store = {
+  get() { try { return JSON.parse(sessionStorage.getItem("lp_admin") || "null"); } catch (e) { return null; } },
+  set(v) { try { v ? sessionStorage.setItem("lp_admin", JSON.stringify(v)) : sessionStorage.removeItem("lp_admin"); } catch (e) {} }
+};
+let session = store.get();
+
+function saveSession(d) {
+  session = { access_token: d.access_token, refresh_token: d.refresh_token, expires_at: Date.now() + (d.expires_in || 3600) * 1000, email: d.user?.email || session?.email };
+  store.set(session);
+}
+async function auth(path, body) {
+  const res = await fetch(SUPABASE_URL + "/auth/v1/" + path, { method: "POST", headers: { apikey: SUPABASE_KEY, "Content-Type": "application/json" }, body: JSON.stringify(body) });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw Object.assign(new Error(data.error_description || data.msg || data.message || ("HTTP " + res.status)), { status: res.status });
+  return data;
+}
+async function refresh() {
+  if (!session?.refresh_token) throw new Error("no session");
+  saveSession(await auth("token?grant_type=refresh_token", { refresh_token: session.refresh_token }));
+}
+async function api(path, opts = {}, retried) {
+  if (session && Date.now() > session.expires_at - 60000) await refresh();
+  const res = await fetch(SUPABASE_URL + "/rest/v1/" + path, {
+    ...opts,
+    headers: { apikey: SUPABASE_KEY, Authorization: "Bearer " + session.access_token, "Content-Type": "application/json", ...(opts.headers || {}) }
+  });
+  if (res.status === 401 && !retried) { await refresh(); return api(path, opts, true); }
+  if (!res.ok) throw new Error("HTTP " + res.status + " " + (await res.text()).slice(0, 200));
+  return res.status === 204 ? null : res.json();
+}
+
+$("#loginForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const err = $("#loginErr"), btn = $("#loginBtn");
+  err.hidden = true; btn.disabled = true; btn.textContent = "로그인 중…";
+  try {
+    saveSession(await auth("token?grant_type=password", { email: $("#email").value.trim(), password: $("#password").value }));
+    $("#password").value = "";
+    showApp();
+  } catch (ex) {
+    err.textContent = ex.status === 400 ? "이메일 또는 비밀번호가 맞지 않습니다." : "로그인하지 못했습니다. 잠시 후 다시 시도해주세요.";
+    err.hidden = false;
+  } finally { btn.disabled = false; btn.textContent = "로그인"; }
+});
+$("#logoutBtn").addEventListener("click", async () => {
+  try { await fetch(SUPABASE_URL + "/auth/v1/logout", { method: "POST", headers: { apikey: SUPABASE_KEY, Authorization: "Bearer " + session.access_token } }); } catch (e) {}
+  session = null; store.set(null); leads = [];
+  $("#appView").hidden = true; $("#loginView").hidden = false;
+});
+
+/* ---------- 목록 ---------- */
+async function load() {
+  $("#subLine").textContent = "불러오는 중…";
+  try {
+    leads = await api("leads?select=*&order=created_at.desc");
+    render();
+  } catch (ex) {
+    // 로그인이 만료됐으면 로그인 화면으로
+    if (ex.status === 400 || ex.status === 401 || /no session|HTTP 401/.test(ex.message)) {
+      session = null; store.set(null);
+      $("#appView").hidden = true; $("#loginView").hidden = false;
+      $("#loginErr").textContent = "로그인이 만료됐습니다. 다시 로그인해주세요."; $("#loginErr").hidden = false;
+      return;
+    }
+    $("#subLine").textContent = "목록을 불러오지 못했습니다. 새로고침을 눌러주세요.";
+  }
+}
+function fmtDate(iso) {
+  const d = new Date(iso);
+  return d.toLocaleDateString("ko-KR", { year: "2-digit", month: "2-digit", day: "2-digit" }) + " " + d.toLocaleTimeString("ko-KR", { hour: "2-digit", minute: "2-digit" });
+}
+function visible() {
+  const q = $("#q").value.trim().toLowerCase(), cat = $("#catFilter").value;
+  return leads.filter(l => (!filterStatus || l.status === filterStatus) && (!cat || l.category === cat) &&
+    (!q || [l.business, l.phone, l.area, l.memo, l.message, l.category].some(x => String(x || "").toLowerCase().includes(q))));
+}
+function render() {
+  const counts = Object.fromEntries(STATUSES.map(s => [s, leads.filter(l => l.status === s).length]));
+  $("#subLine").textContent = leads.length ? `전체 ${leads.length}건 · 신규 ${counts["신규"]}건` : "아직 들어온 신청이 없습니다.";
+  $("#stats").innerHTML = [["", "전체", leads.length], ...STATUSES.map(s => [s, s, counts[s]])]
+    .map(([k, label, n]) => `<button type="button" class="stat" data-st="${esc(k)}" aria-pressed="${filterStatus === k}"><b>${n}</b><span>${esc(label)}</span></button>`).join("");
+  const cats = [...new Set(leads.map(l => l.category).filter(Boolean))].sort();
+  const curCat = $("#catFilter").value;
+  $("#catFilter").innerHTML = `<option value="">모든 업종</option>` + cats.map(c => `<option${c === curCat ? " selected" : ""}>${esc(c)}</option>`).join("");
+
+  const rows = visible();
+  if (!rows.length) {
+    $("#list").innerHTML = `<div class="empty">${leads.length ? "조건에 맞는 신청이 없습니다." : "아직 들어온 신청이 없습니다.<br><span class='note'>홈페이지에서 무료 진단을 신청하면 여기에 바로 나타납니다.</span>"}</div>`;
+    return;
+  }
+  $("#list").innerHTML = rows.map(l => {
+    const open = l.id === openId;
+    const tel = String(l.phone || "").replace(/[^0-9]/g, "");
+    const link = /^https?:\/\//i.test(l.place_url || "") ? `<a href="${esc(l.place_url)}" target="_blank" rel="noopener noreferrer">${esc(l.place_url)}</a>` : esc(l.place_url || "-");
+    return `<article class="lead${l.status === "신규" ? " is-new" : ""}" data-id="${esc(l.id)}">
+      <button type="button" class="lead-head" aria-expanded="${open}">
+        <span class="${badgeClass(l.status)}">${esc(l.status)}</span>
+        <span class="lead-main"><b>${esc(l.business)}</b><span>${esc([l.category, l.area, l.phone].filter(Boolean).join(" · "))}</span></span>
+        <span class="lead-date">${esc(fmtDate(l.created_at))}</span>
+      </button>
+      <div class="lead-body"${open ? "" : " hidden"}>
+        <dl class="facts">
+          <div><dt>연락처</dt><dd><a href="tel:${esc(tel)}">${esc(l.phone)}</a></dd></div>
+          <div><dt>문의하신 분</dt><dd>${esc(l.who || "-")}</dd></div>
+          <div><dt>업종</dt><dd>${esc(l.category || "-")}</dd></div>
+          <div><dt>지역</dt><dd>${esc(l.area || "-")}</dd></div>
+          <div class="full"><dt>플레이스·블로그 주소</dt><dd>${link}</dd></div>
+          <div><dt>대표 경력·자격</dt><dd>${esc(l.career || "-")}</dd></div>
+          <div><dt>관심 서비스</dt><dd>${esc(l.plan || "-")}</dd></div>
+          <div class="full"><dt>고민되는 점</dt><dd>${esc(l.message || "-")}</dd></div>
+        </dl>
+        <div class="edit">
+          <label>진행 상태<select class="f-status">${STATUSES.map(s => `<option${s === l.status ? " selected" : ""}>${esc(s)}</option>`).join("")}</select></label>
+          <label>상담 메모<textarea class="f-memo" placeholder="통화 내용, 다음 연락일 등">${esc(l.memo || "")}</textarea></label>
+          <div class="edit-actions">
+            <button type="button" class="btn btn-primary btn-sm a-save">저장</button>
+            <span class="spacer"></span>
+            <button type="button" class="btn btn-danger btn-sm a-del">삭제</button>
+          </div>
+        </div>
+      </div>
+    </article>`;
+  }).join("");
+}
+
+$("#stats").addEventListener("click", e => { const b = e.target.closest(".stat"); if (!b) return; filterStatus = b.dataset.st; render(); });
+$("#q").addEventListener("input", render);
+$("#catFilter").addEventListener("change", render);
+$("#refreshBtn").addEventListener("click", load);
+
+$("#list").addEventListener("click", async e => {
+  const card = e.target.closest(".lead"); if (!card) return;
+  const id = card.dataset.id, lead = leads.find(l => l.id === id);
+  if (e.target.closest(".lead-head")) { openId = openId === id ? null : id; render(); return; }
+  if (e.target.closest(".a-save")) {
+    const btn = e.target.closest(".a-save"); btn.disabled = true; btn.textContent = "저장 중…";
+    const patch = { status: card.querySelector(".f-status").value, memo: card.querySelector(".f-memo").value.trim() || null };
+    try {
+      const [row] = await api("leads?id=eq." + encodeURIComponent(id), { method: "PATCH", headers: { Prefer: "return=representation" }, body: JSON.stringify(patch) });
+      Object.assign(lead, row || patch); render(); toast("저장했습니다");
+    } catch (ex) { btn.disabled = false; btn.textContent = "저장"; toast("저장하지 못했습니다. 다시 시도해주세요"); }
+    return;
+  }
+  const del = e.target.closest(".a-del");
+  if (del) {
+    if (!del.dataset.armed) { del.dataset.armed = "1"; del.textContent = "정말 삭제할까요? 한 번 더 누르기"; setTimeout(() => { if (del.isConnected) { delete del.dataset.armed; del.textContent = "삭제"; } }, 4000); return; }
+    del.disabled = true;
+    try { await api("leads?id=eq." + encodeURIComponent(id), { method: "DELETE" }); leads = leads.filter(l => l.id !== id); openId = null; render(); toast("삭제했습니다"); }
+    catch (ex) { del.disabled = false; toast("삭제하지 못했습니다"); }
+  }
+});
+
+/* ---------- CSV 다운로드 (엑셀에서 한글이 깨지지 않게 BOM 포함) ---------- */
+$("#csvBtn").addEventListener("click", () => {
+  const cols = [["created_at", "신청일시"], ["status", "상태"], ["business", "업체명"], ["phone", "연락처"], ["category", "업종"], ["area", "지역"], ["place_url", "플레이스·블로그"], ["career", "대표 경력"], ["plan", "관심 서비스"], ["message", "고민"], ["who", "문의자"], ["memo", "메모"]];
+  const cell = v => { let s = String(v ?? ""); if (/^[=+\-@]/.test(s)) s = "'" + s; return '"' + s.replace(/"/g, '""') + '"'; };
+  const rows = visible().map(l => cols.map(([k]) => cell(k === "created_at" ? fmtDate(l[k]) : l[k])).join(","));
+  const csv = "﻿" + [cols.map(c => cell(c[1])).join(","), ...rows].join("\r\n");
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" }));
+  a.download = "로컬핀_신청목록_" + new Date().toISOString().slice(0, 10) + ".csv";
+  document.body.appendChild(a); a.click(); a.remove();
+});
+
+let toastTimer;
+function toast(msg) { const t = $("#toast"); t.textContent = msg; t.hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => t.hidden = true, 2200); }
+
+function showApp() {
+  $("#loginView").hidden = true; $("#appView").hidden = false;
+  $("#whoAmI").textContent = session?.email || "";
+  load();
+}
+if (session) showApp();
+</script>
+</body>
+</html>
