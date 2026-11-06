@@ -1265,3 +1265,38 @@ body { margin: 0; }
 .res .ph.pro { white-space: normal; }
 .res .ph .logo-mk { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 12px; font-weight: 800; letter-spacing: -0.02em; color: var(--accent-ink); }
 .res .ph .logo-mk svg { width: 20px; height: 20px; color: var(--mint); }
+
+/* 세팅 후 플레이스 이미지 슬라이드 */
+.np-slider { margin-top: 12px; }
+.np-track { display: flex; gap: 6px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; border-radius: 12px; padding-right: 14%; overscroll-behavior-x: contain; }
+.np-track::-webkit-scrollbar { display: none; }
+.np-track:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.np-slide { flex: 0 0 86%; aspect-ratio: 1; scroll-snap-align: start; border-radius: 12px; overflow: hidden; background: var(--line); }
+.np-slide img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+.np-dots { display: flex; justify-content: center; gap: 5px; margin-top: 8px; }
+.np-dots i { width: 6px; height: 6px; border-radius: 3px; background: var(--line); transition: width .2s ease, background .2s ease; }
+.np-dots i.on { width: 16px; background: var(--accent); }
+/* 운영 결과 카드: 숫자 크게 */
+.csl { --pop: #DDF3E4; }
+.csl-nums { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; margin-top: 4px; }
+.csl-nums > div { background: color-mix(in srgb, #FFFFFF 11%, transparent); border-radius: 14px; padding: 14px 16px; }
+.csl-nums b { display: block; font-size: clamp(32px, 3.6vw, 42px); font-weight: 900; line-height: 1.05; letter-spacing: -0.04em; color: var(--pop); }
+.csl-nums b small { font-size: .42em; font-weight: 700; margin-left: 3px; letter-spacing: -0.02em; color: var(--accent-ink); }
+.csl-nums span { display: block; margin-top: 6px; font-size: 13.5px; line-height: 1.4; color: var(--accent-ink); opacity: .9; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .csl { --pop: var(--accent-ink); } }
+:root[data-theme="dark"] .csl { --pop: var(--accent-ink); }
+@media (max-width: 560px) { .csl-nums b { font-size: 30px; } .csl-nums > div { padding: 12px 14px; } }
+.csl-nums b { white-space: nowrap; }
+@media (max-width: 560px) { .csl-nums b { font-size: 27px; } .csl-nums b small { font-size: .5em; margin-left: 2px; } .csl-nums { gap: 8px; } .csl-nums > div { padding: 12px; } }
+
+/* 휴대폰: 요금 계산 바를 한 줄로 작게 (본문을 가리지 않게) */
+@media (max-width: 700px) {
+  .calc { grid-template-columns: minmax(0, 1fr) auto; gap: 2px 10px; padding: 10px 10px 10px 16px; border-radius: 16px; bottom: calc(72px + env(safe-area-inset-bottom, 0px)); box-shadow: 0 10px 24px -14px rgba(15,74,45,.6); }
+  .calc .calc-k, .calc .calc-bundle, .calc .calc-save, .calc .calc-cta-lg { display: none; }
+  .calc .calc-left { grid-column: 1; grid-row: 1; }
+  .calc .calc-sel { font-size: 13.5px; line-height: 1.35; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .calc .calc-right { grid-column: 1; grid-row: 2; justify-items: start; display: flex; gap: 8px; flex-wrap: wrap; }
+  .calc .calc-line { font-size: 12px; text-align: left; }
+  .calc .calc-line b { font-size: 15px; margin-left: 2px; }
+  .calc .btn { grid-column: 2; grid-row: 1 / span 2; padding: 11px 14px; font-size: 14px; }
+}@media (max-width: 700px) { .calc .calc-line small { display: none; } .calc .calc-line { font-size: 11.5px; white-space: nowrap; } .calc .calc-line b { font-size: 14px; } .calc .calc-right { gap: 2px 10px; } }

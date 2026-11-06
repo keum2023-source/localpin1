@@ -43,3 +43,27 @@ setInd($$(".ind-tabs button").some(b => b.dataset.ind === startInd) ? startInd :
   if (form && "IntersectionObserver" in window) new IntersectionObserver(([e]) => { atForm = e.isIntersecting; upd(); }, { threshold: 0.05 }).observe(form);
   upd();
 })();
+
+(() => {
+  // 세팅 후 플레이스 이미지 슬라이드: 손가락으로 넘길 수 있고, 화면에 보일 때만 3초마다 다음 장으로 넘어갑니다.
+  document.querySelectorAll(".np-slider").forEach(sl => {
+    const track = sl.querySelector(".np-track");
+    const slides = [...track.children];
+    const dots = [...sl.querySelectorAll(".np-dots i")];
+    if (slides.length < 2) return;
+    let idx = 0, paused = false, visible = false;
+    const step = () => slides[1].offsetLeft - slides[0].offsetLeft;
+    const mark = () => dots.forEach((d, k) => d.classList.toggle("on", k === idx));
+    const go = i => { idx = (i + slides.length) % slides.length; mark(); track.scrollTo({ left: idx * step(), behavior: "smooth" }); };
+    track.addEventListener("scroll", () => {
+      idx = Math.min(slides.length - 1, Math.round(track.scrollLeft / step()));
+      mark();
+    }, { passive: true });
+    ["pointerdown", "touchstart", "focusin"].forEach(ev => track.addEventListener(ev, () => { paused = true; }, { passive: true }));
+    track.addEventListener("mouseenter", () => { paused = true; });
+    track.addEventListener("mouseleave", () => { paused = false; });
+    if ("IntersectionObserver" in window) new IntersectionObserver(([e]) => { visible = e.isIntersecting; }, { threshold: 0.4 }).observe(track);
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    setInterval(() => { if (visible && !paused && !document.hidden) go(idx + 1); }, 3000);
+  });
+})();
