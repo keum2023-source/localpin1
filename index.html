@@ -55,6 +55,12 @@
             <button type="button" id="tAfter" aria-pressed="false">세팅 후</button>
           </div>
         </div>
+        <div class="hero-inds" role="group" aria-label="업종별 예시 보기">
+          <button type="button" data-hero="academy" aria-pressed="true">요양교육원</button>
+          <button type="button" data-hero="postpartum" aria-pressed="false">산후도우미</button>
+          <button type="button" data-hero="clinic" aria-pressed="false">한의원</button>
+          <button type="button" data-hero="pilates" aria-pressed="false">필라테스</button>
+        </div>
         <div class="results" id="results"></div>
         <div class="search-foot">
           <span id="footMsg"></span>
@@ -169,7 +175,7 @@
         <p class="lead">손님은 가게보다 먼저 ‘누가 하는 곳인지’를 봅니다. 원장님의 경력, 자격, 병원·교육원·센터를 연 이유를 인터뷰로 찾아 손님이 믿을 수 있는 문장과 이미지로 바꾸고, 세 곳 모두에 같은 목소리로 담습니다.</p>
       </div>
       <ol class="pb-steps">
-        <li><b>이력 발굴</b><span>1시간 인터뷰로 경력·자격·개원 계기·고집하는 점을 찾습니다.</span></li>
+        <li><b>이력 발굴</b><span>전화 인터뷰로 경력·자격·개원 계기·고집하는 점을 찾습니다.</span></li>
         <li><b>신뢰 문장으로 바꾸기</b><span>손님이 바로 이해하는 한 문장과 소개글로 정리합니다.</span></li>
         <li><b>세 곳에 같은 목소리로</b><span>플레이스 이미지, 블로그 글, 홈페이지까지 같은 이야기로 맞춥니다.</span></li>
       </ol>
@@ -209,10 +215,10 @@
             <h3>네이버 플레이스 브랜딩</h3>
             <p class="s3-lead">손님이 검색했을 때 <b>가장 먼저 보는 곳</b>입니다. 비교하는 순간 "여기다" 하고 고르게 만듭니다.</p>
             <ul class="s3-list">
-              <li>원장 소개·과정·가격 <b>이미지 10장 직접 제작</b></li>
+              <li>원장 소개·과정·가격 <b>맞춤 이미지 직접 제작</b></li>
               <li>검색 결과 첫 줄 소개 글과 상세 설명 작성</li>
-              <li>상담 예약·톡톡 버튼 연결</li>
-              <li>3개월 동안 정보 수정·리뷰 답글 무료</li>
+              <li><b>네이버 예약</b>·톡톡 세팅까지</li>
+              <li>3개월 동안 정보 수정·상태 점검 무료</li>
             </ul>
             <p class="s3-for"><b>이런 원장님께</b> 검색은 되는데 전화가 안 오는 곳</p>            <div class="s3-foot">
               <span class="s3-price">119만원 <small>1회</small></span>
@@ -398,7 +404,7 @@
           <h3>네이버 플레이스 브랜딩</h3>
           <div class="price">119만원<small>1회</small></div>
           <p class="gift">🎁 3개월 무료 관리 포함</p>
-          <ul class="plan-key"><li>원장님 인터뷰로 <b>이미지 10장 직접 제작</b></li><li>검색 첫 줄 소개 글·가격표·기본 정보 정리</li><li>3개월 동안 정보 수정·리뷰 답글 무료</li></ul>
+          <ul class="plan-key"><li>원장님 인터뷰로 <b>맞춤 이미지 직접 제작</b></li><li>소개 글·가격표·기본 정보 정리, <b>네이버 예약 세팅</b></li><li>3개월 동안 정보 수정·상태 점검 무료</li></ul>
           <a class="plan-link" href="place.html">해드리는 일 자세히 보기<span aria-hidden="true">→</span></a>
         </div>
 
@@ -458,7 +464,7 @@
       </div>
       <p class="ext"><b>3개월 무료 관리가 끝난 뒤에는?</b> 원하시면 매달 소식 이미지 4장, 소식 글, 결과 보고서까지 해드리는 <b>성장 관리를 월 33만원</b>에 이어가실 수 있습니다. 블로그를 함께 이용 중이시면 월 29만원입니다. 원하지 않으시면 그대로 끝내셔도 됩니다.</p>
 
-      <ol class="flow-line" id="process" aria-label="진행 순서"><li><b>무료 진단</b>1~2일</li><li><b>원장님 인터뷰</b>약 1시간</li><li><b>제작·세팅</b>약 10일</li><li><b>2주 점검</b></li><li><b>매달 관리</b>플레이스 3개월 무료</li></ol>
+      <ol class="flow-line" id="process" aria-label="진행 순서"><li><b>무료 진단</b>1~2일</li><li><b>원장님 인터뷰</b>전화로 진행</li><li><b>제작·세팅</b>약 10일</li><li><b>2주 점검</b></li><li><b>매달 관리</b>플레이스 3개월 무료</li></ol>
       <p class="note price-note">부가세 별도. 광고비(검색광고 등)와 도메인·서버 실비는 포함되지 않습니다. 계약 기간과 해지 조건은 계약 전에 서면으로 먼저 안내드립니다.</p>
     </div>
   </section>
@@ -647,7 +653,7 @@ const MOCK = {
       { id: "me", name: "행복요양보호사교육원", me: true }
     ],
     before: { meta: "학원 · 0.5km", tags: [["개강 일정 없음", "no"], ["사진 3장", "no"]] },
-    after:  { meta: "현장 10년 원장 · 국비·내일배움카드", tags: [["원장 프로필", "go"], ["맞춤 이미지 10장", "go"], ["개강 일정", "go"], ["상담 예약", "go"]] }
+    after:  { meta: "현장 10년 원장 · 국비·내일배움카드", tags: [["원장 프로필", "go"], ["맞춤 이미지", "go"], ["개강 일정", "go"], ["상담 예약", "go"]] }
   },
   postpartum: {
     q: "🔍 우리동네 산후도우미",
@@ -660,10 +666,37 @@ const MOCK = {
       { id: "me", name: "행복산후케어", me: true }
     ],
     before: { meta: "가사서비스 · 0.6km", tags: [["영업시간 없음", "no"], ["사진 2장", "no"]] },
-    after:  { meta: "간호조무사 출신 원장 · 정부지원 바우처", tags: [["원장 프로필", "go"], ["맞춤 이미지 10장", "go"], ["예약", "go"], ["바우처 안내", "go"]] }
+    after:  { meta: "간호조무사 출신 원장 · 정부지원 바우처", tags: [["원장 프로필", "go"], ["맞춤 이미지", "go"], ["예약", "go"], ["바우처 안내", "go"]] }
+  },
+  clinic: {
+    q: "🔍 우리동네 한의원",
+    shops: [
+      { id: "a", name: "A한의원", meta: "한의원 · 1.0km", photo: true, tags: ["예약", "톡톡"] },
+      { id: "b", name: "B경희한의원", meta: "한의원 · 2.1km", photo: true, tags: ["예약"] },
+      { id: "c", name: "C한방의원", meta: "한의원 · 2.8km", photo: true, tags: ["톡톡"] },
+      { id: "d", name: "D한의원", meta: "한의원 · 0.7km", photo: false, tags: [] },
+      { id: "e", name: "E수한의원", meta: "한의원 · 3.9km", photo: true, tags: [] },
+      { id: "me", name: "행복한의원", me: true }
+    ],
+    before: { meta: "의원 · 0.5km", tags: [["진료시간 없음", "no"], ["사진 2장", "no"]] },
+    after:  { meta: "한의사 15년 원장 · 야간 진료", tags: [["원장 프로필", "go"], ["맞춤 이미지", "go"], ["진료 시간", "go"], ["예약", "go"]] }
+  },
+  pilates: {
+    q: "🔍 우리동네 필라테스",
+    shops: [
+      { id: "a", name: "A필라테스 스튜디오", meta: "필라테스 · 0.9km", photo: true, tags: ["예약", "톡톡"] },
+      { id: "b", name: "B바디필라테스", meta: "필라테스 · 1.8km", photo: true, tags: ["예약"] },
+      { id: "c", name: "C코어필라테스", meta: "필라테스 · 2.6km", photo: true, tags: ["톡톡"] },
+      { id: "d", name: "D필라테스", meta: "필라테스 · 0.6km", photo: false, tags: [] },
+      { id: "e", name: "E밸런스 필라테스", meta: "필라테스 · 3.5km", photo: true, tags: [] },
+      { id: "me", name: "행복필라테스", me: true }
+    ],
+    before: { meta: "운동시설 · 0.4km", tags: [["가격 안내 없음", "no"], ["사진 4장", "no"]] },
+    after:  { meta: "물리치료사 출신 원장 · 1:1 레슨", tags: [["원장 프로필", "go"], ["맞춤 이미지", "go"], ["수업 시간표", "go"], ["체험 예약", "go"]] }
   }
 };
 let ind = "academy";
+let heroInd = "academy";
 let searchMode = "before";
 const order = { before: ["a", "b", "c", "d", "e", "me"], after: ["a", "me", "b", "c", "d", "e"] };
 const ROW = 88;
@@ -671,13 +704,23 @@ const nodes = {};
 ["a", "b", "c", "d", "e", "me"].forEach(id => {
   const el = document.createElement("div");
   el.className = "res" + (id === "me" ? " me" : "");
-  el.innerHTML = '<span class="rk"></span><div class="ph"></div><div style="min-width:0"><div class="nm"></div><div class="meta"></div><div class="tags"></div></div>';
+  el.innerHTML = '<span class="rk"></span><div class="ph"></div><div style="min-width:0"><div class="nm"><span class="nm-t"></span></div><div class="meta"></div><div class="tags"></div></div>';
   $("#results").appendChild(el);
   nodes[id] = el;
 });
+// 좁은 화면: 한 줄에 다 안 들어가는 태그는 숨김 (줄바꿈되면 아래 줄과 겹침)
+function fitTags() {
+  Object.values(nodes).forEach(el => {
+    const tg = $(".tags", el);
+    const max = tg.getBoundingClientRect().right;
+    [...tg.children].forEach(t => { t.hidden = false; });
+    [...tg.children].forEach(t => { if (t.getBoundingClientRect().right > max + 1) t.hidden = true; });
+  });
+}
+addEventListener("resize", fitTags);
 function renderSearch(mode) {
   searchMode = mode;
-  const M = MOCK[ind];
+  const M = MOCK[heroInd];
   $("#searchQ").textContent = M.q;
   const meState = { before: { ...M.before, photo: false }, after: { ...M.after, photo: true } };
   M.shops.forEach(s => {
@@ -687,7 +730,7 @@ function renderSearch(mode) {
     el.style.top = (idx * ROW) + "px";
     el.classList.toggle("hide", idx >= 5);
     $(".rk", el).textContent = idx + 1;
-    $(".nm", el).textContent = s.name;
+    $(".nm-t", el).textContent = s.name;
     $(".meta", el).textContent = st.meta;
     const ph = $(".ph", el);
     const pro = s.me && mode === "after";
@@ -699,16 +742,31 @@ function renderSearch(mode) {
   });
   $("#tBefore").setAttribute("aria-pressed", mode === "before");
   $("#tAfter").setAttribute("aria-pressed", mode === "after");
+  $$(".hero-inds button").forEach(b => b.setAttribute("aria-pressed", b.dataset.hero === heroInd));
   $("#footMsg").innerHTML = mode === "before"
     ? "내 가게: <b>6위</b> · 첫 화면 밖, 업종도 다르게 등록됨"
     : "내 가게: <b>2위</b> · 원장 이력이 담긴 맞춤 이미지로 교체";
+  fitTags();
 }
+// 업종 예시 자동 순환: 세팅 전 → 세팅 후 → 다음 업종 (손대면 멈춤)
 let userTouched = false;
-$("#tBefore").addEventListener("click", () => { userTouched = true; renderSearch("before"); });
-$("#tAfter").addEventListener("click", () => { userTouched = true; renderSearch("after"); });
+let heroTimer = 0;
+const HERO_ORDER = ["academy", "postpartum", "clinic", "pilates"];
+function heroCycle() {
+  if (userTouched) return;
+  if (searchMode === "before") { renderSearch("after"); heroTimer = setTimeout(heroCycle, 3800); }
+  else {
+    heroInd = HERO_ORDER[(HERO_ORDER.indexOf(heroInd) + 1) % HERO_ORDER.length];
+    renderSearch("before"); heroTimer = setTimeout(heroCycle, 1800);
+  }
+}
+function stopHero() { userTouched = true; clearTimeout(heroTimer); }
+$("#tBefore").addEventListener("click", () => { stopHero(); renderSearch("before"); });
+$("#tAfter").addEventListener("click", () => { stopHero(); renderSearch("after"); });
+$$(".hero-inds button").forEach(b => b.addEventListener("click", () => { stopHero(); heroInd = b.dataset.hero; renderSearch("before"); setTimeout(() => renderSearch("after"), 900); }));
 renderSearch("before");
 if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  setTimeout(() => { if (!userTouched) renderSearch("after"); }, 1600);
+  heroTimer = setTimeout(heroCycle, 1600);
 }
 
 // ---------- 자가진단 (업종별 항목, 배점 합계 100) ----------
@@ -788,7 +846,6 @@ function setInd(next) {
   ind = next;
   $$(".ind-tabs button").forEach(b => b.setAttribute("aria-pressed", b.dataset.ind === ind));
   $$("[data-for]").forEach(el => el.hidden = el.dataset.for !== ind);
-  renderSearch(searchMode);
   buildChecks(); calc();
   checkArea();
 }
