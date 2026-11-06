@@ -1300,3 +1300,27 @@ body { margin: 0; }
   .calc .calc-line b { font-size: 15px; margin-left: 2px; }
   .calc .btn { grid-column: 2; grid-row: 1 / span 2; padding: 11px 14px; font-size: 14px; }
 }@media (max-width: 700px) { .calc .calc-line small { display: none; } .calc .calc-line { font-size: 11.5px; white-space: nowrap; } .calc .calc-line b { font-size: 14px; } .calc .calc-right { gap: 2px 10px; } }
+
+/* 상단·하단 정식 로고 */
+.logo .logo-mark { width: 34px; height: 34px; flex-shrink: 0; border-radius: 50%; box-shadow: 0 0 0 1px var(--line); background: #FFFFFF; }
+footer .logo .logo-mark { width: 28px; height: 28px; }
+@media (max-width: 560px) { .logo .logo-mark { width: 30px; height: 30px; } }
+
+.logo .logo-pin { width: 22px; height: 22px; flex-shrink: 0; margin-right: -3px; }
+@media (max-width: 560px) { .logo .logo-pin { width: 20px; height: 20px; } }
+
+/* 정가 → 오픈 기념가 표시 */
+.was { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 8px; font-size: 14px; margin-bottom: -8px; }
+.was s { color: var(--muted); text-decoration-thickness: 1.5px; }
+.was em, .pc-was em { font-style: normal; font-size: 12.5px; font-weight: 700; color: var(--bad); background: color-mix(in srgb, var(--bad) 11%, transparent); padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+.pc-was { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 8px; font-size: 15px; margin-bottom: -10px; }
+.pc-was s { opacity: .75; text-decoration-thickness: 1.5px; }
+.pc-was em { color: var(--mint-ink); background: var(--mint); }
+.t-was { display: block; font-size: 13.5px; color: var(--muted); margin-bottom: -4px; }
+.t-was s { text-decoration-thickness: 1.5px; }
+.tier.best .t-was { color: var(--accent); font-weight: 600; }
+/* 할인 조건 · 신청서 혜택 안내 */
+.was-cond { flex-basis: 100%; font-size: 12.5px; color: var(--muted); margin-top: -2px; }
+.pc-was .was-cond { color: inherit; opacity: .8; }
+.form-perk { margin: 4px 0 16px; padding: 12px 14px; border-radius: 12px; background: var(--soft); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); font-size: 14px; line-height: 1.55; color: var(--text); }
+.form-perk b { color: var(--accent); }.form-perk { grid-column: 1 / -1; }
