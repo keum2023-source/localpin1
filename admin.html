@@ -106,6 +106,7 @@ h2 { margin: 0 0 4px; font-size: 24px; color: var(--ink); letter-spacing: -0.03e
 .empty { text-align: center; padding: 48px 16px; color: var(--muted); background: var(--surface); border: 1px dashed var(--line); border-radius: 16px; }
 .toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 10px 18px; border-radius: 999px; font-size: 14px; font-weight: 600; z-index: 20; }
 .note { font-size: 13px; color: var(--muted); }
+.logo img{width:30px;height:30px;border-radius:50%;box-shadow:0 0 0 1px #E6EAE7;flex-shrink:0}
 </style>
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
@@ -117,7 +118,7 @@ h2 { margin: 0 0 4px; font-size: 24px; color: var(--ink); letter-spacing: -0.03e
 <!-- 로그인 화면 -->
 <section class="login" id="loginView">
   <form class="login-card" id="loginForm" novalidate>
-    <div class="logo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Z" fill="#17603C"/><circle cx="12" cy="9" r="2.6" fill="#DDF3E4"/></svg>로컬핀 마케팅</div>
+    <div class="logo"><img class="logo-mark" src="logo-mark.png" alt="" width="34" height="34">로컬핀 마케팅</div>
     <h1>신청 관리</h1>
     <p>관리자 계정으로 로그인하세요.</p>
     <label for="email">이메일<input type="email" id="email" autocomplete="username" required></label>
@@ -131,7 +132,7 @@ h2 { margin: 0 0 4px; font-size: 24px; color: var(--ink); letter-spacing: -0.03e
 <div id="appView" hidden>
   <header class="top">
     <div class="wrap">
-      <div class="logo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Z" fill="#17603C"/><circle cx="12" cy="9" r="2.6" fill="#DDF3E4"/></svg>신청 관리</div>
+      <div class="logo"><img class="logo-mark" src="logo-mark.png" alt="" width="34" height="34">신청 관리</div>
       <span class="who" id="whoAmI"></span>
       <div class="top-actions">
         <button class="btn btn-ghost btn-sm" type="button" id="refreshBtn">새로고침</button>
