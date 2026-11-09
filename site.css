@@ -1457,3 +1457,5 @@ footer .logo .logo-mark { width: 28px; height: 28px; }
 .bundle.core { box-shadow: 0 0 0 2px var(--accent); }
 .bn-why { margin: 0; padding: 12px 14px; border-radius: 10px; background: var(--soft); font-size: 14.5px; line-height: 1.6; color: var(--text); }
 .bn-why b { color: var(--accent); }
+
+.care-scope { margin-top: 14px; padding: 12px 16px; border-radius: 12px; background: var(--surface); border: 1px dashed var(--line); font-size: 14px; line-height: 1.6; color: var(--muted); }
