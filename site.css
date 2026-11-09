@@ -1453,3 +1453,7 @@ footer .logo .logo-mark { width: 28px; height: 28px; }
 .price-card .pc-list { margin-top: 2px; }
 .tier .t-total { font-size: 14px; font-weight: 600; color: var(--accent); }
 @media (max-width: 560px) { .plan-terms { font-size: 13px; } }
+/* 브랜드 기본 강조 */
+.bundle.core { box-shadow: 0 0 0 2px var(--accent); }
+.bn-why { margin: 0; padding: 12px 14px; border-radius: 10px; background: var(--soft); font-size: 14.5px; line-height: 1.6; color: var(--text); }
+.bn-why b { color: var(--accent); }
