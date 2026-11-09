@@ -1425,3 +1425,4 @@ footer .logo .logo-mark { width: 28px; height: 28px; }
   .hw-vs li, .hw-local p { font-size: 14.5px; }
   .hw-cta p { font-size: 16.5px; }
 }
+.ap-head span strong { color: var(--ink); font-weight: 700; }
