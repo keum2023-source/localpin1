@@ -1534,3 +1534,7 @@ footer .logo .logo-mark { width: 28px; height: 28px; }
 /* 플레이스: 가격 바로 아래 포함 내용 한 줄 더 */
 .plan-head .plan-also { margin: 3px 0 0; font-size: 14.5px; color: var(--text); }
 .pc-also { margin: -6px 0 0; font-size: 14.5px; color: var(--accent-ink); opacity: .85; }
+/* 사례 숫자 강조: 살짝 더 밝고 선명한 민트 */
+.csl { --pop: #D4FADF; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .csl { --pop: var(--accent-ink); } }
+:root[data-theme="dark"] .csl { --pop: var(--accent-ink); }
