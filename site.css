@@ -1325,9 +1325,8 @@ footer .logo .logo-mark { width: 28px; height: 28px; }
 .form-perk { margin: 4px 0 16px; padding: 12px 14px; border-radius: 12px; background: var(--soft); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); font-size: 14px; line-height: 1.55; color: var(--text); }
 .form-perk b { color: var(--accent); }.form-perk { grid-column: 1 / -1; }
 
-/* 요금 카드: 홈페이지 강조 (선택 여부와 상관없이 초록 테두리 + 배지) */
-.plan.featured { border: 2px solid var(--accent); }
-.plan-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--accent); color: var(--accent-ink); font-size: 12.5px; font-weight: 700; padding: 6px 14px; border-radius: 999px; white-space: nowrap; box-shadow: 0 6px 14px -8px rgba(15, 74, 45, .6); }
+/* 추천 표시는 배지로, 선택 표시는 카드 테두리로 구분 */
+.plan-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--mint); color: var(--mint-ink); font-size: 12.5px; font-weight: 700; padding: 6px 14px; border-radius: 999px; white-space: nowrap; }
 @media (max-width: 560px) { .plan-badge { font-size: 12px; padding: 5px 12px; } }
 /* 묶음 카드 2개 (브랜드 기본 / 올인원 3개월) */
 .pkgs { margin-top: 24px; background: linear-gradient(135deg, var(--accent), var(--accent-2, var(--accent))); color: var(--accent-ink); border-radius: var(--r-lg); padding: 32px; }
@@ -1448,7 +1447,7 @@ footer .logo .logo-mark { width: 28px; height: 28px; }
 .plan-terms b { color: var(--ink); font-weight: 700; }
 .bn-terms { margin: -4px 0 0; font-size: 13px; line-height: 1.5; color: var(--muted); }
 .bundle ul { flex: 0 0 auto; }
-.bundle .bn-price { border-bottom: 0; padding-bottom: 4px; border-top: 1px solid var(--line); padding-top: 14px; }
+.bundle .bn-price { border: 0; padding: 4px 0; }
 .bundle .btn { margin-top: auto; }
 .price-card .pc-list { margin-top: 2px; }
 .tier .t-total { font-size: 14px; font-weight: 600; color: var(--accent); }
@@ -1459,3 +1458,79 @@ footer .logo .logo-mark { width: 28px; height: 28px; }
 .bn-why b { color: var(--accent); }
 
 .care-scope { margin-top: 14px; padding: 12px 16px; border-radius: 12px; background: var(--surface); border: 1px dashed var(--line); font-size: 14px; line-height: 1.6; color: var(--muted); }
+
+/* 1:1 맞춤 제작 말풍선 */
+.s3-bubble { position: relative; display: inline-block; margin: -4px 0 22px; padding: 10px 16px; border-radius: 14px; background: var(--accent); color: var(--accent-ink); font-size: 15px; font-weight: 600; line-height: 1.5; }
+.s3-bubble b { color: inherit; font-weight: 800; }
+.s3-bubble::after { content: ""; position: absolute; left: 28px; bottom: -8px; border: 8px solid transparent; border-bottom: 0; border-top-color: var(--accent); }
+@media (max-width: 860px) { .s3-bubble { font-size: 14px; padding: 9px 14px; } }
+.d-bubble { display: table; margin: 16px 0 2px; }
+
+.plan-value, .pc-value { margin: 0; font-size: 14.5px; line-height: 1.5; }
+.plan-value { color: var(--accent); }
+.price #blogPer { display: block; margin: 6px 0 0; line-height: 1.4; }
+.pc-value { color: var(--accent-ink); }
+.calc { position: relative; bottom: auto; z-index: auto; }
+.calc-offer { color: var(--accent-ink); font-size: 13.5px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 700px) {
+  .calc { grid-template-columns: 1fr; gap: 6px; padding: 14px 16px; }
+  .calc .calc-left, .calc .calc-right, .calc .btn { grid-column: auto; grid-row: auto; }
+  .calc .calc-sel, .calc .calc-line { white-space: normal; }
+  .calc .calc-bundle:not(:empty) { display: block; }
+  .calc .btn { justify-self: stretch; }
+}
+
+/* 요금 카드: 내 상황에 맞는 이유 한 줄 */
+.plan-fit { margin: 0; padding: 9px 12px; border-radius: 10px; background: var(--soft); color: var(--text); font-size: 14px; line-height: 1.55; }
+/* 아직 못 고른 분을 위한 무료 상담 */
+.unsure { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-top: 20px; padding: 22px 26px; border: 1.5px dashed var(--accent); border-radius: var(--r-md); background: var(--surface); }
+.unsure h3 { margin: 0 0 6px; font-size: 19px; color: var(--ink); }
+.unsure p { margin: 0; color: var(--text); font-size: 15.5px; line-height: 1.6; }
+.unsure .btn { flex: none; }
+@media (max-width: 700px) { .unsure { flex-direction: column; align-items: stretch; padding: 18px; } .unsure h3 { font-size: 17.5px; } .unsure p { font-size: 15px; } }
+
+/* 요금 카드: 큰 가격 → 작은 정가·절약 → 혜택 */
+.plan .price { border-bottom: 0; padding-bottom: 0; }
+.plan-was { margin: -8px 0 0; padding-bottom: 14px; border-bottom: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+.plan-was s { text-decoration-thickness: 1.5px; }
+.plan-cond { margin: -6px 0 18px; font-size: 14.5px; color: var(--text); }
+.plan-cond b { color: var(--ink); }
+
+/* 선택 바는 연민트, 진초록은 상담 버튼에만 */
+.prod.is-on .pick-row { background: #EAF4EE; color: #165A40; }
+:root[data-theme="dark"] .prod.is-on .pick-row { background: var(--mint); color: var(--mint-ink); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .prod.is-on .pick-row { background: var(--mint); color: var(--mint-ink); } }
+/* 가격 묶음: 큰 가격 → 정가·절약(4~6px) → 굵은 혜택(8~10px) → 구분선 */
+.plan-head { display: grid; gap: 0; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+.plan-head .plan-was { margin: 5px 0 0; padding: 0; border: 0; }
+.plan-head .price small#blogPer { margin-top: 5px; }
+.plan-head .plan-value { margin-top: 9px; font-weight: 700; color: var(--accent); }
+.plan-head .price small { white-space: nowrap; }
+
+/* 플레이스 사례: 실제 이미지 위 한 문장 */
+.bs-strip-head { margin: 32px 0 0; display: grid; gap: 4px; }
+.bs-strip-head b { font-size: 19px; color: var(--ink); letter-spacing: -0.02em; }
+.bs-strip-head span { font-size: 15.5px; color: var(--text); }
+.bs-strip-head + .bs-strip { margin-top: 14px; }
+/* 홈페이지 사례: 왜 이렇게 구성했는지 */
+.wk-why { margin: 0; font-size: 15px; line-height: 1.6; color: var(--text); }
+.wk-why b { display: block; color: var(--accent); }
+/* 블로그 글 예시 */
+.bq-ex { display: grid; grid-template-columns: 1.1fr 1fr; gap: 24px; align-items: center; margin: 0 0 28px; padding: 24px; border-radius: var(--r-lg); background: var(--surface); border: 1px solid var(--line); }
+.bq-text h3 { margin: 10px 0 8px; font-size: 20px; color: var(--ink); letter-spacing: -0.02em; }
+.bq-text p { margin: 0; font-size: 15.5px; line-height: 1.65; color: var(--text); }
+.bq-text p b { color: var(--ink); }
+.bq-text .bq-sub { margin-top: 10px; color: var(--accent); font-weight: 700; }
+.bq-post { border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden; background: var(--surface); }
+.bq-post .bpost-thumb span { font-size: 19px; }
+.bq-post-body { padding: 14px 16px; display: grid; gap: 4px; }
+.bq-post-body b { font-size: 15.5px; color: var(--ink); line-height: 1.45; }
+.bq-post-body small { font-size: 13px; color: var(--muted); }
+@media (max-width: 760px) { .bq-ex { grid-template-columns: 1fr; padding: 18px; gap: 16px; } .bq-text h3 { font-size: 18px; } .bs-strip-head b { font-size: 17.5px; } .bs-strip-head span { font-size: 14.5px; } }
+.bq-ex { grid-template-columns: 1.3fr 1fr; }
+.bq-post .bpost-thumb { aspect-ratio: 2 / 1; padding: 18px 20px; }
+@media (max-width: 760px) { .bq-ex { grid-template-columns: 1fr; } }
+
+/* 플레이스: 가격 바로 아래 포함 내용 한 줄 더 */
+.plan-head .plan-also { margin: 3px 0 0; font-size: 14.5px; color: var(--text); }
+.pc-also { margin: -6px 0 0; font-size: 14.5px; color: var(--accent-ink); opacity: .85; }
