@@ -2207,6 +2207,30 @@ p, li, dd, small, td, summary, .t-for { text-wrap: pretty; }
   .core-choice { align-items: stretch; flex-direction: column; padding: 21px; }
   .core-choice .btn { width: 100%; }
 }
+
+/* 결합 상품의 기준 금액과 차액을 선택 지점에서 함께 표시 */
+.offer-card > p.bundle-saving { display: grid; gap: 4px; margin: -3px 0 18px; padding: 12px 13px; border-radius: 11px; background: var(--soft); color: var(--text); font-size: 12.5px; line-height: 1.45; }
+.bundle-saving s, .rail-saving s, .core-options em s { color: var(--muted); text-decoration-thickness: 1px; }
+.bundle-saving b { color: var(--ink); white-space: nowrap; }
+.bundle-saving strong { color: var(--accent); font-size: 15px; }
+.core-options em { margin-top: 3px; color: var(--accent); font-size: 12px; font-style: normal; font-weight: 800; line-height: 1.45; }
+.core-options em span { white-space: nowrap; }
+.rail-saving { display: grid; gap: 3px; margin-top: 10px; padding: 10px 12px; border-radius: 9px; background: var(--soft); font-size: 12px; line-height: 1.4; }
+.rail-saving span { color: var(--text); }
+.rail-saving strong { color: var(--accent); font-size: 14px; }
+/* 초반에는 핵심 상품을 알리고, 상세 구성은 서비스 설명 뒤에서 제안 */
+.core-preview-wrap { padding: 10px 0 0; }
+.core-preview { display: flex; align-items: center; justify-content: space-between; gap: 22px; padding: 19px 23px; border: 1px solid var(--line); border-radius: 15px; background: var(--soft); }
+.core-preview > div { display: grid; gap: 2px; }
+.core-preview > div span { color: var(--accent); font-size: 12px; font-weight: 800; }
+.core-preview b { color: var(--ink); font-size: 18px; line-height: 1.4; }
+.core-preview p { color: var(--muted); font-size: 13px; }
+.core-preview a { display: inline-flex; align-items: center; justify-content: space-between; gap: 14px; flex: none; padding: 11px 15px; border-radius: 999px; background: var(--surface); color: var(--accent); font-size: 13px; font-weight: 800; text-decoration: none; }
+.core-preview a:hover { background: var(--mint); }
+@media (max-width: 650px) {
+  .core-preview { align-items: stretch; flex-direction: column; gap: 12px; padding: 18px; }
+  .core-preview a { align-self: flex-start; }
+}
 /* 스크롤 등장 효과 (motion.js) */
 .rv { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s cubic-bezier(.2, .7, .2, 1); transition-delay: var(--rv-delay, 0ms); }
 .rv.rv-in { opacity: 1; transform: none; }
@@ -2228,3 +2252,26 @@ p, li, dd, small, td, summary, .t-for { text-wrap: pretty; }
 @media (max-width: 800px) {
   .core-build::after { content: "↓"; right: auto; left: 50%; top: auto; bottom: -36px; margin: 0 0 0 -22px; }
 }
+/* 보조 글씨 최소 12px (제작 기준) */
+.rail-disclaimer { font-size: 12px; }
+form label small, .opt { font-size: 12px; }
+/* 진행 순서: 알약이 두 줄로 흩어지지 않게, 한 줄 단계표(휴대폰은 세로) */
+.flow-line { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 10px; }
+.flow-line li { position: relative; display: grid; grid-template-columns: 24px minmax(0, 1fr); column-gap: 8px; row-gap: 2px; align-items: start; align-content: start;
+  padding: 12px 14px; border-radius: 14px; font-size: 13.5px; line-height: 1.45; }
+.flow-line li::before { grid-row: span 2; width: 24px; height: 24px; margin-top: 1px; }
+.flow-line li b { margin: 0; font-size: 14.5px; font-weight: 700; white-space: nowrap; }
+.flow-line li:not(:last-child)::after { content: "›"; position: absolute; z-index: 1; right: -9px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; display: grid; place-items: center;
+  border-radius: 50%; background: var(--surface); color: var(--accent); font-weight: 800; font-size: 13px; line-height: 1; border: 1px solid var(--line); }
+@media (max-width: 800px) {
+  .flow-line { grid-auto-flow: row; grid-auto-columns: auto; gap: 8px; }
+  .flow-line li:not(:last-child)::after { content: "⌄"; right: auto; left: 25px; top: auto; bottom: -12px; transform: none; padding-bottom: 3px; }
+}
+@media (min-width: 601px) and (max-width: 800px) {
+  .flow-line { grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 8px; }
+  .flow-line li { grid-template-columns: 1fr; padding: 12px 10px; }
+  .flow-line li::before { grid-row: auto; margin-bottom: 4px; }
+  .flow-line li b { white-space: normal; }
+  .flow-line li:not(:last-child)::after { content: "›"; left: auto; right: -9px; top: 50%; bottom: auto; transform: translateY(-50%); padding: 0; }
+}
+@media (max-width: 600px) { .flow-line li:not(:last-child)::after { content: "↓"; padding: 0; font-size: 11px; } }
