@@ -7,12 +7,20 @@ const LINKS = {
 
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
+// 상품 카드에서 고른 구성을 메인 상담 신청서까지 전달합니다.
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[data-offer]');
+  if (!a) return;
+  try { sessionStorage.setItem('lp_guide_plan', a.dataset.offer); } catch (err) {}
+});
+
 // 메인에서 '자세히 보기'로 들어오면 이전 스크롤 위치가 남지 않고 항상 맨 위부터 보이게 합니다.
 // 주소 끝에 #care 처럼 페이지 안의 위치가 붙어 있으면 그 위치로 갑니다.
 if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 function toTop() {
   const id = location.hash.slice(1);
-  if (id && document.getElementById(id)) return;
+  const target = id && document.getElementById(id);
+  if (target) { if (target.tagName === 'DETAILS') target.open = true; return; }
   window.scrollTo({ top: 0, behavior: "instant" });
   document.querySelector("header.top")?.scrollIntoView({ block: "start", behavior: "instant" });
 }
