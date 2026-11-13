@@ -23,6 +23,12 @@
         intro: "검색 첫 화면과 상담 신청 페이지를 함께 구축합니다.",
         items: ["플레이스 브랜드 구축 전체", "한 페이지 홈페이지 맞춤 제작", "상담 신청 기능·기본 검색 등록", "플레이스 3개월 점검·홈페이지 1개월 보완"],
         note: "홈페이지 추가 페이지·기능과 도메인·서버 실비는 별도입니다.", pick: "place+home",
+      },
+      {
+        label: "올인원", name: "올인원 브랜드 구축", key: "allInOne", unit: "1회",
+        intro: "원장님 인터뷰 한 번으로 플레이스·블로그·홈페이지를 같은 이야기로 만듭니다.",
+        items: ["플레이스 브랜드 구축 전체", "블로그 초기 디자인 세팅·핵심 글 2건", "한 페이지 홈페이지 맞춤 제작", "플레이스 3개월 점검·홈페이지 1개월 보완"],
+        note: "따로 하면 317만원부터. 매달 운영(GROWTH+유지관리 월 44.9만원)은 별도입니다.", pick: "place+blog+home",
       }
     ],
     blog: [
@@ -30,19 +36,19 @@
         label: "월 4건", name: "블로그 단품 운영 · 월 4건", key: "blog4", unit: "월",
         intro: "일주일에 한 편씩 검색 질문에 답하는 글을 쌓습니다.",
         items: ["월 4건 주제·원고·발행", "글마다 본문 이미지 제작", "프로필·카테고리 기본 정리", "매달 방문자·검색어 기본 요약"],
-        note: "최소 3개월. 플레이스 관리는 포함되지 않습니다.", pick: "blog",
+        note: "최소 3개월, 이후 1개월씩. 플레이스 관리는 포함되지 않습니다.", pick: "blog",
       },
       {
         label: "월 8건", name: "블로그 단품 운영 · 월 8건", key: "blog8", unit: "월",
         intro: "정보성 글과 실제 자료를 바탕으로 한 글을 더 촘촘히 발행합니다.",
         items: ["월 8건 주제·원고·발행", "글마다 본문 이미지 제작", "프로필·카테고리 기본 정리", "매달 방문자·검색어 기본 요약"],
-        note: "최소 3개월. 플레이스 관리는 포함되지 않습니다.", pick: "blog",
+        note: "최소 3개월, 이후 1개월씩. 플레이스 관리는 포함되지 않습니다.", pick: "blog",
       },
       {
         label: "월 12건", name: "블로그 단품 운영 · 월 12건", key: "blog12", unit: "월",
         intro: "다룰 질문이 많은 업종에서 주제 범위를 넓혀 발행합니다.",
         items: ["월 12건 주제·원고·발행", "글마다 본문 이미지 제작", "프로필·카테고리 기본 정리", "매달 방문자·검색어 기본 요약"],
-        note: "최소 3개월. 플레이스 관리는 포함되지 않습니다.", pick: "blog",
+        note: "최소 3개월, 이후 1개월씩. 플레이스 관리는 포함되지 않습니다.", pick: "blog",
       }
     ],
     home: [
@@ -57,6 +63,12 @@
         intro: "플레이스 첫 사진부터 홈페이지 상담 동선까지 맞춥니다.",
         items: ["플레이스 브랜드 구축 전체", "한 페이지 홈페이지 맞춤 제작", "상담 신청 기능·기본 검색 등록", "플레이스 3개월 점검·홈페이지 1개월 보완"],
         note: "추가 페이지·기능과 도메인·서버 실비는 별도입니다.", pick: "place+home",
+      },
+      {
+        label: "올인원", name: "올인원 브랜드 구축", key: "allInOne", unit: "1회",
+        intro: "원장님 인터뷰 한 번으로 플레이스·블로그·홈페이지를 같은 이야기로 만듭니다.",
+        items: ["플레이스 브랜드 구축 전체", "블로그 초기 디자인 세팅·핵심 글 2건", "한 페이지 홈페이지 맞춤 제작", "플레이스 3개월 점검·홈페이지 1개월 보완"],
+        note: "따로 하면 317만원부터. 매달 운영(GROWTH+유지관리 월 44.9만원)은 별도입니다.", pick: "place+blog+home",
       }
     ],
     growth: [
@@ -70,13 +82,13 @@
         label: "GROWTH", name: "GROWTH · 플레이스+블로그 운영", key: "growth", unit: "월",
         intro: "검색 질문과 최신 소식을 두 채널에서 함께 운영합니다.",
         items: ["블로그 글 월 4건", "플레이스 점검 2회·소식 2건", "별도 홍보 이미지 월 2건", "월 키워드 분석·1장 보고"],
-        note: "최소 3개월. 분기 경쟁 분석·전략 상담 포함. 홈페이지 관리는 별도입니다.", pick: "place+blog",
+        note: "최소 3개월, 이후 1개월씩. 분기 경쟁 분석·전략 상담 포함. 홈페이지 관리는 별도입니다.", pick: "place+blog",
       },
       {
         label: "PREMIUM", name: "PREMIUM · 더 자주 운영", key: "premium", unit: "월",
         intro: "콘텐츠와 플레이스 소식을 더 자주 발행합니다.",
         items: ["블로그 글 월 8건", "플레이스 점검 4회·소식 4건", "별도 홍보 이미지 월 4건", "월 경쟁 분석·상담·보고"],
-        note: "최소 3개월. 홈페이지 관리는 포함되지 않습니다.", pick: "place+blog",
+        note: "최소 3개월, 이후 1개월씩. 홈페이지 관리는 포함되지 않습니다.", pick: "place+blog",
       }
     ]
   };
@@ -116,10 +128,13 @@
     panel.setAttribute("aria-labelledby", `rail-tab-${index}`);
     const mm = window.LP_PRICES[p.key].minMonths;
     const term = p.unit === "월" ? (mm === 1 ? "1개월부터" : `최소 ${mm}개월`) : "1회";
+    const price = window.LP_PRICES[p.key];
+    const saving = price.sum ? `<p class="rail-saving"><span>각각 <s>${escapeHtml(window.lpSum(p.key))}</s> → 함께 ${escapeHtml(window.lpWon(p.key))}</span><strong>${price.from ? "기본 구성 기준 " : ""}${escapeHtml(window.lpSave(p.key))} 절약</strong></p>` : "";
     panel.innerHTML = `
       <span class="rail-kicker">${escapeHtml(p.unit === "월" ? "매달 운영" : "처음 한 번 구축")}</span>
       <h2>${escapeHtml(p.name)}</h2>
       <p class="rail-price"><strong>${p.unit === "월" ? "월 " : ""}${escapeHtml(window.lpWon(p.key))}</strong><small>${escapeHtml(term)} · 부가세 별도</small></p>
+      ${saving}
       <p class="rail-intro">${escapeHtml(p.intro)}</p>
       <ul class="rail-list">${p.items.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
       <p class="rail-note">${escapeHtml(p.note)}</p>

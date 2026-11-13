@@ -8,6 +8,8 @@ window.LP_PRICES = {
   placeBlog:  { name: "플레이스+블로그 통합 구축",   won: 149,  unit: "1회", sum: 168 },
   home:       { name: "한 페이지 홈페이지 제작",     won: 149,  unit: "1회", from: true },
   placeHome:  { name: "플레이스+홈페이지 브랜드 기본", won: 228, unit: "1회", from: true, sum: 268 },
+  // 대표 상품: 세 채널을 한 번의 인터뷰로. 두 묶음 할인(19+40)을 그대로 더한 값 (따로 317만원부터)
+  allInOne:   { name: "올인원 브랜드 구축", won: 259, unit: "1회", from: true, sum: 317 },
   // 매달: 통합 운영
   basic:      { name: "BASIC",   won: 19.9, unit: "월", minMonths: 1 },
   growth:     { name: "GROWTH",  won: 39.9, unit: "월", minMonths: 3 },
@@ -21,4 +23,8 @@ window.LP_PRICES = {
 };
 window.LP_FREE = { placeMonths: 3, homeMonths: 1 };
 window.lpWon = k => { const p = window.LP_PRICES[k]; return p.won + "만원" + (p.from ? "부터" : ""); };
+window.lpSum = k => { const p = window.LP_PRICES[k]; return p.sum + "만원" + (p.from ? "부터" : ""); };
+window.lpSave = k => { const p = window.LP_PRICES[k]; return Number((p.sum - p.won).toFixed(1)) + "만원"; };
 document.querySelectorAll("[data-p]").forEach(el => { if (window.LP_PRICES[el.dataset.p]) el.textContent = window.lpWon(el.dataset.p); });
+document.querySelectorAll("[data-sum]").forEach(el => { if (window.LP_PRICES[el.dataset.sum]?.sum) el.textContent = window.lpSum(el.dataset.sum); });
+document.querySelectorAll("[data-save]").forEach(el => { if (window.LP_PRICES[el.dataset.save]?.sum) el.textContent = window.lpSave(el.dataset.save); });

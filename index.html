@@ -32,13 +32,12 @@
       <img class="logo-mark" src="logo-mark.png" alt="" width="34" height="34"><svg class="logo-pin" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Z" fill="var(--accent)"/><circle cx="12" cy="9" r="2.6" fill="var(--mint)"/></svg>
       로컬핀 마케팅
     </a>
-    <nav class="nav" aria-label="주요 메뉴">
-      <a href="#services">서비스</a>
-      <a href="#cases">운영 사례</a>
-      <a href="#price">요금</a>
+    <nav class="svc-nav" aria-label="서비스">
+      <a href="place.html">플레이스</a>
+      <a href="blog.html">블로그</a>
+      <a href="homepage.html">홈페이지</a>
       <a href="growth.html">GROWTH</a>
       <a href="guide.html#packages">상품·패키지</a>
-      <a href="#faq">자주 묻는 질문</a>
     </nav>
     <span class="direct" data-show="phone" hidden>직통 <b class="cfg-phone"></b></span>
     <a class="btn btn-primary btn-sm" href="#contact">무료 상담 신청</a>
@@ -287,7 +286,7 @@
             </ul>
             <p class="s3-for"><b>이런 원장님께</b> 검색은 되는데 전화가 안 오는 곳</p>            <div class="s3-foot">
               <span class="s3-price"><span data-p="place">119만원</span> <small>1회 · 부가세 별도</small></span>
-              <div class="s3-btns"><a class="btn btn-ghost btn-sm" href="place.html">첫 사진이 바뀌는 과정 보기</a><a class="btn btn-primary btn-sm" href="#contact" data-pick="place">무료 상담 신청</a></div>
+              <a class="btn btn-primary s3-go" href="place.html">첫 사진이 바뀌는 과정 자세히 보기 <span aria-hidden="true">→</span></a>
             </div>
           </div>
         </article>
@@ -312,9 +311,9 @@
               <li>매달 기본 실적 요약 (방문자 수·검색어)</li>
             </ul>
             <p class="s3-for"><b>이런 원장님께</b> 블로그는 해야 하는데 쓸 시간이 없는 곳</p>            <div class="s3-foot">
-              <span class="s3-price">월 <span data-p="blog4">22만원</span> <small>월 4건 · 최소 3개월</small></span>
+              <span class="s3-price">월 <span data-p="blog4">22만원</span> <small>월 4건 · 최소 3개월, 이후 1개월씩</small></span>
               <p class="s3-more">대문 디자인·주제 설계까지 새로 세우려면 <a href="blog.html#build">블로그 심화 구축 49만원</a></p>
-              <div class="s3-btns"><a class="btn btn-ghost btn-sm" href="blog.html">글 구성·운영 방식 보기</a><a class="btn btn-primary btn-sm" href="#contact" data-pick="blog">무료 상담 신청</a></div>
+              <a class="btn btn-primary s3-go" href="blog.html">글 구성·운영 방식 자세히 보기 <span aria-hidden="true">→</span></a>
             </div>
           </div>
         </article>
@@ -339,7 +338,7 @@
             </ul>
             <p class="s3-for"><b>이런 원장님께</b> 홈페이지가 없거나 오래돼서 보여주기 민망한 곳</p>            <div class="s3-foot">
               <span class="s3-price"><span data-p="home">149만원부터</span> <small>1회 · 부가세 별도</small></span>
-              <div class="s3-btns"><a class="btn btn-ghost btn-sm" href="homepage.html">제작 사례·상담 동선 보기</a><a class="btn btn-primary btn-sm" href="#contact" data-pick="home">무료 상담 신청</a></div>
+              <a class="btn btn-primary s3-go" href="homepage.html">제작 사례·상담 동선 자세히 보기 <span aria-hidden="true">→</span></a>
             </div>
           </div>
         </article>
@@ -361,6 +360,7 @@
           <h3>보이는 곳부터<br>하나의 브랜드로.</h3>
           <p class="core-card-intro">손님이 검색하고 비교하는 화면에 원장님의 경력과 차이를 먼저 보여줍니다.</p>
           <div class="core-options">
+            <a class="core-flag" href="guide.html#packages"><span><b>올인원 · 플레이스 + 블로그 + 홈페이지</b><small>인터뷰 한 번으로 세 채널을 같은 이야기로</small><em>각각 <s data-sum="allInOne">317만원부터</s> → <span data-save="allInOne">58만원</span> 절약</em></span><strong><span data-p="allInOne">259만원부터</span><small>1회</small></strong><i aria-hidden="true">↗</i></a>
             <a href="place.html#packages"><span><b>플레이스 + 블로그</b><small>검색 첫인상과 읽을 글을 함께 정리</small><em>각각 <s data-sum="placeBlog">168만원</s> → <span data-save="placeBlog">19만원</span> 절약</em></span><strong><span data-p="placeBlog">149만원</span><small>1회</small></strong><i aria-hidden="true">↗</i></a>
             <a href="homepage.html#packages"><span><b>플레이스 + 홈페이지</b><small>검색 화면에서 상담 페이지까지 연결</small><em>기본 구성 기준 각각 <s data-sum="placeHome">268만원부터</s> → <span data-save="placeHome">40만원</span> 절약</em></span><strong><span data-p="placeHome">228만원부터</span><small>1회</small></strong><i aria-hidden="true">↗</i></a>
           </div>
@@ -371,7 +371,7 @@
           <div class="core-card-top"><span class="core-no">02 · 검수 후 매달</span><span class="core-pill">대표 추천 월 운영</span></div>
           <h3>GROWTH<br>성장 관리</h3>
           <p class="core-card-intro">만들어 둔 채널에 새 콘텐츠를 쌓고, 플레이스와 블로그를 함께 운영합니다.</p>
-          <div class="core-growth-price"><span>월</span><strong data-p="growth">39.9만원</strong><small>부가세 별도 · 최소 3개월</small></div>
+          <div class="core-growth-price"><span>월</span><strong data-p="growth">39.9만원</strong><small>부가세 별도 · 최소 3개월, 이후 1개월씩</small></div>
           <ul><li>블로그 글 월 4건</li><li>플레이스 소식 월 2건 · 점검 월 2회</li><li>홍보 이미지 월 2건 · 키워드 분석·보고</li></ul>
           <p class="core-small">홈페이지 유지관리는 별도입니다. 함께 맡기시면 월 <span data-p="growthHome">44.9만원</span>입니다.</p>
           <p class="core-start">채널이 이미 갖춰졌다면 구축 없이 GROWTH부터 시작할 수 있습니다.</p>
@@ -528,7 +528,7 @@
           <label class="pick-row"><input type="checkbox" id="pkBlog" data-key="blog"> <span>이 서비스 선택</span></label>
           <h3>블로그 운영</h3>
           <div class="plan-head">
-            <div class="price"><span id="blogPrice">월 22만원</span><small id="blogPer">월 4건 · 최소 3개월</small></div>
+            <div class="price"><span id="blogPrice">월 22만원</span><small id="blogPer">월 4건 · 최소 3개월, 이후 1개월씩</small></div>
             <p class="plan-value">프로필·카테고리 기본 정리 포함</p>
             <p class="plan-also">대문·주제 설계까지 새로 세우는 심화 구축은 49만원 별도</p>
           </div>
@@ -557,7 +557,7 @@
         </div>
       </div>
 
-      <div class="calc" aria-live="polite">
+      <div class="calc" id="calc" aria-live="polite">
         <div class="calc-left">
           <span class="calc-k">선택한 서비스</span>
           <b class="calc-sel" id="calcSel">네이버 플레이스 브랜딩</b>
@@ -591,7 +591,7 @@
         <details><summary>플레이스가 아직 없거나 개원 준비 중이어도 되나요?</summary><p>네. 스마트플레이스 신규 등록부터 함께 진행합니다.</p><p>개원 전에 시작하시면 문을 여는 날부터 원장님 브랜드가 갖춰진 상태로 손님을 맞을 수 있습니다.</p></details>
         <details><summary>가짜 리뷰나 순위 보장 같은 작업도 하나요?</summary><p>하지 않습니다. 가짜 리뷰·영수증 리뷰 작업, 트래픽·저장수 조작, "1위 보장" 약속은 모두 하지 않습니다.</p><p>순위는 누구도 보장할 수 없어서, 대신 세팅 전후의 조회수와 전화·예약 수를 같은 기준으로 비교해 보고합니다.</p></details>
         <details><summary>제 계정 비밀번호를 드려야 하나요?</summary><p>아니요. 스마트플레이스의 매니저 초대 기능으로 권한만 받아 작업합니다.</p><p>작업이 끝나면 원장님이 직접 권한을 해제하실 수 있습니다.</p></details>
-        <details><summary>계약 기간과 해지는 어떻게 되나요?</summary><p>서비스와 업체 상황에 따라 다릅니다.</p><p>계약 전에 기간, 해지 방법, 환불 기준을 서면으로 먼저 안내드리고, 동의하신 경우에만 진행합니다. 블로그는 최소 3개월부터입니다.</p></details>
+        <details><summary>계약 기간과 해지는 어떻게 되나요?</summary><p>서비스와 업체 상황에 따라 다릅니다.</p><p>계약 전에 기간, 해지 방법, 환불 기준을 서면으로 먼저 안내드리고, 동의하신 경우에만 진행합니다. 블로그·GROWTH처럼 글이 들어가는 월 관리는 최소 3개월부터이고, 그 뒤로는 1개월 단위로 이어가실 수 있습니다.</p></details>
         <details><summary>진행이 어려운 지역이 있나요?</summary><p>운영자의 사업장과 상권이 겹치는 아래 지역의 같은 업종은 진행하지 않습니다. 맡은 업체와 경쟁하지 않기 위한 원칙입니다.<br>· 요양보호사교육원: 용인시 수지구 상현동<br>· 산후관리사 파견업체: 수원시 전 지역</p></details>
       </div>    </div>
   </section>
@@ -675,6 +675,7 @@
   </div>
 </footer>
 
+<button type="button" class="calc-peek" id="calcPeek" hidden><span class="cp-txt"><b id="peekSel"></b><span id="peekSum"></span></span><span class="cp-go">합계 보기 ↓</span></button>
 <div class="dock">
   <a class="btn btn-ghost" href="#price">요금</a>
   <a class="btn btn-primary" href="#contact">무료 상담 신청</a>
@@ -1020,29 +1021,50 @@ function selectedKeys() { return ["place", "blog", "home"].filter(k => $(`.pick-
 function planText(keys) {
   const n = blogN();
   const parts = keys.map(k => k === "blog" ? `블로그 월 ${n}건 (월 ${lpWon(BLOGK[n])}, 최소 3개월)` : k === "place" ? `플레이스 구축 (${lpWon("place")})` : `홈페이지 제작 (${lpWon("home")})`);
-  if (keys.includes("place") && keys.includes("home")) return ["플레이스+홈페이지 브랜드 기본 (" + lpWon("placeHome") + ")"].concat(keys.includes("blog") ? [parts[keys.indexOf("blog")]] : []).join(" + ");
+  if (keys.includes("place") && keys.includes("home") && keys.includes("blog")) return `올인원 브랜드 구축 (${lpWon("allInOne")}) + ` + parts[keys.indexOf("blog")];
+  if (keys.includes("place") && keys.includes("home")) return "플레이스+홈페이지 브랜드 기본 (" + lpWon("placeHome") + ")";
   return parts.join(" + ");
 }
 function renderCalc() {
   const keys = selectedKeys(), n = blogN();
   const P = keys.includes("place"), B = keys.includes("blog"), H = keys.includes("home");
   $("#blogPrice").textContent = "월 " + lpWon(BLOGK[n]);
-  $("#blogPer").textContent = `월 ${n}건 · 최소 3개월`;
+  $("#blogPer").textContent = `월 ${n}건 · 최소 3개월, 이후 1개월씩`;
   $$(".prod").forEach(c => c.classList.toggle("is-on", keys.includes(c.dataset.prod)));
   $("#calcSel").textContent = keys.length ? keys.map(k => k === "blog" ? `블로그 운영(월 ${n}건)` : NAME[k]).join(" + ") : "서비스를 골라주세요";
-  const once = P && H ? "placeHome" : P ? "place" : H ? "home" : null;
+  const once = P && H && B ? "allInOne" : P && H ? "placeHome" : P ? "place" : H ? "home" : null;
   $("#calcOnce").hidden = !once;
   $("#calcOnce").innerHTML = P && B && !H ? "처음 한 번 <b>무료 진단 후 확정</b>" : once ? `처음 한 번 <b>${lpWon(once)}</b>` : "";
   $("#calcMonthly").hidden = !B;
   $("#calcMonthly").innerHTML = `매달 <b>${lpWon(BLOGK[n])}</b> <small>(최소 3개월)</small>`;
   $("#calcBundle").textContent =
     P && B && !H ? `플레이스만 구축하면 ${lpWon("place")}, 블로그까지 정비하면 통합 구축 ${lpWon("placeBlog")} · 정확한 구축 범위는 무료 진단 후 확정`
-    : P && H ? "플레이스+홈페이지 브랜드 기본 패키지" + (B ? " · 블로그 심화 구축 필요 여부는 무료 진단 후 확정" : "")
+    : P && H && B ? `올인원 브랜드 구축 · 세 개 따로 ${lpSum("allInOne")} → ${lpSave("allInOne")} 절약 · 블로그 초기 세팅 포함`
+    : P && H ? "플레이스+홈페이지 브랜드 기본 패키지"
     : B && H ? "블로그 심화 구축 필요 여부는 무료 진단 후 확정"
     : "";
 }
-pickBoxes.forEach(b => b.addEventListener("change", renderCalc));
-$$('input[name="blogN"]').forEach(r => r.addEventListener("change", () => { $("#pkBlog").checked = true; renderCalc(); }));
+pickBoxes.forEach(b => b.addEventListener("change", () => { renderCalc(); peekShow(); }));
+$$('input[name="blogN"]').forEach(r => r.addEventListener("change", () => { $("#pkBlog").checked = true; renderCalc(); peekShow(); }));
+
+// 휴대폰에서는 카드를 고르는 동안 초록 요약 바가 화면 밖에 있으므로, 고르는 순간 아래에 작은 요약을 띄웁니다.
+// 요약 바가 화면에 들어오거나 요금 구간을 벗어나면 사라집니다.
+const peek = $("#calcPeek"), calcBox = $("#calc"), priceSec = $("#price");
+let peekOn = false, calcSeen = false, priceSeen = false;
+function peekUpdate() {
+  const show = peekOn && !calcSeen && priceSeen && matchMedia("(max-width: 860px)").matches;
+  if (!show) { peek.hidden = true; return; }
+  const keys = selectedKeys();
+  $("#peekSel").textContent = keys.length ? "선택 " + keys.length + "개" : "선택 없음";
+  $("#peekSum").textContent = [$("#calcOnce"), $("#calcMonthly")].filter(e => !e.hidden).map(e => e.textContent.replace(/\s*\(최소 3개월\)/, "").trim()).join(" · ") || "서비스를 골라주세요";
+  peek.hidden = false;
+}
+function peekShow() { peekOn = true; peekUpdate(); }
+if ("IntersectionObserver" in window) {
+  new IntersectionObserver(es => { calcSeen = es[0].isIntersecting; peekUpdate(); }, { rootMargin: "0px 0px -80px 0px" }).observe(calcBox);
+  new IntersectionObserver(es => { priceSeen = es[0].isIntersecting; peekUpdate(); }).observe(priceSec);
+}
+peek.addEventListener("click", () => calcBox.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" }));
 $("#calcCta").addEventListener("click", () => { const k = selectedKeys(); if (k.length) $("#fPlan").value = planText(k); });
 $$("[data-pick]").forEach(a => a.addEventListener("click", () => {
   const k = a.dataset.pick.split("+");

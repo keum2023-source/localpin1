@@ -2275,3 +2275,59 @@ form label small, .opt { font-size: 12px; }
   .flow-line li:not(:last-child)::after { content: "›"; left: auto; right: -9px; top: 50%; bottom: auto; transform: translateY(-50%); padding: 0; }
 }
 @media (max-width: 600px) { .flow-line li:not(:last-child)::after { content: "↓"; padding: 0; font-size: 11px; } }
+
+/* 구성 찾기: 핵심 문구 강조 */
+.guide-offers .offer-head p b, .guide-map p b, .guide-section-head p b { color: var(--ink); font-weight: 700; }
+.guide-offers .offer-head p + p { margin-top: 4px; }
+.guide-offers .offer-card > p b { color: var(--ink); font-weight: 700; }
+.guide-offers .offer-card.featured > p b { color: var(--accent); }
+.offer-card > p.offer-sub:has(+ .offer-sub) { margin-bottom: 6px; }
+/* 가상 요소 글씨도 최소 12px (제작 기준) */
+.difference-row > div:first-child::before, .difference-row > div + div::before { font-size: 12px; }
+/* 패키지 카드: 상세 보기 링크도 상담 버튼과 같은 모양 (상세페이지로 유도) */
+.offer-card > .text-link, .guide-offers .offer-card > .text-link { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: auto 0 8px; padding: 12px 14px; border-radius: 10px; background: var(--soft); color: var(--accent); font-size: 14px; font-weight: 800; text-decoration: none; }
+.offer-card > .text-link:hover, .offer-card > .text-link:focus-visible { background: var(--accent); color: var(--accent-ink); }
+.offer-card > .text-link + .offer-cta, .guide-offers .offer-card > .text-link + .offer-cta { margin-top: 0; }
+.offer-card > .offer-cta { display: flex; }
+
+/* 올인원(대표 상품) */
+.core-options a.core-flag { border-color: var(--accent); background: var(--mint); }
+.core-options a.core-flag b { color: var(--mint-ink); }
+.offer-grid:has(.offer-flagship) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.offer-flagship { position: relative; }
+.flag-badge { position: absolute; top: -13px; left: 22px; padding: 4px 12px; border-radius: 999px; background: #17573A; color: #F3DE9C; border: 1px solid #E5C76B; font-size: 12px; font-weight: 800; letter-spacing: .02em; }
+.offer-flagline { margin-top: 18px; padding: 12px 14px; border-left: 3px solid var(--accent); border-radius: 10px; background: var(--mint); color: var(--mint-ink); font-weight: 600; }
+.offer-flagline a { color: inherit; }
+@media (max-width: 800px) { .offer-grid:has(.offer-flagship) { grid-template-columns: 1fr; } }
+.guide-offers .offer-card:nth-child(4)::before { content: "04"; }
+
+/* 서비스 카드: 초록 버튼 하나로 상세 페이지 입구 */
+.s3-go { width: 100%; justify-content: center; gap: 6px; padding: 14px 16px; font-size: 15px; }
+.s3-go span { transition: transform .2s; }
+.s3-go:hover span { transform: translateX(3px); }
+
+/* 상단바 메뉴: 메인도 상세와 같은 서비스 메뉴. 휴대폰·태블릿은 로고 아래 한 줄로 */
+@media (max-width: 860px) {
+  .top .wrap { flex-wrap: wrap; height: auto; column-gap: 12px; row-gap: 0; padding-top: 8px; }
+  .top .logo { min-height: 44px; }
+  .top .wrap > .btn { margin-left: auto; }
+  .svc-nav { display: flex; order: 3; flex: 0 0 100%; margin: 0 -6px; gap: 2px; justify-content: space-between; overflow-x: auto; scrollbar-width: none; padding: 2px 0 8px; }
+  .svc-nav::-webkit-scrollbar { display: none; }
+  .svc-nav a { flex: 0 0 auto; white-space: nowrap; padding: 7px 10px; font-size: 14px; }
+  [id] { scroll-margin-top: 116px; }
+}
+@media (max-width: 420px) { .svc-nav a { padding: 7px 7px; font-size: 13.5px; } }
+
+/* 휴대폰: 요금 카드를 고르면 아래에 뜨는 선택 요약 */
+.calc-peek { display: none; }
+@media (max-width: 860px) {
+  .calc-peek { position: fixed; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom, 0px)); z-index: 24; display: flex; align-items: center; gap: 10px; padding: 10px 12px 10px 16px; border: 0; border-radius: 14px; background: var(--accent); color: var(--accent-ink); font: inherit; text-align: left; cursor: pointer; box-shadow: 0 12px 28px -12px rgba(15,74,45,.6); animation: peekIn .25s ease-out; }
+  .calc-peek[hidden] { display: none; }
+  .cp-txt { flex: 1; min-width: 0; display: grid; gap: 1px; }
+  .cp-txt b { font-size: 13px; font-weight: 700; opacity: .85; }
+  .cp-txt span { font-size: 14px; font-weight: 700; line-height: 1.4; }
+  .cp-go { flex: 0 0 auto; padding: 8px 12px; border-radius: 999px; background: var(--mint); color: var(--mint-ink); font-size: 13.5px; font-weight: 700; }
+}
+@media (max-width: 700px) { .calc-peek { bottom: calc(76px + env(safe-area-inset-bottom, 0px)); } }
+@keyframes peekIn { from { opacity: 0; transform: translateY(8px); } }
+@media (prefers-reduced-motion: reduce) { .calc-peek { animation: none; } }
