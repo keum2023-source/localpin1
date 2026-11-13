@@ -329,7 +329,7 @@
           <div class="s3-body">
             <span class="s3-tag">한 페이지 · 원장님 명의 주소</span>
             <h3>홈페이지 제작</h3>
-            <p class="s3-lead">원장님 이야기를 첫 화면에 담아<br><b>손님이 믿고 연락하는</b> 홈페이지를 만듭니다.<br>홈페이지만 맡기셔도 됩니다.</p>
+            <p class="s3-lead">원장님 이야기를 첫 화면에 담아<br><b>손님이 믿고 연락하는</b> 홈페이지를 만듭니다.</p>
             <ul class="s3-list">
               <li>원장 소개부터 상담 신청까지 <b>한 페이지에</b></li>
               <li>휴대폰에서 보기 좋게, 글씨·버튼 크게</li>
@@ -360,7 +360,7 @@
           <h3>보이는 곳부터<br>하나의 브랜드로.</h3>
           <p class="core-card-intro">손님이 검색하고 비교하는 화면에 원장님의 경력과 차이를 먼저 보여줍니다.</p>
           <div class="core-options">
-            <a class="core-flag" href="guide.html#packages"><span><b>올인원 · 플레이스 + 블로그 + 홈페이지</b><small>인터뷰 한 번으로 세 채널을 같은 이야기로</small><em>각각 <s data-sum="allInOne">317만원부터</s> → <span data-save="allInOne">58만원</span> 절약</em></span><strong><span data-p="allInOne">259만원부터</span><small>1회</small></strong><i aria-hidden="true">↗</i></a>
+            <a class="core-flag" href="guide.html#packages"><span><b>올인원 · 플레이스 + 블로그 + 홈페이지</b><small>인터뷰 한 번으로 세 채널을 같은 이야기로</small><em>각각 <s data-sum="allInOne">317만원부터</s> → <span data-save="allInOne">48만원</span> 절약</em></span><strong><span data-p="allInOne">269만원부터</span><small>1회</small></strong><i aria-hidden="true">↗</i></a>
             <a href="place.html#packages"><span><b>플레이스 + 블로그</b><small>검색 첫인상과 읽을 글을 함께 정리</small><em>각각 <s data-sum="placeBlog">168만원</s> → <span data-save="placeBlog">19만원</span> 절약</em></span><strong><span data-p="placeBlog">149만원</span><small>1회</small></strong><i aria-hidden="true">↗</i></a>
             <a href="homepage.html#packages"><span><b>플레이스 + 홈페이지</b><small>검색 화면에서 상담 페이지까지 연결</small><em>기본 구성 기준 각각 <s data-sum="placeHome">268만원부터</s> → <span data-save="placeHome">40만원</span> 절약</em></span><strong><span data-p="placeHome">228만원부터</span><small>1회</small></strong><i aria-hidden="true">↗</i></a>
           </div>
@@ -1036,7 +1036,7 @@ function renderCalc() {
   $("#calcOnce").hidden = !once;
   $("#calcOnce").innerHTML = P && B && !H ? "처음 한 번 <b>무료 진단 후 확정</b>" : once ? `처음 한 번 <b>${lpWon(once)}</b>` : "";
   $("#calcMonthly").hidden = !B;
-  $("#calcMonthly").innerHTML = `매달 <b>${lpWon(BLOGK[n])}</b> <small>(최소 3개월)</small>`;
+  $("#calcMonthly").innerHTML = `매달 <b>${lpWon(BLOGK[n])}</b> <small>(최소 3개월, 이후 1개월씩)</small>`;
   $("#calcBundle").textContent =
     P && B && !H ? `플레이스만 구축하면 ${lpWon("place")}, 블로그까지 정비하면 통합 구축 ${lpWon("placeBlog")} · 정확한 구축 범위는 무료 진단 후 확정`
     : P && H && B ? `올인원 브랜드 구축 · 세 개 따로 ${lpSum("allInOne")} → ${lpSave("allInOne")} 절약 · 블로그 초기 세팅 포함`
@@ -1056,7 +1056,7 @@ function peekUpdate() {
   if (!show) { peek.hidden = true; return; }
   const keys = selectedKeys();
   $("#peekSel").textContent = keys.length ? "선택 " + keys.length + "개" : "선택 없음";
-  $("#peekSum").textContent = [$("#calcOnce"), $("#calcMonthly")].filter(e => !e.hidden).map(e => e.textContent.replace(/\s*\(최소 3개월\)/, "").trim()).join(" · ") || "서비스를 골라주세요";
+  $("#peekSum").textContent = [$("#calcOnce"), $("#calcMonthly")].filter(e => !e.hidden).map(e => e.textContent.replace(/\s*\(최소[^)]*\)/, "").trim()).join(" · ") || "서비스를 골라주세요";
   peek.hidden = false;
 }
 function peekShow() { peekOn = true; peekUpdate(); }

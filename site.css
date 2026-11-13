@@ -2331,3 +2331,21 @@ form label small, .opt { font-size: 12px; }
 @media (max-width: 700px) { .calc-peek { bottom: calc(76px + env(safe-area-inset-bottom, 0px)); } }
 @keyframes peekIn { from { opacity: 0; transform: translateY(8px); } }
 @media (prefers-reduced-motion: reduce) { .calc-peek { animation: none; } }
+
+/* 직접 만든 홍보 디자인 (포스터 예시) */
+.poster-work { margin-top: 40px; padding: 28px; border-radius: var(--r-lg); background: var(--surface); border: 1px solid var(--line); }
+.poster-work.in-growth { margin: 28px 0; }
+.poster-head { max-width: 760px; margin-bottom: 20px; }
+.poster-head h3 { margin: 10px 0 8px; font-size: clamp(19px, 2.3vw, 23px); color: var(--ink); letter-spacing: -0.02em; line-height: 1.4; }
+.poster-head p { margin: 0 0 4px; color: var(--text); font-size: 15px; line-height: 1.65; }
+.poster-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.ps { display: grid; gap: 8px; text-decoration: none; color: var(--muted); font-size: 13.5px; font-weight: 600; text-align: center; min-width: 0; }
+.ps img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 12px; border: 1px solid var(--line); box-shadow: 0 14px 30px -22px rgba(15,74,45,.55); transition: transform .2s ease, box-shadow .2s ease; }
+.ps:hover img { transform: translateY(-3px); box-shadow: 0 20px 36px -22px rgba(15,74,45,.6); }
+.poster-work .core-link { display: inline-flex; margin-top: 18px; }
+@media (max-width: 860px) { .poster-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .poster-work { padding: 20px 16px; } .poster-grid { gap: 10px; } }
+@media (prefers-reduced-motion: reduce) { .ps img { transition: none; } .ps:hover img { transform: none; } }
+
+.ps-label { margin: 22px 0 10px; font-size: 14px; font-weight: 800; color: var(--ink); }
+.poster-head + .ps-label { margin-top: 0; }
