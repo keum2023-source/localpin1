@@ -2349,3 +2349,11 @@ form label small, .opt { font-size: 12px; }
 
 .ps-label { margin: 22px 0 10px; font-size: 14px; font-weight: 800; color: var(--ink); }
 .poster-head + .ps-label { margin-top: 0; }
+
+/* 블로그 상세: 실제 운영 중인 블로그 */
+.real-blog { margin: 40px 0 0; padding: 28px; border-radius: var(--r-lg); background: var(--surface); border: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 28px; align-items: center; }
+.real-blog figcaption h3 { margin: 10px 0 8px; font-size: clamp(19px, 2.3vw, 23px); color: var(--ink); letter-spacing: -0.02em; line-height: 1.4; }
+.real-blog figcaption p { margin: 0 0 6px; color: var(--text); font-size: 15px; line-height: 1.65; }
+.real-blog img { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); background: #fff; box-shadow: 0 14px 30px -22px rgba(15,74,45,.55); }
+@media (max-width: 860px) { .real-blog { grid-template-columns: 1fr; gap: 18px; } }
+@media (max-width: 560px) { .real-blog { padding: 20px 16px; } }
