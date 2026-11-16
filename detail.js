@@ -7,7 +7,7 @@ const LINKS = {
 
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
-// 상품 카드에서 고른 구성을 메인 상담 신청서까지 전달합니다.
+// 상품 카드(data-offer)에서 고른 구성을 메인 브랜드 진단 신청서의 관심 서비스까지 전달합니다.
 document.addEventListener('click', e => {
   const a = e.target.closest('a[data-offer]');
   if (!a) return;
@@ -31,7 +31,7 @@ addEventListener("pageshow", e => { if (e.persisted) toTop(); });
 $$(".cfg-place").forEach(el => { if (LINKS.PLACE_URL) el.href = LINKS.PLACE_URL; else el.hidden = true; });
 $$(".cfg-blog").forEach(el => { if (LINKS.BLOG_URL) el.href = LINKS.BLOG_URL; else el.hidden = true; });
 
-// 업종 탭: 같은 페이지의 모든 탭·예시를 함께 바꿉니다. 링크 끝에 #postpartum, #hospital 을 붙이면 그 업종 화면으로 열립니다.
+// 업종 탭: 같은 페이지의 모든 탭·예시를 함께 바꿉니다. 링크 끝에 업종 탭의 data-ind 값(예: #postpartum)을 붙이면 그 업종 화면으로 열립니다.
 function setInd(ind) {
   $$(".ind-tabs button").forEach(b => b.setAttribute("aria-pressed", b.dataset.ind === ind));
   $$("[data-for]").forEach(el => el.hidden = el.dataset.for !== ind);
@@ -41,7 +41,7 @@ const startInd = location.hash.slice(1);
 setInd($$(".ind-tabs button").some(b => b.dataset.ind === startInd) ? startInd : "academy");
 
 (() => {
-  // PC 화면 옆 무료 진단 배너: 첫 화면을 지나면 나타나고, 신청서가 보이면 숨깁니다.
+  // PC 화면 옆 무료 브랜드 진단 배너: 첫 화면을 지나면 나타나고, 신청서가 보이면 숨깁니다.
   const sc = document.querySelector(".side-cta");
   if (!sc) return;
   let atForm = false;

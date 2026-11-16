@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>로컬핀 AI 성장엔진</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root {
+  --bg: #F6F9F7; --surface: #FFFFFF; --ink: #14171D; --text: #303338; --muted: #5B626C; --line: #E6EAE7;
+  --accent: #17603C; --accent-ink: #FFFFFF; --mint: #DDF3E4; --soft: #EEF6F0; --bad: #C24A35; --warn: #8A5A00; --warn-bg: #FFF1D6;
+  --f: "Pretendard Variable", Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1411; --surface: #161D19; --ink: #EEF2EF; --text: #D5DBD7; --muted: #A3ADA7; --line: #26302A;
+    --accent: #3DCB72; --accent-ink: #0F1411; --mint: #1F3D2B; --soft: #18241D; --bad: #E58A74; --warn: #F2C46B; --warn-bg: #3A2F14;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.6 var(--f); letter-spacing: -0.02em; }
+button, input, select, textarea { font: inherit; letter-spacing: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+h1, h2, h3 { color: var(--ink); letter-spacing: -0.03em; line-height: 1.35; margin: 0; }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 16px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: 1px solid transparent; border-radius: 999px; padding: 10px 16px; font-weight: 600; cursor: pointer; text-decoration: none; background: none; }
+.btn:disabled { opacity: .55; cursor: wait; }
+.btn-primary { background: var(--accent); color: var(--accent-ink); }
+.btn-ghost { background: var(--surface); border-color: var(--line); color: var(--ink); }
+.btn-sm { padding: 6px 12px; font-size: 14px; }
+.top { position: sticky; top: 0; z-index: 5; background: var(--surface); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; gap: 12px; min-height: 60px; flex-wrap: wrap; }
+.top b { color: var(--ink); font-size: 17px; }
+.top .sp { flex: 1; }
+.top a { color: var(--muted); font-size: 14px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 18px; }
+.login { max-width: 380px; margin: 12vh auto; display: grid; gap: 12px; }
+label { display: grid; gap: 4px; font-size: 14px; color: var(--muted); }
+input, select, textarea { border: 1px solid var(--line); background: var(--surface); border-radius: 10px; padding: 9px 11px; min-width: 0; }
+textarea { min-height: 70px; resize: vertical; }
+.err { color: var(--bad); font-size: 14px; }
+.layout { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 16px; padding: 16px 0 60px; }
+.side { display: grid; gap: 12px; align-content: start; }
+.blist { display: grid; gap: 6px; }
+.bitem { text-align: left; border: 1px solid var(--line); background: var(--surface); border-radius: 12px; padding: 10px 12px; cursor: pointer; display: grid; gap: 2px; }
+.bitem[aria-current="true"] { border-color: var(--accent); background: var(--soft); }
+.bitem b { color: var(--ink); }
+.bitem small { color: var(--muted); font-size: 13px; }
+.chip { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: var(--mint); color: var(--accent); }
+.chip.warn { background: var(--warn-bg); color: var(--warn); }
+.chip.gray { background: var(--line); color: var(--muted); }
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; margin: 14px 0; }
+.tabs button { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 7px 14px; cursor: pointer; font-weight: 600; color: var(--muted); }
+.tabs button[aria-selected="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.muted { color: var(--muted); font-size: 14px; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { color: var(--muted); font-weight: 600; }
+td select { width: 100%; }
+td textarea { min-height: 40px; width: 100%; }
+.grp { margin: 18px 0 6px; font-weight: 800; color: var(--ink); }
+.ai-block { display: grid; gap: 14px; }
+.ai-block ol, .ai-block ul { margin: 4px 0 0; padding-left: 20px; }
+.ai-block li { margin: 4px 0; }
+.ev { color: var(--muted); font-size: 13px; }
+pre { white-space: pre-wrap; background: var(--soft); border-radius: 10px; padding: 12px; font: 13px/1.6 var(--f); margin: 0; }
+.toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 999px; font-size: 14px; z-index: 20; }
+.empty { padding: 40px 10px; text-align: center; color: var(--muted); }
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; }
+  .grid2 { grid-template-columns: 1fr; }
+  table.resp thead { display: none; }
+  table.resp tr { display: grid; gap: 6px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+  table.resp td { border: 0; padding: 0; }
+}
+</style>
+</head>
+<body>
+
+<section id="loginView" class="wrap" hidden>
+  <form class="card login" id="loginForm">
+    <h1>로컬핀 AI 성장엔진</h1>
+    <p class="muted">신청 관리와 같은 관리자 계정으로 로그인합니다.</p>
+    <label>이메일 <input id="email" type="email" autocomplete="username" required></label>
+    <label>비밀번호 <input id="password" type="password" autocomplete="current-password" required></label>
+    <p class="err" id="loginErr" hidden></p>
+    <button class="btn btn-primary" id="loginBtn">로그인</button>
+  </form>
+</section>
+
+<div id="appView" hidden>
+  <header class="top"><div class="wrap">
+    <b>로컬핀 AI 성장엔진</b><span class="chip">1단계 · 진단과 제작 준비</span>
+    <span class="sp"></span>
+    <a href="admin.html">신청 관리</a>
+    <button class="btn btn-ghost btn-sm" id="logoutBtn">로그아웃</button>
+  </div></header>
+
+  <main class="wrap layout">
+    <aside class="side">
+      <div class="card">
+        <div class="row" style="justify-content:space-between"><h2 style="font-size:16px">사업장</h2><button class="btn btn-primary btn-sm" id="newBtn">+ 새 사업장</button></div>
+        <div class="blist" id="blist" style="margin-top:10px"></div>
+      </div>
+      <div class="card">
+        <h2 style="font-size:16px">홈페이지 신청에서 가져오기</h2>
+        <p class="muted" style="margin:4px 0 8px">아직 등록하지 않은 진단 신청입니다.</p>
+        <div class="blist" id="leadList"></div>
+      </div>
+    </aside>
+
+    <section id="detail">
+      <div class="card empty" id="emptyDetail">왼쪽에서 사업장을 고르거나 새로 등록하세요.</div>
+      <div id="bizView" hidden>
+        <div class="card">
+          <div class="row" style="justify-content:space-between">
+            <div><h1 id="bName" style="font-size:22px"></h1><p class="muted" id="bSub" style="margin:2px 0 0"></p></div>
+            <div class="row" id="bChips"></div>
+          </div>
+          <div class="tabs" role="tablist">
+            <button role="tab" data-tab="info" aria-selected="true">기본 정보</button>
+            <button role="tab" data-tab="audit" aria-selected="false">진단 체크</button>
+            <button role="tab" data-tab="mat" aria-selected="false">제작 자료</button>
+            <button role="tab" data-tab="ai" aria-selected="false">AI 진단</button>
+            <button role="tab" data-tab="log" aria-selected="false">수집·기록</button>
+          </div>
+
+          <!-- 기본 정보 -->
+          <form id="tab-info" class="grid2">
+            <label>사업장명 <input name="name" required></label>
+            <label>업종 <select name="industry"></select></label>
+            <label>세부 업종 <input name="sub_industry" placeholder="예: 요양보호사 자격과정"></label>
+            <label>지역 <input name="area" placeholder="예: 수원 영통구 상현동"></label>
+            <label>플레이스 주소 <input name="place_url" type="url" placeholder="https://"></label>
+            <label>홈페이지 주소 <input name="home_url" type="url" placeholder="https://"></label>
+            <label>블로그 주소 <input name="blog_url" type="url" placeholder="https://blog.naver.com/..."></label>
+            <label>실제 주소 <input name="address"></label>
+            <label>주요 서비스 <textarea name="services"></textarea></label>
+            <label>주요 고객 <textarea name="target_customers"></textarea></label>
+            <label>브랜드 강점(대표 메모) <textarea name="strengths"></textarea></label>
+            <div class="grid2" style="align-content:start">
+              <label>로고 <select name="has_logo"><option value="">모름</option><option value="true">있음</option><option value="false">없음</option></select></label>
+              <label>프로필 사진 <select name="has_profile_photo"><option value="">모름</option><option value="true">있음</option><option value="false">없음</option></select></label>
+              <label>시설 사진 <select name="has_facility_photo"><option value="">모름</option><option value="true">있음</option><option value="false">없음</option></select></label>
+              <label>운영 상태 <select name="status"><option value="lead">진단 신청</option><option value="active">관리 중</option><option value="paused">보류</option><option value="ended">종료</option></select></label>
+            </div>
+            <fieldset class="card" style="grid-column:1/-1;display:grid;gap:10px;grid-template-columns:repeat(2,minmax(0,1fr))">
+              <legend class="muted">담당자 (AI에는 보내지 않습니다)</legend>
+              <label>담당자 <input name="c_contact_name"></label>
+              <label>연락처 <input name="c_phone"></label>
+              <label>이메일 <input name="c_email" type="email"></label>
+              <label>관계 <select name="c_relation"><option value="internal">내부 실증(직접 운영)</option><option value="marketing">마케팅 총괄</option><option value="external">외부 유료 고객</option></select></label>
+              <label>동의 상태 <select name="c_consent"><option value="none">미확인</option><option value="verbal">구두 동의</option><option value="written">서면 동의</option></select></label>
+              <label>메모 <input name="c_memo"></label>
+            </fieldset>
+            <div class="row" style="grid-column:1/-1"><button class="btn btn-primary" type="submit">저장</button><span class="muted" id="infoMsg"></span></div>
+          </form>
+
+          <!-- 진단 체크 -->
+          <div id="tab-audit" hidden>
+            <div class="row" style="justify-content:space-between"><p class="muted" style="margin:0">상태: 양호 / 개선 필요 / 확인 불가. 확인하지 못한 것은 "확인 불가"로 두세요.</p><button class="btn btn-ghost btn-sm" id="fillAudit">기준 다시 채우기</button></div>
+            <div id="auditBox"></div>
+          </div>
+
+          <!-- 제작 자료 -->
+          <div id="tab-mat" hidden>
+            <div class="row" style="justify-content:space-between"><p class="muted" style="margin:0">파일은 비공개 저장소에 올라갑니다.</p><button class="btn btn-ghost btn-sm" id="draftBtn">요청 메시지 초안 만들기</button></div>
+            <pre id="draftOut" hidden></pre>
+            <table class="resp" style="margin-top:10px"><thead><tr><th>자료</th><th style="width:130px">상태</th><th>메모</th><th style="width:170px">파일</th></tr></thead><tbody id="matBody"></tbody></table>
+          </div>
+
+          <!-- AI 진단 -->
+          <div id="tab-ai" hidden>
+            <div class="card" style="background:var(--soft)">
+              <h3 style="font-size:16px">Claude 진단 결과 붙여넣기</h3>
+              <p class="muted" style="margin:4px 0 8px">Claude 작업창에서 "○○ 진단해 줘"로 받은 결과(JSON)를 그대로 붙여 넣고 저장하세요. "검수 대기"로 저장됩니다.</p>
+              <textarea id="pasteJson" placeholder='{"summary": "...", "top3": [...], ...}' style="width:100%;min-height:120px;font-family:ui-monospace,Consolas,monospace;font-size:13px"></textarea>
+              <div class="row" style="margin-top:8px"><button class="btn btn-primary" id="pasteSave">결과 저장</button><span class="err" id="pasteErr" hidden></span></div>
+            </div>
+            <details style="margin-top:12px"><summary class="muted">API로 자동 진단 (API 키·서버 함수를 설치한 경우만)</summary>
+              <div class="row" style="margin-top:8px"><button class="btn btn-ghost" id="runAi">AI 진단 실행</button><label class="row" style="color:var(--muted)"><input type="checkbox" id="skipFetch"> 홈페이지·블로그 다시 수집하지 않기</label></div>
+              <p class="muted">홈페이지·블로그 공개 정보를 확인하고 진단 체크와 자료 상태를 함께 보내 초안을 만듭니다. 1~2분 걸릴 수 있습니다.</p>
+            </details>
+            <div id="aiList"></div>
+          </div>
+
+          <!-- 기록 -->
+          <div id="tab-log" hidden><div id="logBox"></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script src="engine-templates.js"></script>
+<script>
+/* Publishable key만 씁니다. Secret key·AI 키는 이 파일에 절대 넣지 마세요(AI 키는 서버 함수 비밀값에만). */
+const SUPABASE_URL = "https://ywgfhqyxravvtaowjqkm.supabase.co";
+const SUPABASE_KEY = "sb_publishable_7EgQesIgP8jZlik1rZD5sg_xjjpS71C";
+const BUCKET = "eng-materials";
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const toast = t => { const el = $("#toast"); el.textContent = t; el.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(() => el.hidden = true, 2600); };
+const fmt = iso => iso ? new Date(iso).toLocaleString("ko-KR", { year: "2-digit", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }) : "";
+
+/* ---------- 로그인 (신청 관리와 같은 세션을 씁니다) ---------- */
+const store = {
+  get() { try { return JSON.parse(sessionStorage.getItem("lp_admin") || "null"); } catch (e) { return null; } },
+  set(v) { try { v ? sessionStorage.setItem("lp_admin", JSON.stringify(v)) : sessionStorage.removeItem("lp_admin"); } catch (e) {} }
+};
+let session = store.get();
+function saveSession(d) {
+  session = { access_token: d.access_token, refresh_token: d.refresh_token, expires_at: Date.now() + (d.expires_in || 3600) * 1000, email: d.user?.email || session?.email };
+  store.set(session);
+}
+async function auth(path, body) {
+  const res = await fetch(SUPABASE_URL + "/auth/v1/" + path, { method: "POST", headers: { apikey: SUPABASE_KEY, "Content-Type": "application/json" }, body: JSON.stringify(body) });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw Object.assign(new Error(data.error_description || data.msg || ("HTTP " + res.status)), { status: res.status });
+  return data;
+}
+async function ensureToken() {
+  if (session && Date.now() > session.expires_at - 60000) saveSession(await auth("token?grant_type=refresh_token", { refresh_token: session.refresh_token }));
+}
+async function api(path, opts = {}) {
+  await ensureToken();
+  const res = await fetch(SUPABASE_URL + "/rest/v1/" + path, { ...opts, headers: { apikey: SUPABASE_KEY, Authorization: "Bearer " + session.access_token, "Content-Type": "application/json", ...(opts.headers || {}) } });
+  if (res.status === 401) { logoutView("로그인이 만료됐습니다. 다시 로그인해주세요."); throw new Error("401"); }
+  if (!res.ok) throw new Error("HTTP " + res.status + " " + (await res.text()).slice(0, 300));
+  const txt = await res.text();
+  return txt ? JSON.parse(txt) : null;
+}
+const ins = (t, row) => api(t, { method: "POST", headers: { Prefer: "return=representation" }, body: JSON.stringify(row) }).then(r => r[0]);
+const upd = (t, id, row) => api(`${t}?id=eq.${id}`, { method: "PATCH", headers: { Prefer: "return=representation" }, body: JSON.stringify(row) }).then(r => r[0]);
+const upsert = (t, rows, conflict) => api(`${t}?on_conflict=${conflict}`, { method: "POST", headers: { Prefer: "resolution=ignore-duplicates,return=minimal" }, body: JSON.stringify(rows) });
+
+function logoutView(msg) {
+  session = null; store.set(null);
+  $("#appView").hidden = true; $("#loginView").hidden = false;
+  if (msg) { $("#loginErr").textContent = msg; $("#loginErr").hidden = false; }
+}
+$("#loginForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const btn = $("#loginBtn"); btn.disabled = true; $("#loginErr").hidden = true;
+  try { saveSession(await auth("token?grant_type=password", { email: $("#email").value.trim(), password: $("#password").value })); $("#password").value = ""; start(); }
+  catch (ex) { $("#loginErr").textContent = ex.status === 400 ? "이메일 또는 비밀번호가 맞지 않습니다." : "로그인하지 못했습니다."; $("#loginErr").hidden = false; }
+  finally { btn.disabled = false; }
+});
+$("#logoutBtn").addEventListener("click", async () => {
+  try { await fetch(SUPABASE_URL + "/auth/v1/logout", { method: "POST", headers: { apikey: SUPABASE_KEY, Authorization: "Bearer " + session.access_token } }); } catch (e) {}
+  logoutView();
+});
+
+/* ---------- 상태 ---------- */
+let businesses = [], clients = {}, cur = null;
+
+async function start() {
+  $("#loginView").hidden = true; $("#appView").hidden = false;
+  $("#tab-info [name=industry]").innerHTML = Object.entries(ENG_INDUSTRY).map(([k, v]) => `<option value="${k}">${v}</option>`).join("");
+  await loadList();
+}
+async function loadList() {
+  try {
+    const [bs, cs] = await Promise.all([api("eng_businesses?select=*&order=updated_at.desc"), api("eng_clients?select=*")]);
+    businesses = bs; clients = Object.fromEntries(cs.map(c => [c.id, c]));
+  } catch (ex) {
+    if (/eng_businesses|42P01|PGRST/.test(ex.message)) { $("#blist").innerHTML = `<p class="err">표가 아직 없습니다. "1단계 표 만들기.sql"을 Supabase에서 먼저 실행해 주세요.</p>`; return; }
+    throw ex;
+  }
+  renderList(); loadLeads();
+}
+function renderList() {
+  $("#blist").innerHTML = businesses.length ? businesses.map(b => `<button class="bitem" data-id="${b.id}" aria-current="${cur?.id === b.id}"><b>${esc(b.name)}</b><small>${esc(ENG_INDUSTRY[b.industry] || "")} · ${esc(b.area || "지역 미입력")}</small></button>`).join("") : `<p class="muted">아직 없습니다.</p>`;
+  $("#blist").querySelectorAll(".bitem").forEach(el => el.onclick = () => openBiz(el.dataset.id));
+}
+async function loadLeads() {
+  try {
+    const leads = await api("leads?select=id,created_at,business,category,area,place_url,message&order=created_at.desc&limit=30");
+    const used = new Set(Object.values(clients).map(c => c.lead_id).filter(Boolean));
+    const left = leads.filter(l => !used.has(l.id));
+    $("#leadList").innerHTML = left.length ? left.map(l => `<div class="bitem"><b>${esc(l.business)}</b><small>${esc(l.category || "")} · ${esc(l.area || "")} · ${fmt(l.created_at)}</small><button class="btn btn-ghost btn-sm" data-lead="${l.id}" style="justify-self:start;margin-top:4px">사업장으로 등록</button></div>`).join("") : `<p class="muted">새 신청이 없습니다.</p>`;
+    $("#leadList").querySelectorAll("[data-lead]").forEach(b => b.onclick = () => importLead(left.find(l => String(l.id) === b.dataset.lead)));
+  } catch (ex) { $("#leadList").innerHTML = `<p class="muted">신청 목록을 불러오지 못했습니다.</p>`; }
+}
+function guessIndustry(cat = "") { return /산후/.test(cat) ? "postpartum" : /방문요양|재가/.test(cat) ? "homecare" : /요양보호사|교육원/.test(cat) ? "academy" : "other"; }
+function urlFrom(msg, tag) { const m = String(msg || "").match(new RegExp("\\[" + tag + "\\]\\s*(\\S+)")); return m ? m[1] : null; }
+async function importLead(l) {
+  const c = await ins("eng_clients", { relation: "external", lead_id: l.id, memo: "홈페이지 진단 신청에서 가져옴" });
+  const b = await ins("eng_businesses", { client_id: c.id, name: l.business || "이름 없음", industry: guessIndustry(l.category), area: l.area, place_url: l.place_url, home_url: urlFrom(l.message, "홈페이지"), blog_url: urlFrom(l.message, "블로그"), status: "lead" });
+  await seed(b); toast("등록했습니다. 연락처는 신청 관리에서 확인하세요."); await loadList(); openBiz(b.id);
+}
+$("#newBtn").onclick = async () => {
+  const name = prompt("사업장 이름"); if (!name) return;
+  const c = await ins("eng_clients", { relation: "external" });
+  const b = await ins("eng_businesses", { client_id: c.id, name, industry: "academy" });
+  await seed(b); await loadList(); openBiz(b.id);
+};
+async function seed(b) {
+  await upsert("eng_audit_items", engAuditTemplate(b.industry).map(([k, ch, label, imp]) => ({ business_id: b.id, item_key: k, channel: ch, label, importance: imp })), "business_id,item_key");
+  await upsert("eng_materials", ENG_MATERIALS.map(([k, label]) => ({ business_id: b.id, item_key: k, label })), "business_id,item_key");
+}
+
+/* ---------- 상세 ---------- */
+let tab = "info";
+document.querySelectorAll(".tabs [data-tab]").forEach(t => t.onclick = () => showTab(t.dataset.tab));
+function showTab(name) {
+  tab = name;
+  document.querySelectorAll(".tabs [data-tab]").forEach(t => t.setAttribute("aria-selected", t.dataset.tab === name));
+  ["info", "audit", "mat", "ai", "log"].forEach(n => $("#tab-" + n).hidden = n !== name);
+  if (name === "audit") loadAudit(); if (name === "mat") loadMat(); if (name === "ai") loadAi(); if (name === "log") loadLog();
+}
+function openBiz(id) {
+  cur = businesses.find(b => b.id === id); if (!cur) return;
+  renderList();
+  $("#emptyDetail").hidden = true; $("#bizView").hidden = false;
+  $("#bName").textContent = cur.name;
+  $("#bSub").textContent = `${ENG_INDUSTRY[cur.industry] || ""} · ${cur.area || "지역 미입력"}`;
+  const c = clients[cur.client_id] || {};
+  const rel = { internal: "내부 실증", marketing: "마케팅 총괄", external: "외부 고객" }[c.relation] || "";
+  $("#bChips").innerHTML = `<span class="chip ${c.relation === "external" ? "" : "gray"}">${rel}</span>`;
+  const f = $("#tab-info");
+  for (const el of f.elements) {
+    if (!el.name) continue;
+    const v = el.name.startsWith("c_") ? c[el.name.slice(2)] : cur[el.name];
+    el.value = v === null || v === undefined ? "" : String(v);
+  }
+  $("#infoMsg").textContent = "";
+  showTab(tab);
+}
+$("#tab-info").addEventListener("submit", async e => {
+  e.preventDefault();
+  const f = e.target, b = {}, c = {};
+  for (const el of f.elements) {
+    if (!el.name) continue;
+    let v = el.value.trim();
+    if (["has_logo", "has_profile_photo", "has_facility_photo"].includes(el.name)) v = v === "" ? null : v === "true";
+    else if (v === "") v = null;
+    (el.name.startsWith("c_") ? (c[el.name.slice(2)] = v) : (b[el.name] = v));
+  }
+  const industryChanged = b.industry !== cur.industry;
+  cur = await upd("eng_businesses", cur.id, b);
+  clients[cur.client_id] = await upd("eng_clients", cur.client_id, c);
+  if (industryChanged) await seed(cur);
+  businesses = businesses.map(x => x.id === cur.id ? cur : x);
+  $("#infoMsg").textContent = "저장했습니다 " + fmt(new Date().toISOString()); openBiz(cur.id);
+});
+
+/* 진단 체크 */
+async function loadAudit() {
+  const rows = await api(`eng_audit_items?business_id=eq.${cur.id}&select=*&order=importance.asc`);
+  const by = {}; rows.forEach(r => (by[r.channel] = by[r.channel] || []).push(r));
+  $("#auditBox").innerHTML = Object.keys(ENG_CHANNEL).filter(ch => by[ch]).map(ch => `<p class="grp">${ENG_CHANNEL[ch]}</p>
+    <table class="resp"><thead><tr><th>항목</th><th style="width:120px">상태</th><th>관찰·근거</th><th>개선 권고</th></tr></thead><tbody>
+    ${by[ch].map(r => `<tr data-id="${r.id}"><td>${r.importance === 1 ? '<span class="chip warn">중요</span> ' : ""}${esc(r.label)}</td>
+      <td><select data-f="status">${Object.entries(ENG_AUDIT_STATUS).map(([k, v]) => `<option value="${k}" ${r.status === k ? "selected" : ""}>${v}</option>`).join("")}</select></td>
+      <td><textarea data-f="observation" placeholder="본 것">${esc(r.observation)}</textarea><input data-f="evidence" placeholder="근거(주소·캡처 파일명)" value="${esc(r.evidence)}" style="width:100%;margin-top:4px"></td>
+      <td><textarea data-f="recommendation">${esc(r.recommendation)}</textarea></td></tr>`).join("")}
+    </tbody></table>`).join("");
+  $("#auditBox").querySelectorAll("[data-f]").forEach(el => el.onchange = async () => {
+    const id = el.closest("tr").dataset.id; await upd("eng_audit_items", id, { [el.dataset.f]: el.value || null }); toast("저장");
+  });
+}
+$("#fillAudit").onclick = async () => { await seed(cur); loadAudit(); toast("빠진 항목을 채웠습니다"); };
+
+/* 제작 자료 */
+async function loadMat() {
+  const rows = await api(`eng_materials?business_id=eq.${cur.id}&select=*`);
+  const order = Object.fromEntries(ENG_MATERIALS.map(([k], i) => [k, i]));
+  rows.sort((a, b) => (order[a.item_key] ?? 99) - (order[b.item_key] ?? 99));
+  $("#matBody").innerHTML = rows.map(r => `<tr data-id="${r.id}" data-key="${r.item_key}"><td>${esc(r.label)}</td>
+    <td><select data-f="status">${Object.entries(ENG_MAT_STATUS).map(([k, v]) => `<option value="${k}" ${r.status === k ? "selected" : ""}>${v}</option>`).join("")}</select></td>
+    <td><input data-f="memo" value="${esc(r.memo)}" style="width:100%"></td>
+    <td><div class="row">${r.file_path ? `<button class="btn btn-ghost btn-sm" data-open="${esc(r.file_path)}">열기</button>` : ""}<label class="btn btn-ghost btn-sm" style="display:inline-flex">올리기<input type="file" hidden data-up></label></div></td></tr>`).join("");
+  $("#matBody").querySelectorAll("[data-f]").forEach(el => el.onchange = async () => { await upd("eng_materials", el.closest("tr").dataset.id, { [el.dataset.f]: el.value || null }); toast("저장"); });
+  $("#matBody").querySelectorAll("[data-up]").forEach(el => el.onchange = () => uploadFile(el.closest("tr"), el.files[0]));
+  $("#matBody").querySelectorAll("[data-open]").forEach(el => el.onclick = () => openFile(el.dataset.open));
+}
+async function uploadFile(tr, file) {
+  if (!file) return;
+  await ensureToken();
+  const safe = file.name.replace(/[^\w.\-가-힣]/g, "_");
+  const path = `${cur.id}/${tr.dataset.key}/${Date.now()}_${safe}`;
+  const res = await fetch(`${SUPABASE_URL}/storage/v1/object/${BUCKET}/${encodeURI(path)}`, { method: "POST", headers: { apikey: SUPABASE_KEY, Authorization: "Bearer " + session.access_token, "Content-Type": file.type || "application/octet-stream" }, body: file });
+  if (!res.ok) { toast("올리지 못했습니다: " + res.status); return; }
+  await upd("eng_materials", tr.dataset.id, { file_path: path, status: "have" }); toast("올렸습니다"); loadMat();
+}
+async function openFile(path) {
+  await ensureToken();
+  const res = await fetch(`${SUPABASE_URL}/storage/v1/object/sign/${BUCKET}/${encodeURI(path)}`, { method: "POST", headers: { apikey: SUPABASE_KEY, Authorization: "Bearer " + session.access_token, "Content-Type": "application/json" }, body: JSON.stringify({ expiresIn: 300 }) });
+  const d = await res.json().catch(() => ({}));
+  if (d.signedURL) window.open(SUPABASE_URL + "/storage/v1" + d.signedURL, "_blank", "noopener"); else toast("열지 못했습니다");
+}
+$("#draftBtn").onclick = async () => {
+  const rows = await api(`eng_materials?business_id=eq.${cur.id}&status=in.(need,verify)&select=label,status,memo`);
+  const need = rows.filter(r => r.status === "need"), ver = rows.filter(r => r.status === "verify");
+  const txt = `원장님, 로컬핀 마케팅입니다.\n${cur.name} 브랜드 진단을 마쳤고, 제작을 시작하려면 아래 자료가 필요합니다.\n\n` +
+    (need.length ? "보내 주실 자료\n" + need.map((r, i) => `${i + 1}. ${r.label}${r.memo ? " (" + r.memo + ")" : ""}`).join("\n") + "\n\n" : "") +
+    (ver.length ? "한 번만 확인해 주실 것\n" + ver.map((r, i) => `${i + 1}. ${r.label}${r.memo ? " (" + r.memo + ")" : ""}`).join("\n") + "\n\n" : "") +
+    "편하실 때 카톡이나 문자로 보내 주시면 됩니다. 이미 공개된 정보는 저희가 먼저 확인해 두었습니다.";
+  $("#draftOut").textContent = txt; $("#draftOut").hidden = false;
+  try { await navigator.clipboard.writeText(txt); toast("초안을 복사했습니다(보내기는 직접)"); } catch (e) { toast("초안을 만들었습니다"); }
+};
+
+/* AI 진단 */
+async function loadAi() {
+  const rows = await api(`eng_ai_analyses?business_id=eq.${cur.id}&select=id,created_at,ok,error,result,model,cost_usd,ms,review,review_note&order=created_at.desc&limit=10`);
+  $("#aiList").innerHTML = rows.length ? rows.map(aiCard).join("") : `<p class="empty">아직 AI 진단이 없습니다.</p>`;
+  $("#aiList").querySelectorAll("[data-review]").forEach(b => b.onclick = async () => {
+    const note = b.dataset.review === "rejected" ? prompt("반려 이유(선택)") || null : null;
+    await upd("eng_ai_analyses", b.dataset.id, { review: b.dataset.review, review_note: note }); toast("검수 상태를 바꿨습니다"); loadAi();
+  });
+}
+function aiCard(a) {
+  const st = { pending: '<span class="chip warn">검수 대기</span>', approved: '<span class="chip">검수 완료</span>', rejected: '<span class="chip gray">반려</span>' }[a.review];
+  const head = `<div class="row" style="justify-content:space-between"><div class="row">${st}<span class="muted">${fmt(a.created_at)} · ${esc(a.model || "")} · ${a.ms ? Math.round(a.ms / 1000) + "초" : ""}${a.cost_usd ? " · 약 $" + Number(a.cost_usd).toFixed(3) : ""}</span></div>
+    <div class="row"><button class="btn btn-ghost btn-sm" data-review="approved" data-id="${a.id}">검수 완료</button><button class="btn btn-ghost btn-sm" data-review="rejected" data-id="${a.id}">반려</button></div></div>`;
+  if (!a.ok) return `<div class="card" style="margin-top:12px">${head}<p class="err">실패: ${esc(a.error)}</p></div>`;
+  const r = a.result || {};
+  const li = (arr, f) => (arr || []).map(f).join("");
+  return `<div class="card ai-block" style="margin-top:12px">${head}
+    <div><h3>종합 요약</h3><p style="margin:4px 0 0">${esc(r.summary)}</p></div>
+    <div><h3>개선 우선순위 TOP 3</h3><ol>${li(r.top3, t => `<li><b>${esc(t.title)}</b> - ${esc(t.why)}<br><span class="ev">근거: ${esc(t.evidence)}</span><br>할 일: ${esc(t.action)}</li>`)}</ol></div>
+    <div class="grid2">
+      <div><h3>확인된 강점</h3><ul>${li(r.strengths, s => `<li>${esc(s.title)}<br><span class="ev">근거: ${esc(s.evidence)}</span></li>`)}</ul></div>
+      <div><h3>추천</h3><p style="margin:4px 0">구축: <b>${esc(ENG_PRODUCT[r.recommended_build?.product] || "-")}</b><br><span class="ev">${esc(r.recommended_build?.reason)}</span></p>
+        <p style="margin:4px 0">정기관리: <b>${esc(ENG_PLAN[r.growth_needed?.plan] || "-")}</b><br><span class="ev">${esc(r.growth_needed?.reason)}</span></p></div>
+    </div>
+    <details><summary>개선 필요 항목 ${(r.improvements || []).length}개</summary><ul>${li(r.improvements, s => `<li>[${esc(ENG_CHANNEL[s.channel] || s.channel)}] ${esc(s.title)} - ${esc(s.action)}<br><span class="ev">근거: ${esc(s.evidence)}</span></li>`)}</ul></details>
+    <details><summary>필요한 제작 자료</summary><ul>${li(r.materials_needed, s => `<li>${esc(s.item)} <span class="ev">${esc(s.reason)}</span></li>`)}</ul></details>
+    <details open><summary>확인 불가 항목</summary><ul>${li(r.unknowns, s => `<li>${esc(s)}</li>`)}</ul></details>
+    ${r.notes_for_owner ? `<p class="muted">대표 참고: ${esc(r.notes_for_owner)}</p>` : ""}
+    ${a.review_note ? `<p class="muted">반려 메모: ${esc(a.review_note)}</p>` : ""}</div>`;
+}
+$("#pasteSave").onclick = async () => {
+  const err = $("#pasteErr"); err.hidden = true;
+  let r;
+  try {
+    const raw = $("#pasteJson").value.trim().replace(/^```(?:json)?\s*|\s*```$/g, "");
+    r = JSON.parse(raw);
+  } catch (e) { err.textContent = "JSON 형식이 아닙니다. 결과 전체를 그대로 붙여 넣어 주세요."; err.hidden = false; return; }
+  const need = ["summary", "strengths", "top3", "improvements", "recommended_build", "growth_needed", "unknowns"];
+  const miss = need.filter(k => !(k in r));
+  if (miss.length) { err.textContent = "빠진 항목: " + miss.join(", "); err.hidden = false; return; }
+  await ins("eng_ai_analyses", { business_id: cur.id, kind: "diagnosis", provider: "claude-code", model: r.model || "Claude (작업창)", prompt_version: r.prompt_version || "manual", input: r.sources ? { sources: r.sources } : null, result: r, ok: true });
+  if (Array.isArray(r.checklist)) {
+    for (const c of r.checklist) {
+      if (!c.item_key) continue;
+      await api(`eng_audit_items?business_id=eq.${cur.id}&item_key=eq.${encodeURIComponent(c.item_key)}`, { method: "PATCH", body: JSON.stringify({ status: c.status, observation: c.observation ?? null, evidence: c.evidence ?? null, recommendation: c.recommendation ?? null }) });
+    }
+  }
+  $("#pasteJson").value = ""; toast("저장했습니다(검수 대기)"); loadAi();
+};
+$("#runAi").onclick = async () => {
+  const btn = $("#runAi"); btn.disabled = true; btn.textContent = "진단 중… (1~2분)";
+  try {
+    await ensureToken();
+    const res = await fetch(SUPABASE_URL + "/functions/v1/ai-diagnose", { method: "POST", headers: { apikey: SUPABASE_KEY, Authorization: "Bearer " + session.access_token, "Content-Type": "application/json" }, body: JSON.stringify({ business_id: cur.id, skip_fetch: $("#skipFetch").checked }) });
+    const d = await res.json().catch(() => ({}));
+    if (!res.ok) toast(res.status === 404 ? "서버 함수(ai-diagnose)가 아직 배포되지 않았습니다" : "실패: " + (d.error || res.status));
+    else toast(d.analysis?.ok ? "진단 초안이 나왔습니다(검수 대기)" : "AI 호출 실패 - 아래 기록을 보세요");
+  } catch (e) { toast("서버 함수에 연결하지 못했습니다"); }
+  finally { btn.disabled = false; btn.textContent = "AI 진단 실행"; loadAi(); }
+};
+
+/* 기록 */
+async function loadLog() {
+  const [snaps, logs] = await Promise.all([
+    api(`eng_snapshots?business_id=eq.${cur.id}&select=created_at,channel,method,ok,source,scope,data&order=created_at.desc&limit=20`),
+    api(`eng_audit_log?row_id=eq.${cur.id}&select=at,actor,table_name,action&order=at.desc&limit=20`),
+  ]);
+  $("#logBox").innerHTML = `<p class="grp">공개 정보 수집 기록</p>` + (snaps.length ? `<table class="resp"><thead><tr><th>시각</th><th>채널</th><th>결과</th><th>확인한 값</th></tr></thead><tbody>${snaps.map(s => `<tr><td>${fmt(s.created_at)}</td><td>${esc(ENG_CHANNEL[s.channel] || s.channel)}<br><span class="ev">${esc(s.source)} · ${esc(s.scope)}</span></td><td>${s.ok ? '<span class="chip">성공</span>' : '<span class="chip gray">확인 불가</span>'}</td><td><details><summary>보기</summary><pre>${esc(JSON.stringify(s.data, null, 2))}</pre></details></td></tr>`).join("")}</tbody></table>` : `<p class="muted">아직 없습니다. AI 진단을 실행하면 홈페이지·블로그를 확인해 남깁니다.</p>`)
+    + `<p class="grp">사업장 정보 변경 이력</p>` + (logs.length ? `<ul>${logs.map(l => `<li>${fmt(l.at)} · ${esc(l.actor || "")} · ${esc(l.table_name)} ${esc(l.action)}</li>`).join("")}</ul>` : `<p class="muted">없음</p>`);
+}
+
+/* 시작 */
+if (session) start().catch(() => logoutView()); else $("#loginView").hidden = false;
+</script>
+</body>
+</html>

@@ -2357,3 +2357,364 @@ form label small, .opt { font-size: 12px; }
 .real-blog img { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); background: #fff; box-shadow: 0 14px 30px -22px rgba(15,74,45,.55); }
 @media (max-width: 860px) { .real-blog { grid-template-columns: 1fr; gap: 18px; } }
 @media (max-width: 560px) { .real-blog { padding: 20px 16px; } }
+
+/* ===== 2026-11-16 리뉴얼 추가 ===== */
+
+/* -- index -- */
+/* ===== 리뉴얼: 메인(index.html) 전용 (rn-index-) ===== */
+/* 02 고객 선택 과정: 카드 아래 작업 항목 */
+.journey p.rn-index-pts { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); color: var(--text); font-size: 13px; line-height: 1.6; }
+#journey .sales-explain, #system .sales-explain { margin-top: 18px; }
+#system .sec-head .lead + .lead { margin-top: 6px; }
+
+/* 03 AI BRAND SYSTEM: 요약 카드 + 펼치면 4항목 */
+.rn-index-sys { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; align-items: start; }
+.rn-index-sc { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); transition: border-color .2s; }
+.rn-index-sc[open] { border-color: var(--accent); }
+.rn-index-sc summary { list-style: none; cursor: pointer; display: grid; gap: 4px; padding: 20px 22px 18px; }
+.rn-index-sc summary::-webkit-details-marker { display: none; }
+.rn-index-no { color: var(--accent); font-size: 12px; font-weight: 800; letter-spacing: .03em; }
+.rn-index-sc summary b { color: var(--ink); font-size: 18px; font-weight: 700; line-height: 1.4; }
+.rn-index-one { color: var(--muted); font-size: 14.5px; line-height: 1.55; }
+.rn-index-sc summary i { justify-self: start; margin-top: 8px; padding: 6px 12px; border-radius: 999px; background: var(--soft); color: var(--accent); font-size: 13px; font-weight: 700; font-style: normal; }
+.rn-index-sc summary i::after { content: " +"; }
+.rn-index-sc[open] summary i::after { content: " −"; }
+.rn-index-sc dl { margin: 0; padding: 0 22px 20px; display: grid; gap: 10px; }
+.rn-index-sc dl > div { padding-top: 10px; border-top: 1px solid var(--line); }
+.rn-index-sc dt { color: var(--accent); font-size: 12.5px; font-weight: 700; }
+.rn-index-sc dd { margin: 2px 0 0; color: var(--text); font-size: 14.5px; line-height: 1.6; }
+
+/* 05 세 채널: AI 활용 한 줄 */
+.rn-index-ai { margin: 0; padding: 10px 12px; border-left: 3px solid var(--accent); border-radius: 10px; background: var(--soft); color: var(--text); font-size: 14px; line-height: 1.55; }
+.rn-index-ai b { display: block; color: var(--accent); font-size: 12.5px; margin-bottom: 2px; }
+.s3 p.rn-index-ai { color: var(--text); font-size: 14px; }
+
+/* 06·07 대표 패키지 */
+.rn-index-sig .core-card-intro b { color: #fff; }
+.rn-index-save { margin-top: 10px; color: #d7eee0; font-size: 14px; }
+.rn-index-save s { color: #b9d6c4; }
+.rn-index-save b { color: #fff; font-weight: 800; }
+.core-offer > .wrap > .core-small { margin-top: 16px; }
+.rn-index-list { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 8px; }
+.rn-index-list li { position: relative; padding-left: 22px; color: var(--text); font-size: 14.5px; line-height: 1.55; }
+.rn-index-list li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 800; }
+.rn-index-sub { margin-top: 22px; color: var(--muted); font-size: 13px; font-weight: 700; }
+.core-build .rn-index-sub + .core-options { margin-top: 8px; }
+
+/* 08 GROWTH: 필요성 7가지 + 가격 카드 */
+.rn-index-grow { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 20px; align-items: start; }
+.rn-index-grow .why-list li { padding: 16px 20px 16px 64px; }
+.rn-index-grow .why-list li::before { left: 20px; top: 15px; font-size: 21px; }
+.rn-index-grow .why-list b { font-size: 16.5px; }
+.rn-index-grow .why-list span { font-size: 14.5px; }
+.rn-index-grow .core-card { position: sticky; top: 96px; min-height: 0; }
+
+/* 09 AI MONTHLY BRAND BRIEF */
+.rn-index-brief { margin-top: 64px; }
+.rn-index-brief .sec-head { margin-bottom: 20px; }
+.rn-index-brief .sub-title { margin-top: 8px; }
+.rn-index-brief .value-panel h3 { margin: 12px 0 0; font-size: 19px; }
+.rn-index-brief .value-panel .rn-index-list { margin-top: 14px; }
+.rn-index-briefnote { margin-top: 12px; }
+
+/* 12 가격 가이드: 상황 5가지 + 매달 관리 고르기 */
+.rn-index-sit { margin-bottom: 36px; }
+.rn-index-sit .situation-card { background: var(--surface); }
+.rn-index-sit .situation-card > a { cursor: pointer; }
+@media (min-width: 1000px) { .rn-index-sit { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+.blog-count.rn-index-two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.rn-index-month { margin-top: 16px; display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 2fr); gap: 12px 20px; align-items: center; padding: 18px 22px; border: 1px solid var(--line); border-radius: var(--r-md); background: var(--surface); }
+.rn-index-month > p { display: grid; gap: 2px; }
+.rn-index-month > p b { color: var(--ink); font-size: 16px; }
+.rn-index-month > p span { color: var(--muted); font-size: 13.5px; }
+.blog-count.rn-index-four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.rn-index-month + .calc { margin-top: 16px; }
+
+@media (max-width: 900px) {
+  .rn-index-sys { grid-template-columns: 1fr 1fr; }
+  .rn-index-grow { grid-template-columns: 1fr; }
+  .rn-index-grow .core-card { position: static; }
+  .rn-index-month { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .rn-index-sys { grid-template-columns: 1fr; }
+  .blog-count.rn-index-four { grid-template-columns: 1fr 1fr; row-gap: 12px; }
+  .rn-index-brief { margin-top: 48px; }
+}
+
+/* 접는 예시 칸 (진단 예시 · 플레이스에서 바꾼 것) */
+.rn-index-fold { margin-top: 28px; border: 1px solid var(--line); border-radius: var(--r-md); background: var(--surface); }
+.rn-index-fold > summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 22px; color: var(--ink); font-size: 18px; font-weight: 700; }
+.rn-index-fold > summary::-webkit-details-marker { display: none; }
+.rn-index-fold > summary span { flex: none; padding: 6px 12px; border-radius: 999px; background: var(--soft); color: var(--accent); font-size: 13px; font-weight: 700; }
+.rn-index-fold > summary span::after { content: " +"; }
+.rn-index-fold[open] > summary span::after { content: " −"; }
+.rn-index-fold > .xform, .rn-index-fold > .cs-ba { margin: 0 22px; }
+.rn-index-fold > .note { margin: 14px 22px 0; }
+.rn-index-fold[open] { padding-bottom: 22px; }
+#cases .rn-index-fold { margin-top: 40px; }
+
+/* 휴대폰: 긴 목록을 촘촘하게 */
+@media (max-width: 600px) {
+  #diagnosis .pb-steps li { grid-template-columns: 28px minmax(0, 1fr); column-gap: 12px; padding: 16px 18px; }
+  #diagnosis .pb-steps li::before { grid-row: span 2; margin: 0; }
+  .rn-index-grow .why-list li { padding: 14px 16px 14px 54px; }
+  .rn-index-grow .why-list li::before { left: 16px; top: 13px; font-size: 18px; }
+  .rn-index-sit { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .rn-index-sit .situation-card { padding: 14px; }
+  .rn-index-sit .situation-card h4 { font-size: 15px; }
+  .rn-index-sit .sit-cost div { font-size: 13px; flex-wrap: wrap; gap: 0 6px; }
+  .rn-index-sit .situation-card:last-child { grid-column: 1 / -1; }
+  .rn-index-fold > summary { font-size: 16px; padding: 16px 18px; }
+  .rn-index-fold > .xform, .rn-index-fold > .cs-ba { margin: 0 14px; }
+  .rn-index-fold > .note { margin: 12px 14px 0; }
+}
+
+/* 대표 패키지: ALL-IN-ONE 카드 옆 연결 화살표(예전 구축→GROWTH용)는 숨김 */
+#recommended .core-build::after { content: none; }
+.rn-index-sit .sit-cost div { flex-wrap: wrap; gap: 0 8px; }
+
+/* -- place -- */
+/* place.html 리뉴얼 (2026-11-16): 플레이스 상태 진단 예시 체크 항목을 큰 화면에서 두 줄로 */
+.rn-place-checks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 760px) { .rn-place-checks { grid-template-columns: 1fr; } }
+.rn-place-checks + .note { margin-top: 14px; }
+
+/* -- homepage -- */
+/* homepage.html 리뉴얼 (2026-11-16) */
+.rn-homepage-note { margin-top: 14px; }
+.wk-body > .rn-homepage-case { justify-self: start; line-height: 1.4; }
+.rn-homepage-extra { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.rn-homepage-extra li { position: relative; padding-left: 22px; font-size: 15px; color: var(--muted); line-height: 1.6; }
+.rn-homepage-extra li::before { content: "+"; position: absolute; left: 2px; top: 0; color: var(--muted); font-weight: 700; }
+.rn-homepage-extra b { display: block; font-size: 16.5px; font-weight: 600; color: var(--ink); }
+.rn-homepage-kit { margin-top: 40px; }
+#ai-plan .contact-route, #process .contact-route { margin-top: 24px; }
+#roles .route-line > .route-arrow { background: none; padding: 0; }
+@media (max-width: 700px) {
+  #roles .route-line > .route-arrow { transform: none; font-size: 0; min-height: 0; }
+  #roles .route-line > .route-arrow::before { content: "↓"; font-size: 26px; line-height: 1; }
+}
+
+/* -- blog -- */
+/* blog.html 리뉴얼: 고객 접점 4단계(DISCOVER·TRUST·ENGAGE·CONTACT). 기존 .steps 모양을 4칸으로 쓰고, 블로그 칸(ENGAGE)만 연민트로 강조 */
+.rn-blog-journey { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.rn-blog-journey li { padding: 16px 16px 18px; border-radius: 0 0 var(--r-md) var(--r-md); }
+.rn-blog-journey li::before { content: attr(data-k); letter-spacing: .04em; }
+.rn-blog-journey li.on { background: var(--soft); }
+.rn-blog-journey li.on .d { color: var(--accent); font-weight: 700; }
+.rn-blog-journey-note { margin-top: 16px; }
+@media (max-width: 900px) { .rn-blog-journey { grid-template-columns: 1fr 1fr; gap: 16px; } }
+@media (max-width: 600px) { .rn-blog-journey { grid-template-columns: 1fr; gap: 10px; } }
+
+/* -- growth -- */
+/* ===== 리뉴얼: growth.html · guide.html · rail.js 공용 (rn-growth- / rn-guide-) ===== */
+/* 비교 칸 안에서 문단을 한 생각씩 나눌 때 사이 간격 */
+.rn-growth-scope p + p { margin-top: 8px; }
+.rn-growth-scope p b { color: var(--accent); }
+/* 구간 안 작은 소제목 (예: 한 달 일정 예시) */
+.rn-growth-sub { margin: 44px 0 14px; color: var(--ink); font-size: 19px; }
+/* 표 아래에 붙는 두 칸 상자 간격 */
+.rn-growth-gap { margin-top: 14px; }
+/* 오른쪽 선택 패널: 탭이 5개일 때 글자 길이에 맞게 폭 나눔 */
+.rail-tabs.rn-growth-railtabs { padding: 0 6px; }
+.rail-tabs.rn-growth-railtabs button { flex: 1 1 auto; padding-inline: 3px; font-size: 11.5px; }
+/* 구성 찾기: 가격·할인 계산 표 (접히지 않는 표에도 대표 패키지 강조) */
+.rn-guide-calc tr.is-rec th, .rn-guide-calc tr.is-rec td { background: var(--mint); }
+.rn-guide-calc tr.is-rec th { box-shadow: inset 4px 0 0 var(--accent); }
+.rn-guide-calc tr.is-rec td b { color: var(--mint-ink); }
+.rn-guide-calc td strong { color: var(--accent); white-space: nowrap; }
+.rn-guide-calc td { white-space: nowrap; }
+@media (max-width: 560px) { .rn-guide-calc td { white-space: normal; } }
+/* 전체 가격표: '블로그만 따로' 보조 줄 */
+.g-fold .gtable tr.rn-guide-sub th, .g-fold .gtable tr.rn-guide-sub td { background: var(--tint); color: var(--muted); font-size: 13.5px; }
+.g-fold .gtable tr.rn-guide-sub th { font-weight: 600; }
+.g-fold .gtable tr.rn-guide-sub td b { color: var(--muted); }
+/* 구성 찾기 첫 화면 순서 상자: 초록 바탕 위 굵은 글씨 대비, 다크 모드에서도 짙은 초록 유지 */
+.guide-map > p b { color: #fff; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .guide-map { background: #0f4a2d; } }
+:root[data-theme="dark"] .guide-map { background: #0f4a2d; }
+
+/* ===== 2026-11-16 결정 11개 반영 추가 ===== */
+
+/* -- index.css -- */
+/* ===== index.html 리뉴얼 추가분 (결정 11개, 2026-11-16) — rn-index- 접두 ===== */
+/* 첫 화면 검색 예시: 순위 숫자 칸을 없애고, 내 가게는 같은 자리에서 대표 이미지·정보만 바뀜 */
+.rn-index-norank .res { grid-template-columns: 60px minmax(0, 1fr); }
+.rn-index-norank .res .rk { display: none; }
+@media (max-width: 480px) { .rn-index-norank .res { grid-template-columns: 52px minmax(0, 1fr); } }
+
+/* 가격 구간 빠른 선택 줄 (예전 상황별 카드 5장을 한 줄로) */
+.rn-index-quick { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0 0 18px; font-size: 14px; color: var(--muted); }
+.rn-index-quick > span { font-weight: 600; color: var(--ink); margin-right: 2px; }
+.rn-index-quick a { display: inline-flex; align-items: center; min-height: 36px; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-weight: 600; text-decoration: none; }
+.rn-index-quick a:hover, .rn-index-quick a:focus-visible { border-color: var(--accent); color: var(--accent); }
+.rn-index-quick a.rec { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+
+/* 신청서: 요금·구성 찾기에서 자동으로 담긴 관심 구성 (보조 표시) */
+.rn-index-plan { grid-column: 1 / -1; margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; padding: 10px 14px; border-radius: 12px; background: var(--soft); font-size: 13px; color: var(--muted); }
+.rn-index-plan b { color: var(--ink); font-weight: 600; }
+.rn-index-plan button { margin-left: auto; font: inherit; font-size: 13px; color: var(--accent); background: none; border: 0; padding: 4px 2px; cursor: pointer; text-decoration: underline; }
+
+/* 더 보기 링크 줄 (GROWTH 브리핑·FAQ 등 상세 페이지로) */
+.rn-index-more { margin: 18px 0 0; font-size: 15px; color: var(--muted); }
+.rn-index-more a { color: var(--accent); font-weight: 600; }
+
+/* ===== 2026-11-16 메인 세 구간(고객 선택·AI 시스템·브랜드 진단) ===== */
+/* ===== index.html 세 구간(고객 선택 과정·AI BRAND SYSTEM·브랜드 진단) — rn-sec- 접두, 2026-11-16 =====
+   기준: place.html "원장이 브랜드가 되면…" 구간(.bs-why / .bs-chain). 연한 초록 넓은 상자 + 흰 카드 + 마지막 단계만 진한 초록 + 작은 →, 휴대폰은 세로 + ↓ */
+
+/* 공통 상자와 단계 카드 */
+.rn-sec-box { background: var(--soft); border-radius: var(--r-lg); padding: 32px; }
+.rn-sec-box.rn-sec-light { background: var(--surface); border: 1px solid var(--line); }
+.rn-sec-chain { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.rn-sec-chain.rn-sec-c4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.rn-sec-chain > li { position: relative; display: flex; flex-direction: column; gap: 4px; min-width: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); padding: 20px; }
+.rn-sec-light .rn-sec-chain > li { background: var(--soft); border-color: transparent; }
+.rn-sec-chain > li:not(:last-child)::after { content: "→"; position: absolute; right: -17px; top: 50%; transform: translateY(-50%); width: 12px; text-align: center; color: var(--accent); font-weight: 800; z-index: 1; }
+.rn-sec-chain > li.rn-sec-end { background: var(--accent); border-color: transparent; }
+.rn-sec-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+.rn-sec-n { display: grid; place-items: center; flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--mint); color: var(--mint-ink); font-style: normal; font-weight: 700; font-size: 13px; }
+.rn-sec-top .chip { font-size: 12px; padding: 4px 10px; }
+.rn-sec-tag { color: var(--accent); font-size: 12px; font-weight: 800; letter-spacing: .03em; }
+.rn-sec-chain b { display: block; color: var(--ink); font-size: 17px; font-weight: 700; line-height: 1.4; }
+.rn-sec-desc { display: block; color: var(--muted); font-size: 14px; line-height: 1.6; }
+.rn-sec-pts { margin-top: auto; padding-top: 10px; border-top: 1px solid var(--line); color: var(--text); font-size: 13px; line-height: 1.6; }
+.rn-sec-desc + .rn-sec-pts { margin-top: 10px; }
+.rn-sec-chain > li.rn-sec-end .rn-sec-n { background: var(--accent-ink); color: var(--accent); }
+.rn-sec-chain > li.rn-sec-end b { color: var(--accent-ink); }
+.rn-sec-chain > li.rn-sec-end .rn-sec-desc, .rn-sec-chain > li.rn-sec-end .rn-sec-pts, .rn-sec-chain > li.rn-sec-end .rn-sec-tag { color: var(--on-accent-muted); }
+.rn-sec-chain > li.rn-sec-end .rn-sec-pts { border-top-color: color-mix(in srgb, var(--accent-ink) 22%, transparent); }
+.rn-sec-conc { margin-top: 24px; font-size: 17px; line-height: 1.7; color: var(--text); text-wrap: pretty; }
+.rn-sec-conc b { color: var(--accent); }
+.rn-sec-sub { margin-top: 6px; font-size: 15px; line-height: 1.7; color: var(--muted); text-wrap: pretty; }
+/* 연한 바탕 위의 연한 이름표(chip)는 흰 바탕으로 */
+#system .rn-sec-ghead .chip:not(.dark), .rn-sec-dglab .chip:not(.dark) { background: var(--surface); border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent); }
+.rn-sec-label { margin-bottom: 14px; color: var(--accent); font-size: 14px; font-weight: 700; }
+
+/* 02 고객 선택 과정: 4칸, 위 두 칸에 "핵심 구축" */
+#journey .rn-sec-chain > li { padding: 22px 20px; }
+#journey .rn-sec-chain b { font-size: 18px; margin: 2px 0 2px; }
+
+/* 03 AI BRAND SYSTEM: 두 묶음(AI 분석 / 로컬핀 실행·관리) + 아래 3칸 흐름 */
+.rn-sec-group + .rn-sec-group { margin-top: 28px; }
+.rn-sec-ghead { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-bottom: 14px; }
+.rn-sec-ghead p { color: var(--muted); font-size: 15px; line-height: 1.6; }
+.rn-sec-ghead p b { color: var(--ink); font-weight: 700; }
+.rn-sec-en { display: block; margin-top: 2px; color: var(--muted); font-size: 12px; font-weight: 700; letter-spacing: .03em; }
+.rn-sec-group + .rn-sec-box { margin-top: 36px; }
+#system .rn-sec-chain > li { padding: 18px 20px; }
+#system .rn-sec-top { margin-bottom: 4px; }
+
+/* 04 브랜드 진단: 진단 3단계 / 제작 3단계 두 줄, 왼쪽 이름표 */
+.rn-sec-dgrow { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 16px 24px; align-items: center; }
+.rn-sec-dgrow + .rn-sec-dgrow { margin-top: 20px; padding-top: 20px; border-top: 1px solid color-mix(in srgb, var(--accent) 14%, transparent); }
+.rn-sec-dglab { display: grid; justify-items: start; gap: 8px; }
+.rn-sec-dglab p { color: var(--muted); font-size: 14px; line-height: 1.5; }
+
+/* 04 확인한 내용이 이렇게 바뀝니다 (예시) */
+.rn-sec-ex { margin-top: 48px; }
+.rn-sec-exhead { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.rn-sec-exhead h3 { font-size: clamp(21px, 2.6vw, 26px); line-height: 1.4; letter-spacing: -0.02em; }
+.rn-sec-exnote { margin-top: 6px; color: var(--muted); font-size: 14px; }
+.rn-sec-exgrid { margin-top: 18px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.rn-sec-exgrid article { display: flex; flex-direction: column; gap: 10px; min-width: 0; padding: 20px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); }
+.rn-sec-exk { color: var(--ink); font-size: 14px; font-weight: 700; }
+.rn-sec-bad, .rn-sec-good { border-radius: 12px; padding: 12px 14px; }
+.rn-sec-bad { background: var(--tint); }
+.rn-sec-good { background: var(--soft); }
+.rn-sec-bad small, .rn-sec-good small { display: block; margin-bottom: 2px; font-size: 12.5px; font-weight: 700; }
+.rn-sec-bad small { color: var(--bad); }
+.rn-sec-good small { color: var(--accent); }
+.rn-sec-bad p { color: var(--muted); font-size: 14.5px; line-height: 1.6; }
+.rn-sec-good p { color: var(--ink); font-size: 14.5px; font-weight: 600; line-height: 1.6; }
+.rn-sec-exarr { align-self: center; margin: auto 0 -4px; color: var(--accent); font-style: normal; font-weight: 800; line-height: 1; }
+.rn-sec-cta { margin-top: 40px; background: var(--surface); }
+
+@media (max-width: 900px) {
+  .rn-sec-chain.rn-sec-c4 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .rn-sec-chain.rn-sec-c4 > li::after { display: none; }
+  #system .rn-sec-group .rn-index-sys { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .rn-sec-dgrow { grid-template-columns: 1fr; }
+  .rn-sec-dglab { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
+  .rn-sec-exgrid { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  #system .rn-sec-group .rn-index-sys { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .rn-sec-box { padding: 22px 16px; }
+  .rn-sec-chain, .rn-sec-chain.rn-sec-c4 { grid-template-columns: 1fr; gap: 24px; }
+  .rn-sec-chain > li:not(:last-child)::after, .rn-sec-chain.rn-sec-c4 > li:not(:last-child)::after { display: block; content: "↓"; top: auto; bottom: -21px; right: auto; left: 50%; transform: translateX(-50%); }
+  .rn-sec-chain > li, #journey .rn-sec-chain > li, #system .rn-sec-chain > li { padding: 16px; }
+  .rn-sec-chain > li, #journey .rn-sec-chain > li, #system .rn-sec-chain > li { padding-left: 56px; }
+  .rn-sec-top { margin: 0; }
+  #system .rn-sec-top { margin: 0; }
+  .rn-sec-n { position: absolute; left: 16px; top: 16px; }
+  .rn-sec-top .chip { position: absolute; right: 14px; top: 14px; }
+  .rn-sec-chain b, #journey .rn-sec-chain b { font-size: 16.5px; }
+  .rn-sec-conc { font-size: 15.5px; margin-top: 20px; }
+  .rn-sec-sub { font-size: 14px; }
+  .rn-sec-ex { margin-top: 40px; }
+  .rn-sec-exgrid article { padding: 16px; }
+  .rn-sec-cta { margin-top: 32px; }
+}
+
+/* 메인 원장 퍼스널 브랜딩 구간(place의 4단계 카드 재사용) */
+
+.rn-why-brand .bs-why { margin-top: 0; }
+
+/* 2026-11-16 첫 화면 AI 차별화 3가지 + 시뮬레이션 안내 */
+.rn-hero-ai { list-style: none; margin: 18px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; max-width: 560px; }
+.rn-hero-ai li { display: flex; gap: 9px; align-items: flex-start; padding: 11px 12px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+.rn-hero-ai svg { flex: 0 0 auto; width: 20px; height: 20px; color: var(--accent); margin-top: 1px; }
+.rn-hero-ai span { display: grid; gap: 2px; font-size: 13px; line-height: 1.45; color: var(--muted); min-width: 0; }
+.rn-hero-ai b { font-size: 14px; color: var(--ink); letter-spacing: -0.02em; }
+.rn-hero-note { margin: 8px 0 0; font-size: 12.5px; color: var(--muted); }
+.hero .rn-hero-note + .cta-row { margin-top: 20px; }
+.rn-hero-cap { margin: 0; padding: 14px 18px 2px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; font-size: 13px; color: var(--muted); }
+.rn-hero-cap b { color: var(--accent); font-size: 13.5px; }
+@media (max-width: 860px) {
+  .rn-hero-ai { grid-template-columns: 1fr; max-width: none; gap: 6px; }
+  .rn-hero-ai li { padding: 9px 12px; align-items: center; }
+  .rn-hero-ai span { display: block; }
+  .rn-hero-ai b { margin-right: 6px; }
+}
+
+/* 2026-11-16 브랜드 진단 6단계 연결(#diagnosis) + AI 시스템 카드 높이 맞춤 */
+.rn-index-sc summary .rn-index-one { min-height: calc(2 * 1.55em); }
+.rn-dg6 .rn-dg-total { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; margin: 0 0 18px; font-size: 13px; color: var(--muted); }
+.rn-dg6 .rn-dg-total b { color: var(--accent); font-size: 13px; font-weight: 800; letter-spacing: .06em; }
+.rn-dg6 .rn-dg-phase { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin: 0 0 12px; }
+.rn-dg6 .rn-dg-phase b { color: var(--ink); font-size: 18px; font-weight: 700; letter-spacing: -0.02em; }
+.rn-dg6 .rn-dg-phase small { color: var(--muted); font-size: 13.5px; }
+.rn-dg6 .rn-dg-phase .chip:not(.dark) { background: var(--surface); border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent); }
+.rn-dg6 .rn-sec-n { width: 32px; height: 32px; font-size: 13.5px; font-weight: 800; letter-spacing: .02em; }
+.rn-dg6 .rn-sec-chain > li { padding: 18px 20px; }
+.rn-dg6 .rn-dg-link { position: relative; height: 70px; margin: 8px 0 14px; }
+.rn-dg6 .rn-dg-link::before { content: ""; position: absolute; top: 0; height: 50%; left: calc((100% - 44px) / 6); right: calc((100% - 44px) / 6); border-right: 2px solid var(--accent); border-bottom: 2px solid var(--accent); border-bottom-right-radius: 14px; }
+.rn-dg6 .rn-dg-link::after { content: ""; position: absolute; top: calc(50% - 2px); bottom: 6px; left: calc((100% - 44px) / 6); border-left: 2px solid var(--accent); border-top-left-radius: 14px; }
+.rn-dg6 .rn-dg-link > .rn-dg-linkt { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; background: var(--surface); border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent); color: var(--accent); font-size: 13.5px; font-weight: 700; white-space: nowrap; z-index: 1; }
+.rn-dg6 .rn-dg-linkt i { font-style: normal; font-size: 12px; font-weight: 800; color: var(--muted); }
+.rn-dg6 .rn-dg-conc { margin: 22px 0 0; padding-top: 18px; border-top: 1px solid color-mix(in srgb, var(--accent) 14%, transparent); font-size: 16.5px; line-height: 1.6; color: var(--ink); }
+.rn-dg6 .rn-dg-conc b { color: var(--accent); }
+/* 03 → 04 화살촉 */
+.rn-dg6 .rn-dg-head { position: absolute; bottom: 0; left: calc((100% - 44px) / 6 + 1px); transform: translateX(-50%); width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid var(--accent); }
+@media (max-width: 600px) {
+  .rn-dg6 .rn-dg-link { height: auto; margin: 6px 0 18px; text-align: center; }
+  .rn-dg6 .rn-dg-link::before { display: none; }
+  .rn-dg6 .rn-dg-link::after, .rn-dg6 .rn-dg-head { display: none; }
+  .rn-dg6 .rn-dg-link > .rn-dg-linkt { position: static; transform: none; white-space: normal; text-align: left; }
+  .rn-dg6 .rn-dg-link > .rn-dg-linkt i::before { content: "↓ "; }
+  .rn-dg6 .rn-sec-chain > li:last-child::after { display: none; }
+  .rn-dg6 .rn-sec-chain > li { padding: 16px 16px 16px 60px; }
+}
+/* 첫 화면 AI 3가지: 영문 이름(작게), 시뮬레이션 상단 강조 문구 */
+.rn-hero-ai em { display: block; font-style: normal; font-size: 10.5px; font-weight: 700; letter-spacing: .05em; color: var(--accent); opacity: .8; }
+.rn-hero-cap { flex-direction: column; align-items: flex-start; gap: 2px; }
+.rn-hero-cap b { font-size: 14.5px; color: var(--ink); }
+.rn-hero-cap b::before { content: ""; display: inline-block; width: 7px; height: 7px; margin-right: 7px; border-radius: 50%; background: var(--accent); vertical-align: 2px; }
+@media (max-width: 860px) {
+  .rn-hero-ai em { display: none; }
+  .rn-hero-cap span { font-size: 12.5px; }
+}
