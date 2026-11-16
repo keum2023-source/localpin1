@@ -200,7 +200,7 @@ pre { white-space: pre-wrap; background: var(--soft); border-radius: 10px; paddi
 
 <div class="toast" id="toast" role="status" hidden></div>
 
-<script src="engine-templates.js?v=261116"></script>
+<script src="engine-templates.js?v=261116d"></script>
 <script>
 /* Publishable key만 씁니다. Secret key·AI 키는 이 파일에 절대 넣지 마세요(AI 키는 서버 함수 비밀값에만). */
 const SUPABASE_URL = "https://ywgfhqyxravvtaowjqkm.supabase.co";
@@ -273,7 +273,9 @@ async function loadList() {
     const [bs, cs] = await Promise.all([api("eng_businesses?select=*&order=updated_at.desc"), api("eng_clients?select=*")]);
     businesses = bs; clients = Object.fromEntries(cs.map(c => [c.id, c]));
   } catch (ex) {
-    if (/eng_businesses|42P01|PGRST/.test(ex.message)) { $("#blist").innerHTML = `<p class="err">표가 아직 없습니다. "1단계 표 만들기.sql"을 Supabase에서 먼저 실행해 주세요.</p>`; return; }
+    if (/42P01|PGRST205/.test(ex.message)) { $("#blist").innerHTML = `<p class="err">표가 아직 없습니다. "1단계 표 만들기.sql"을 Supabase에서 먼저 실행해 주세요.</p>`; return; }
+    if (/42501|permission denied/.test(ex.message)) { $("#blist").innerHTML = `<p class="err">표를 읽을 권한이 없습니다. "1단계 권한 추가.sql"을 Supabase에서 실행해 주세요.</p>`; return; }
+    $("#blist").innerHTML = `<p class="err">불러오지 못했습니다: ${esc(ex.message.slice(0, 160))}</p>`; return;
     throw ex;
   }
   renderList(); loadLeads();

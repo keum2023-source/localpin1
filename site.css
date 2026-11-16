@@ -2718,3 +2718,30 @@ form label small, .opt { font-size: 12px; }
   .rn-hero-ai em { display: none; }
   .rn-hero-cap span { font-size: 12.5px; }
 }
+
+/* 2026-11-16 메인 압축: 공감+퍼스널 브랜딩, 사례+스토리, AI+진단, GROWTH+브리핑 통합 */
+#industry .bs-why { margin-top: 44px; }
+#cases .rn-story { margin-top: 48px; }
+.rn-index-fold > .rn-fold-body { margin: 0 22px; }
+#system .rn-sys3 + .rn-sys-fold { margin-top: 28px; }
+#system .rn-sys-fold + .rn-sys-fold { margin-top: 14px; }
+#system .rn-sys-fold .rn-sec-ex { margin-top: 24px; }
+#system .rn-sys-fold + .rn-sec-cta { margin-top: 28px; }
+.rn-brief { margin-top: 22px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; padding: 20px 22px; border-radius: var(--r-md); background: var(--soft); border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent); }
+.rn-brief p { flex: 1 1 320px; margin: 0; display: grid; gap: 4px; }
+.rn-brief p b { color: var(--ink); font-size: 17px; letter-spacing: -0.02em; }
+.rn-brief p span { color: var(--muted); font-size: 15px; line-height: 1.6; }
+.rn-brief a { color: var(--accent); font-weight: 700; font-size: 15px; white-space: nowrap; }
+@media (max-width: 600px) {
+  .rn-index-fold > .rn-fold-body { margin: 0 14px; }
+  #system .rn-dg6 .rn-sec-chain > li { padding: 16px 16px 16px 60px; }
+  #industry .bs-why { margin-top: 32px; }
+  #cases .rn-story { margin-top: 36px; }
+  .rn-brief { padding: 18px; }
+}
+/* 2026-11-16 메인 포트폴리오 머리: 상세의 WHY LOCALPIN 포스터 디자인 재사용 */
+.rn-pf-poster { min-height: 0; margin-bottom: 44px; }
+@media (max-width: 700px) { .rn-pf-poster { padding-bottom: 32px; margin-bottom: 32px; } }
+/* 공감 구간을 연초록 바탕으로 되돌려 아래 포트폴리오와 구분, 안쪽 4단계 상자는 흰 바탕 */
+#industry .bs-why { background: var(--surface); border: 1px solid color-mix(in srgb, var(--accent) 16%, transparent); }
+#industry .bs-chain > li:not(:last-child) { background: var(--soft); }
