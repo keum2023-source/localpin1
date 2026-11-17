@@ -2771,3 +2771,5 @@ form label small, .opt { font-size: 12px; }
 .hp-ana-note a { color: var(--accent); font-weight: 700; white-space: nowrap; }
 @media (max-width: 1080px) { .hp-ana-list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 600px) { .hp-anatomy { margin-top: 40px; padding: 24px 16px; } .hp-ana-head h3 { font-size: 20px; } .hp-ana-list { grid-template-columns: 1fr; gap: 12px; } }
+
+.hp-anatomy + .hp-anatomy { margin-top: 24px; }
