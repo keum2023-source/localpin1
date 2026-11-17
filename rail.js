@@ -10,7 +10,7 @@
     label: "BASIC", name: "플레이스 BASIC", key: "placeBasic", unit: "1회",
     intro: "플레이스 기본 정보부터 깔끔하게 정비합니다.",
     items: ["기본 정보 정비·기본 소개글", "이미지 2종 (디자인별 기본 수정 1회)", "기본 온라인 상태 진단·상담 연결 점검", "구축 후 1개월 기본 점검·경미한 변경 1건"],
-    note: "새 로고는 만들지 않고 기존 로고를 활용합니다. 지역·경쟁 분석과 차별화 메시지 설계는 BRANDING에 들어갑니다.", pick: "place",
+    note: "새 로고는 만들지 않고 기존 로고를 활용합니다. 지역·경쟁 분석과 차별화 메시지 설계는 BRANDING에 들어갑니다.", pick: "placeBasic",
   };
   const placeBranding = {
     label: "BRANDING", name: "플레이스 BRANDING", key: "place", unit: "1회",
@@ -28,7 +28,7 @@
     label: "+BASIC", name: "홈페이지 + 플레이스 BASIC", key: "webBasic", unit: "1회",
     intro: "홈페이지를 만들면서 플레이스 기본 정보도 함께 정리합니다.",
     items: ["반응형 원페이지 홈페이지", "플레이스 BASIC 전체 (기본 정보·소개글·이미지 2종)", "상담 버튼 연결·기본 검색엔진 설정", "플레이스 1개월 점검·홈페이지 1개월 보완"],
-    note: "플레이스 전문 브랜딩까지 원하시면 SIGNATURE입니다. 추가 기능은 별도 견적, 도메인·서버 실비 별도입니다.", pick: "place+home",
+    note: "플레이스 전문 브랜딩까지 원하시면 SIGNATURE입니다. 추가 기능은 별도 견적, 도메인·서버 실비 별도입니다.", pick: "placeBasic+home",
   };
   const signature = {
     label: "SIGNATURE", name: "SIGNATURE · 홈페이지 + 플레이스 BRANDING", key: "placeHome", unit: "1회",
@@ -46,7 +46,7 @@
     label: `월 ${n}건`, name: `블로그 단품 운영 · 월 ${n}건`, key: `blog${n}`, unit: "월",
     intro: n === 4 ? "일주일에 한 편씩 검색 질문에 답하는 글을 쌓습니다." : n === 8 ? "정보성 글과 실제 자료를 바탕으로 한 글을 더 촘촘히 발행합니다." : "다룰 질문이 많은 업종에서 주제 범위를 넓혀 발행합니다.",
     items: [`월 ${n}건 주제·원고·발행`, "글마다 본문 이미지 제작", "운영에 필요한 블로그 기본 상태 확인", "매달 방문자·검색어 기본 요약"],
-    note: "콘텐츠 제작 중심 상품입니다. 최소 3개월, 이후 1개월씩. 플레이스 관리와 신규 구축·전체 재설계(초기 구축)는 포함되지 않습니다.", pick: "blog",
+    note: "콘텐츠 제작 중심 상품입니다. 최소 3개월, 이후 1개월씩. 플레이스 관리와 신규 구축·전체 재설계(초기 구축)는 포함되지 않습니다.", pick: "",
   });
   const plans = {
     place: [placeBasic, placeBranding, placeBlog, signature, allInOne],
@@ -73,25 +73,25 @@
         label: "BASIC", name: "BASIC · 플레이스 정기관리", key: "basic", unit: "월",
         intro: "플레이스 정보를 점검하고 새 소식을 가볍게 이어갑니다.",
         items: ["플레이스 정보 점검 월 1회", "플레이스 소식 월 1건", "간단한 관리 보고", "최초 기본 키워드 점검"],
-        note: "1개월 단위. 블로그 글과 홈페이지 관리는 포함되지 않습니다.", pick: "place",
+        note: "1개월 단위. 블로그 글과 홈페이지 관리는 포함되지 않습니다.", pick: "basic",
       },
       {
         label: "GROWTH", name: "GROWTH · 플레이스+블로그 정기관리", key: "growth", unit: "월",
         intro: "AI가 정리한 분석을 대표가 검토해, 두 채널을 매달 함께 관리하는 통합 브랜드 관리입니다.",
         items: ["플레이스 정보 점검 월 2회·소식 월 2건", "블로그 콘텐츠 월 3건", "브랜드 이미지 월 1건", "AI 활용 키워드 분석 월 1회", "상담 연결 점검 월 1회·개선 제안 월 1건", "월간 2쪽 PDF 브랜드 브리핑"],
-        note: "최소 3개월, 이후 1개월씩. 홈페이지 관리는 별도입니다.", pick: "place+blog",
+        note: "최소 3개월, 이후 1개월씩. 홈페이지 관리는 별도입니다.", pick: "growth",
       },
       {
         label: "PREMIUM", name: "PREMIUM · 더 자주 관리", key: "premium", unit: "월",
         intro: "GROWTH의 기본 점검과 상담 연결 점검을 포함해, 더 자주 발행하고 분기마다 전략을 점검합니다.",
         items: ["플레이스 정보 점검 월 4회·소식 월 4건", "블로그 콘텐츠 월 6건", "브랜드 이미지 월 2건", "상담 연결 점검 월 1회·개선 제안 월 2건", "AI 활용 키워드 분석 월 1회", "경쟁업체 분석·전략 점검 각 분기 1회", "월간 PDF 브랜드 브리핑"],
-        note: "최소 3개월, 이후 1개월씩. 홈페이지 관리는 포함되지 않습니다.", pick: "place+blog",
+        note: "최소 3개월, 이후 1개월씩. 홈페이지 관리는 포함되지 않습니다.", pick: "premium",
       },
       {
         label: "+유지관리", name: "GROWTH + 홈페이지 유지관리", key: "growthHome", unit: "월",
         intro: "정기관리와 홈페이지 관리를 함께 맡깁니다.",
         items: ["GROWTH 월간 수행 항목 전부", "월 1회 접속·상담 신청 테스트", "도메인·보안 인증 만료일 확인과 갱신 안내", "기존 글·이미지의 경미한 수정 월 3건"],
-        note: "최소 3개월, 이후 1개월씩. 도메인·서버 비용은 실비 별도입니다.", pick: "place+blog",
+        note: "최소 3개월, 이후 1개월씩. 도메인·서버 비용은 실비 별도입니다.", pick: "growth",
       }
     ]
   };
@@ -143,7 +143,7 @@
       <ul class="rail-list">${p.items.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
       <p class="rail-note">${escapeHtml(p.note)}</p>
     `;
-    const href = `./?pick=${encodeURIComponent(p.pick)}#contact`;
+    const href = p.pick ? `./?pick=${encodeURIComponent(p.pick)}#contact` : "./#contact"; // 월 관리만 고른 경우 구축 카드는 고르지 않음
     primary.href = href;
     primary.textContent = p.unit === "월" ? "관리 신청하기" : "제작 신청하기";
     secondary.href = href;

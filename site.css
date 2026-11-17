@@ -2552,9 +2552,13 @@ form label small, .opt { font-size: 12px; }
 .rn-index-quick a.rec { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
 
 /* 신청서: 요금·구성 찾기에서 자동으로 담긴 관심 구성 (보조 표시) */
-.rn-index-plan { grid-column: 1 / -1; margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; padding: 10px 14px; border-radius: 12px; background: var(--soft); font-size: 13px; color: var(--muted); }
-.rn-index-plan b { color: var(--ink); font-weight: 600; }
-.rn-index-plan button { margin-left: auto; font: inherit; font-size: 13px; color: var(--accent); background: none; border: 0; padding: 4px 2px; cursor: pointer; text-decoration: underline; }
+.rn-index-plan { grid-column: 1 / -1; margin: 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 6px 12px; padding: 16px 18px; border-radius: 14px; background: var(--surface); border: 1.5px solid var(--accent); border-left-width: 5px; }
+.rn-index-plan[hidden] { display: none; }
+.rn-index-plan .rn-plan-k { grid-column: 1; color: var(--accent); font-size: 13px; font-weight: 800; letter-spacing: -0.01em; }
+.rn-index-plan b { grid-column: 1 / -1; color: var(--ink); font-size: 16px; font-weight: 700; line-height: 1.55; word-break: keep-all; overflow-wrap: anywhere; white-space: normal; }
+.rn-index-plan small { grid-column: 1 / -1; color: var(--muted); font-size: 13px; line-height: 1.5; }
+.rn-index-plan button { grid-column: 2; grid-row: 1; font: inherit; font-size: 13px; font-weight: 600; color: var(--muted); background: var(--soft); border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; cursor: pointer; }
+.rn-index-plan button:hover, .rn-index-plan button:focus-visible { color: var(--accent); border-color: var(--accent); }
 
 /* 더 보기 링크 줄 (GROWTH 브리핑·FAQ 등 상세 페이지로) */
 .rn-index-more { margin: 18px 0 0; font-size: 15px; color: var(--muted); }

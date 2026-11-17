@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;900&display=swap">
-<link rel="stylesheet" href="site.css?v=261116d">
+<link rel="stylesheet" href="site.css?v=261117">
 
 <header class="top">
   <div class="wrap">
@@ -742,7 +742,7 @@
         <!-- 관심 구성: 요금 선택·?pick=·구성 찾기에서 자동으로 담깁니다(화면에는 담겼을 때만 작게 표시) -->
         <input type="hidden" id="fPlan" name="plan">
         <input type="hidden" id="fWho" name="who" value="원장·대표">
-        <p class="rn-index-plan" id="planNote" hidden>자동으로 담긴 관심 구성 <b id="planShow"></b><button type="button" id="planClear">빼기</button></p>
+        <div class="rn-index-plan" id="planNote" hidden><span class="rn-plan-k">신청서에 담긴 관심 구성</span><b id="planShow"></b><button type="button" id="planClear">빼기</button><small>위 요금표에서 다시 고르시면 그 구성으로 바뀝니다.</small></div>
         <label class="agree"><input type="checkbox" id="fAgree" name="agree" value="동의"> <span><b style="color:var(--ink)">[필수]</b> 진단·상담을 위한 개인정보(사업장명, 연락처, 지역, 채널 주소) 수집·이용에 동의합니다. 진단·상담 목적 외에는 사용하지 않으며 상담 종료 후 파기합니다.</span></label>
         <p class="err" id="err" hidden></p>
         <div class="hp" aria-hidden="true"><label>홈페이지 주소 <input type="text" id="fHp" name="website" tabindex="-1" autocomplete="off"></label></div>
@@ -773,7 +773,7 @@
   <b>무료 진단 <br>신청하기</b>
   <span class="sc-go" aria-hidden="true">→</span>
 </a>
-<script src="prices.js?v=261116d"></script>
+<script src="prices.js?v=261117"></script>
 <script>
 (() => {
   // PC 화면 옆 무료 진단 배너: 첫 화면을 지나면 나타나고, 신청서가 보이면 숨깁니다.
@@ -1070,9 +1070,11 @@ function applyPick(tokens) {
   const t = planText(selectedKeys());
   if (t) setPlan(t);
 }
-pickBoxes.forEach(b => b.addEventListener("change", () => { renderCalc(); peekShow(); }));
-$$('input[name="placeLv"]').forEach(r => r.addEventListener("change", () => { $("#pkPlace").checked = true; renderCalc(); peekShow(); }));
-$$('input[name="monthly"]').forEach(r => r.addEventListener("change", () => { renderCalc(); peekShow(); }));
+// 요금표에서 직접 다시 고르면 신청서의 관심 구성도 지금 고른 구성으로 바꿉니다(상세 페이지에서 담아 온 예전 구성이 남지 않게).
+const syncPlan = () => setPlan(planText(selectedKeys()));
+pickBoxes.forEach(b => b.addEventListener("change", () => { renderCalc(); syncPlan(); peekShow(); }));
+$$('input[name="placeLv"]').forEach(r => r.addEventListener("change", () => { $("#pkPlace").checked = true; renderCalc(); syncPlan(); peekShow(); }));
+$$('input[name="monthly"]').forEach(r => r.addEventListener("change", () => { renderCalc(); syncPlan(); peekShow(); }));
 
 // 휴대폰에서는 카드를 고르는 동안 초록 요약 바가 화면 밖에 있으므로, 고르는 순간 아래에 작은 요약을 띄웁니다.
 // 요약 바가 화면에 들어오거나 요금 구간을 벗어나면 사라집니다.
@@ -1246,6 +1248,6 @@ form.addEventListener("submit", async e => {
 });
 
 </script>
-<script src="motion.js?v=261116d"></script>
+<script src="motion.js?v=261117"></script>
 </body>
 </html>
