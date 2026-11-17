@@ -2752,3 +2752,22 @@ form label small, .opt { font-size: 12px; }
 
 /* 2026-11-17 휴대폰 글씨 약 0.5pt(4%) 키움: 글자 크기만 비율로 키우고 칸 크기·배치는 그대로 */
 @media (max-width: 600px) { html { -webkit-text-size-adjust: 104%; text-size-adjust: 104%; } }
+
+/* 2026-11-17 홈페이지 상세: 사임당 홈페이지 실제 구성 */
+.hp-anatomy { margin-top: 56px; padding: 36px; border-radius: var(--r-lg); background: var(--soft); }
+.hp-ana-head { max-width: 760px; margin-bottom: 26px; }
+.hp-ana-head h3 { margin: 12px 0 8px; font-size: 24px; line-height: 1.4; color: var(--ink); letter-spacing: -0.03em; }
+.hp-ana-head p { margin: 0; color: var(--text); font-size: 16px; line-height: 1.7; }
+.hp-ana-head p b { color: var(--accent); }
+.hp-ana-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.hp-ana-list > li { display: flex; flex-direction: column; min-width: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden; }
+.hp-ana-shot { aspect-ratio: 16 / 10; overflow: hidden; border-bottom: 1px solid var(--line); background: #fff; }
+.hp-ana-shot img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: left top; }
+.hp-ana-body { display: grid; gap: 6px; padding: 16px 16px 18px; }
+.hp-ana-k { color: var(--accent); font-size: 13px; font-weight: 800; letter-spacing: -0.01em; }
+.hp-ana-body b { color: var(--ink); font-size: 16px; line-height: 1.45; }
+.hp-ana-body p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
+.hp-ana-note { margin: 22px 0 0; color: var(--text); font-size: 15px; line-height: 1.7; }
+.hp-ana-note a { color: var(--accent); font-weight: 700; white-space: nowrap; }
+@media (max-width: 1080px) { .hp-ana-list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .hp-anatomy { margin-top: 40px; padding: 24px 16px; } .hp-ana-head h3 { font-size: 20px; } .hp-ana-list { grid-template-columns: 1fr; gap: 12px; } }
