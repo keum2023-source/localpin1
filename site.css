@@ -2879,3 +2879,5 @@ h1, h2, h3, h4, .h2, .lead, p, li, dt, dd, th, td, summary, figcaption, label, s
   .gtable tbody tr.is-rec { background: var(--mint); box-shadow: inset 4px 0 0 var(--accent); }
   .gtable tbody tr.is-rec > th, .gtable tbody tr.is-rec > td { background: transparent !important; box-shadow: none !important; }
 }
+/* 2026-11-18 실제 채널 링크: 휴대폰에서는 설명 한 줄, 버튼은 그 아래 나란히 */
+@media (max-width: 600px) { .real-links > span { flex-basis: 100%; } }
