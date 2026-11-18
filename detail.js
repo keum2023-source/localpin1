@@ -75,3 +75,23 @@ setInd($$(".ind-tabs button").some(b => b.dataset.ind === startInd) ? startInd :
     setInterval(() => { if (visible && !paused && !document.hidden) go(idx + 1); }, 3000);
   });
 })();
+
+
+// 휴대폰에서 BASIC·GROWTH·PREMIUM 비교표는 상품을 골라 한 열씩 봅니다(넓은 화면은 그대로 전체 표).
+(() => {
+  document.querySelectorAll("table.mtable").forEach(tb => {
+    const heads = [...tb.querySelectorAll("thead th")];
+    if (heads.length < 3) return;
+    const names = heads.slice(1).map(th => (th.textContent.match(/BASIC|GROWTH|PREMIUM/) || [th.textContent.trim()])[0]);
+    let cur = Math.max(0, heads.slice(1).findIndex(th => th.classList.contains("rec")));
+    const bar = document.createElement("div");
+    bar.className = "mt-tabs"; bar.setAttribute("role", "tablist"); bar.setAttribute("aria-label", "비교할 상품 고르기");
+    names.forEach((n, i) => { const b = document.createElement("button"); b.type = "button"; b.setAttribute("role", "tab"); b.textContent = n; b.addEventListener("click", () => { cur = i; paint(); }); bar.appendChild(b); });
+    const wrap = tb.closest(".mt-wrap") || tb; wrap.parentNode.insertBefore(bar, wrap);
+    function paint() {
+      [...bar.children].forEach((b, i) => { b.setAttribute("aria-selected", i === cur ? "true" : "false"); b.classList.toggle("on", i === cur); });
+      tb.querySelectorAll("tr").forEach(tr => [...tr.children].forEach((c, ci) => c.classList.toggle("mt-off", ci > 0 && ci !== cur + 1)));
+    }
+    paint();
+  });
+})();
