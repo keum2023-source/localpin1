@@ -2773,3 +2773,52 @@ form label small, .opt { font-size: 12px; }
 @media (max-width: 600px) { .hp-anatomy { margin-top: 40px; padding: 24px 16px; } .hp-ana-head h3 { font-size: 20px; } .hp-ana-list { grid-template-columns: 1fr; gap: 12px; } }
 
 .hp-anatomy + .hp-anatomy { margin-top: 24px; }
+
+/* 2026-11-18 휴대폰 가격 칸 압축: 한 화면에 이름·가격·버튼이 같이 보이게 */
+.grp-title .grp-sub { font-size: 13px; font-weight: 600; color: var(--muted); }
+@media (max-width: 600px) {
+  .grp-title { margin: 32px 0 12px; }
+  .tiers { gap: 10px; }
+  .tier { grid-template-columns: minmax(0, 1fr) auto; column-gap: 12px; row-gap: 4px; align-items: center; padding: 14px 16px; }
+  .tier .t-n { grid-column: 1; grid-row: 1; font-size: 14px; }
+  .tier .t-total { grid-column: 1; grid-row: 2; font-size: 12.5px; }
+  .tier .t-p { grid-column: 2; grid-row: 1 / span 2; font-size: 24px; text-align: right; white-space: nowrap; }
+  .tier .t-p small { font-size: 12.5px; margin-left: 2px; }
+  .tier .t-for { grid-column: 1 / -1; margin-top: 4px; padding: 7px 10px; font-size: 13px; }
+  .tier .offer-cta { grid-column: 1 / -1; margin-top: 4px; padding: 9px 12px; font-size: 13.5px; }
+  .tier.best::before { top: -10px; left: 14px; font-size: 12px; padding: 2px 9px; }
+  .offer-grid { gap: 10px; }
+  .offer-card { padding: 16px; }
+  .offer-card.featured { padding: 15px; }
+  .offer-card h2, .offer-card h3 { margin: 10px 0 2px; font-size: 18px; }
+  .offer-price { margin: 2px 0 8px; font-size: 23px; }
+  .offer-card > p:not(.offer-price) { margin-bottom: 10px; font-size: 14px; line-height: 1.55; }
+  .offer-card > .text-link { margin-bottom: 8px; }
+  .offer-cta { padding: 9px 12px; font-size: 13.5px; }
+  .offer-card > .offer-cta + .offer-cta, .offer-card > .text-link + .offer-cta { margin-top: 6px; }
+}
+
+/* 2026-11-18 상품 카드: 핵심 4개만 보이고 전체 제공 범위는 펼쳐 보기 */
+.scope-more { margin: 6px 0 4px; }
+.scope-more > summary { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 8px 2px; color: var(--accent); font-size: 14px; font-weight: 700; cursor: pointer; list-style: none; }
+.scope-more > summary::-webkit-details-marker { display: none; }
+.scope-more > summary::after { content: "▾"; font-size: 12px; transition: transform .2s; }
+.scope-more[open] > summary::after { transform: rotate(180deg); }
+.scope-more > summary span { padding: 1px 7px; border-radius: 999px; background: var(--mint); color: var(--mint-ink); font-size: 12.5px; }
+.scope-more > ul { margin-top: 2px; }
+@media (max-width: 600px) {
+  .offer-tag, .flag-badge, .ap-name em { font-size: 13px; }
+  .ap-card { padding: 18px 16px; }
+  .ap-card .ap-price > b { font-size: 24px; }
+  .ap-card ul { gap: 6px; }
+  .ap-out, .ap-note { font-size: 13.5px; }
+  .offer-cta { min-height: 44px; }
+}
+
+/* 2026-11-18 메인 GROWTH 카드: 연결 월 관리는 이름·가격 한 줄씩 */
+.core-alt { list-style: none; margin: 4px 0 18px; padding: 0; display: grid; gap: 0; border-top: 1px solid rgba(255,255,255,.18); }
+.core-alt li { display: flex; align-items: baseline; gap: 8px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.18); font-size: 14.5px; line-height: 1.4; }
+.core-alt li::before { content: none; }
+.core-alt b { font-weight: 700; }
+.core-alt em { font-style: normal; opacity: .78; font-size: 13.5px; }
+.core-alt li > span { margin-left: auto; white-space: nowrap; font-weight: 800; }
