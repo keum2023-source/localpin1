@@ -2946,3 +2946,34 @@ h1, h2, h3, h4, .h2, .lead, p, li, dt, dd, th, td, summary, figcaption, label, s
   .who-chips span.v { grid-column: 1 / -1; }
   .who-chips span:last-child:nth-child(odd) { grid-column: 1 / -1; }
 }
+
+/* 2026-11-19 대표 패키지 가치 목록(구성 찾기): PC 두 칸, 휴대폰 한 칸. 채널별 묶음은 눌러서 펼침 */
+.vk-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start; margin: 8px 0 10px; }
+.vk-pair .vk { max-width: none; margin: 0; }
+.vk-pair-note { margin: 0 0 32px; }
+.vk-grp { border-bottom: 1px solid var(--line); }
+.vk-grp summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 14px; padding: 14px 2px; }
+.vk-grp summary::-webkit-details-marker { display: none; }
+.vk-grp .vk-gname { font-size: 16px; font-weight: 700; color: var(--ink); line-height: 1.35; }
+.vk-grp .vk-gname small { display: block; margin-top: 2px; font-size: 12.5px; font-weight: 500; color: var(--muted); }
+.vk-grp[open] .vk-gname small { visibility: hidden; height: 0; margin: 0; }
+.vk-grp summary > b { font-size: 16px; font-weight: 800; color: var(--ink); white-space: nowrap; }
+.vk-grp .vk-sang { font-style: normal; }
+.vk-grp summary > b::after { content: " ▾"; color: var(--accent); font-size: 12px; }
+.vk-grp[open] summary > b::after { content: " ▴"; }
+.vk-sub { list-style: none; margin: 0 0 12px; padding: 4px 14px; background: var(--soft); border-radius: var(--r-md); }
+.vk-sub li { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; font-size: 14.5px; border-bottom: 1px dashed var(--line); }
+.vk-sub li:last-child { border-bottom: 0; }
+.vk-sub li span { color: var(--text); min-width: 0; }
+.vk-sub li b { color: var(--ink); white-space: nowrap; font-weight: 700; }
+@media (max-width: 900px) { .vk-pair { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 600px) {
+  .vk-grp summary { gap: 10px; padding: 12px 0; }
+  .vk-grp .vk-ic { flex-basis: 40px; width: 40px; height: 40px; }
+  .vk-grp .vk-gname { font-size: 15px; }
+  .vk-grp summary > b { font-size: 15px; }
+  .vk-sub { padding: 2px 12px; }
+  .vk-sub li { font-size: 14px; }
+  .vk-grp .vk-sang { display: none; }
+}
+@media (max-width: 360px) { .vk-grp summary { grid-template-columns: minmax(0, 1fr) auto; } .vk-grp .vk-ic { display: none; } }

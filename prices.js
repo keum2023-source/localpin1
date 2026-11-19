@@ -43,6 +43,9 @@ window.LP_VALUE = {
   growth: [["info", "플레이스 정보 점검 월 2회·소식 월 2건", 200000], ["pen", "블로그 콘텐츠 월 3건", 300000], ["img", "브랜드 이미지 월 1건", 100000], ["search", "AI 활용 키워드 분석 월 1회", 100000], ["chat", "상담 연결 점검·개선 제안", 100000], ["chart", "월간 2쪽 PDF 브랜드 브리핑", 150000]],
   premium: [["info", "플레이스 정보 점검 월 4회·소식 월 4건", 400000], ["pen", "블로그 콘텐츠 월 6건", 600000], ["img", "브랜드 이미지 월 2건", 200000], ["chat", "상담 연결 점검·개선 제안 월 2건", 150000], ["search", "AI 활용 키워드 분석 월 1회", 100000], ["chart", "분기 경쟁업체 분석·전략 점검", 200000], ["list", "월간 PDF 브랜드 브리핑", 150000]]
 };
+window.LP_VALUE.blog4 = [["pen", "블로그 글 월 4건 주제·원고·발행", 400000], ["img", "글마다 본문 이미지 제작", 80000], ["info", "블로그 기본 상태 확인", 50000], ["chart", "방문자·검색어 월간 요약", 50000]];
+window.LP_VALUE.blog8 = [["pen", "블로그 글 월 8건 주제·원고·발행", 800000], ["img", "글마다 본문 이미지 제작", 160000], ["info", "블로그 기본 상태 확인", 50000], ["chart", "방문자·검색어 월간 요약", 50000]];
+window.LP_VALUE.blog12 = [["pen", "블로그 글 월 12건 주제·원고·발행", 1200000], ["img", "글마다 본문 이미지 제작", 240000], ["info", "블로그 기본 상태 확인", 50000], ["chart", "방문자·검색어 월간 요약", 50000]];
 window.LP_VALUE.placeBlog = [["star", "플레이스 BRANDING 전체", "place"], ["pen", "블로그 초기 구축 전체", "blogBuild"]];
 window.LP_VALUE.webBasic = [["web", "홈페이지 제작 전체", "home"], ["info", "플레이스 BASIC 전체", "placeBasic"]];
 window.LP_VALUE.placeHome = [["web", "홈페이지 제작 전체", "home"], ["star", "플레이스 BRANDING 전체", "place"]];
@@ -57,6 +60,18 @@ window.lpValueTotal = k => window.lpValueItems(k).reduce((s, x) => s + x[2], 0);
   document.querySelectorAll("[data-value]").forEach(el => {
     const k = el.dataset.value; if (!window.LP_VALUE[k]) return;
     el.innerHTML = `${el.dataset.valueLabel ? el.dataset.valueLabel + " " : ""}${monthly(k) ? "매달 " : "총 "}<b>${won(window.lpValueTotal(k))}</b> 상당의 가치`;
+  });
+  // 패키지(SIGNATURE·ALL-IN-ONE 등): 채널별로 접었다 펴는 묶음 + 합계 + 로컬핀 가격
+  document.querySelectorAll("[data-value-pack]").forEach(el => {
+    const k = el.dataset.valuePack; if (!window.LP_VALUE[k]) return;
+    const name = el.dataset.name || window.LP_PRICES[k].name;
+    const groups = window.LP_VALUE[k].map(([ic, label, ref]) => {
+      const items = window.lpValueItems(ref), sub = window.lpValueTotal(ref);
+      return `<details class="vk-grp"><summary><i class="vk-ic">${svg(ic)}</i><span class="vk-gname">${window.LP_PRICES[ref].name}<small>${items.length}개 항목 · 눌러서 보기</small></span><b>${won(sub)}<em class="vk-sang"> 상당</em></b></summary><ul class="vk-sub">${items.map(([, n, v]) => `<li><span>${n}</span><b>${won(v)}</b></li>`).join("")}</ul></details>`;
+    }).join("");
+    el.innerHTML = `<p class="vk-kicker">${name}에 들어 있는 것</p>${groups}
+<div class="vk-sum"><span>모두 합치면</span><b>${won(window.lpValueTotal(k))} 상당</b></div>
+<div class="vk-price"><span>로컬핀에서는</span><b>${window.lpWon(k)}</b><small>1회 · 부가세 별도</small></div>`;
   });
   document.querySelectorAll("[data-value-stack]").forEach(el => {
     const k = el.dataset.valueStack; if (!window.LP_VALUE[k]) return;
