@@ -78,7 +78,6 @@
           <button type="button" data-hero="academy" aria-pressed="true">요양교육원</button>
           <button type="button" data-hero="postpartum" aria-pressed="false">산후도우미</button>
           <button type="button" data-hero="homecare" aria-pressed="false">방문요양</button>
-          <button type="button" data-hero="pilates" aria-pressed="false">필라테스</button>
         </div>
         <div class="results" id="results"></div>
         <div class="search-foot">
@@ -897,20 +896,6 @@ const MOCK = {
     km: "0.5km",
     before: { cat: "복지시설", tags: [["운영시간 없음", "no"], ["사진 적음", "no"]] },
     after:  { cat: "방문요양", info: "사회복지사 출신 센터장 · 장기요양 등급 상담", tags: [["브랜드 로고", "go"], ["센터장 프로필", "go"], ["등급 상담", "go"], ["상담 예약", "go"]] }
-  },
-  pilates: {
-    q: "🔍 우리동네 필라테스",
-    shops: [
-      { id: "a", name: "A필라테스 스튜디오", meta: "필라테스 · 0.9km", photo: true, tags: ["예약", "톡톡"] },
-      { id: "b", name: "B바디필라테스", meta: "필라테스 · 1.8km", photo: true, tags: ["예약"] },
-      { id: "c", name: "C코어필라테스", meta: "필라테스 · 2.6km", photo: true, tags: ["톡톡"] },
-      { id: "d", name: "D필라테스", meta: "필라테스 · 0.6km", photo: false, tags: [] },
-      { id: "e", name: "E밸런스 필라테스", meta: "필라테스 · 3.5km", photo: true, tags: [] },
-      { id: "me", name: "행복필라테스", me: true }
-    ],
-    km: "0.4km",
-    before: { cat: "운동시설", tags: [["가격 안내 없음", "no"], ["사진 적음", "no"]] },
-    after:  { cat: "필라테스", info: "물리치료사 출신 원장 · 개인 레슨", tags: [["브랜드 로고", "go"], ["원장 프로필", "go"], ["수업 시간표", "go"], ["체험 예약", "go"]] }
   }
 };
 let heroInd = "academy";
@@ -973,7 +958,7 @@ function renderSearch(mode) {
 // 업종 예시 자동 순환: 세팅 전 → 세팅 후 → 다음 업종 (손대면 멈춤)
 let userTouched = false;
 let heroTimer = 0;
-const HERO_ORDER = ["academy", "postpartum", "homecare", "pilates"];
+const HERO_ORDER = ["academy", "postpartum", "homecare"];
 function heroCycle() {
   if (userTouched) return;
   if (searchMode === "before") { renderSearch("after"); heroTimer = setTimeout(heroCycle, 3800); }
