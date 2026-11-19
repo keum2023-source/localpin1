@@ -56,7 +56,7 @@ window.lpValueTotal = k => window.lpValueItems(k).reduce((s, x) => s + x[2], 0);
   const svg = k => `<svg viewBox="0 0 24 24" aria-hidden="true">${I[k] || I.info}</svg>`;
   document.querySelectorAll("[data-value]").forEach(el => {
     const k = el.dataset.value; if (!window.LP_VALUE[k]) return;
-    el.innerHTML = `${monthly(k) ? "매달 " : "총 "}<b>${won(window.lpValueTotal(k))}</b> 상당의 가치`;
+    el.innerHTML = `${el.dataset.valueLabel ? el.dataset.valueLabel + " " : ""}${monthly(k) ? "매달 " : "총 "}<b>${won(window.lpValueTotal(k))}</b> 상당의 가치`;
   });
   document.querySelectorAll("[data-value-stack]").forEach(el => {
     const k = el.dataset.valueStack; if (!window.LP_VALUE[k]) return;
