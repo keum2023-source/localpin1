@@ -738,6 +738,7 @@
         <div class="field full"><label class="l" for="fLink">플레이스 주소<small>있으면 진단이 빨라집니다</small></label><input type="url" id="fLink" name="place_url" placeholder="https://naver.me/..." inputmode="url"></div>
         <div class="field"><label class="l" for="fHome">홈페이지 주소<small>선택</small></label><input type="url" id="fHome" name="home_url" placeholder="https://..." inputmode="url"></div>
         <div class="field"><label class="l" for="fBlog">블로그 주소<small>선택</small></label><input type="url" id="fBlog" name="blog_url" placeholder="https://blog.naver.com/..." inputmode="url"></div>
+        <div class="field full"><label class="l" for="fSource">로컬핀을 어떻게 알게 되셨나요?<i>*</i></label><select id="fSource" name="source"><option value="">선택해주세요</option><option>네이버 검색</option><option>네이버 블로그</option><option>인스타그램</option><option>인스타그램·페이스북 광고</option><option>유튜브</option><option>지인 소개</option><option>기타</option></select></div>
         <div class="field full"><label class="l" for="fMsg">가장 고민되는 부분<small>선택</small></label><textarea id="fMsg" name="message" placeholder="예) 플레이스는 있는데 문의가 적어요."></textarea></div>
         <!-- 관심 구성: 요금 선택·?pick=·구성 찾기에서 자동으로 담깁니다(화면에는 담겼을 때만 작게 표시) -->
         <input type="hidden" id="fPlan" name="plan">
@@ -1153,6 +1154,7 @@ function summaryText() {
     "업종: " + (v("fType") || "-"),
     "지역: " + (v("fArea") || "-"),
     "문의자: " + $("#fWho").value,
+    "알게 된 경로: " + (v("fSource") || "-"),
     "고민: " + (v("fMsg") || "-")
   ].join("\n");
 }
@@ -1171,6 +1173,7 @@ form.addEventListener("submit", async e => {
   if (!/^0\d{1,2}-?\d{3,4}-?\d{4}$/.test(v("fPhone"))) miss.push("연락처(예: 010-1234-5678)");
   if (!v("fType")) miss.push("업종");
   if (!v("fArea")) miss.push("지역");
+  if (!v("fSource")) miss.push("알게 된 경로");
   if (!$("#fAgree").checked) miss.push("개인정보 수집 동의");
   if (miss.length) { err.textContent = "다음 항목을 확인해주세요: " + miss.join(", "); err.hidden = false; return; }
   const ex = excludedArea();
@@ -1210,7 +1213,7 @@ form.addEventListener("submit", async e => {
         place_url: cut("fLink", 300),
         career: null,
         plan: planValue().slice(0, 200) || null,
-        message: ((sitesText() ? sitesText() + "\n" : "") + v("fMsg")).slice(0, 2000) || null,
+        message: ("[알게 된 경로] " + (v("fSource") || "-") + "\n" + (sitesText() ? sitesText() + "\n" : "") + v("fMsg")).slice(0, 2000) || null,
         who: $("#fWho").value
       };
       res = await fetch(CONFIG.SUPABASE_URL + "/rest/v1/leads", {
