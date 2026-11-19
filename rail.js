@@ -49,7 +49,7 @@
     note: "콘텐츠 제작 중심 상품입니다. 최소 3개월, 이후 1개월씩. 플레이스 관리와 신규 구축·전체 재설계(초기 구축)는 포함되지 않습니다.", pick: "",
   });
   const plans = {
-    place: [placeBasic, placeBranding, placeBlog, signature, allInOne],
+    place: [placeBranding, placeBlog, signature, allInOne, placeBasic],
     blog: [
       {
         label: "초기 구축", name: "블로그 초기 구축", key: "blogBuild", unit: "1회",

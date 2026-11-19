@@ -2881,3 +2881,59 @@ h1, h2, h3, h4, .h2, .lead, p, li, dt, dd, th, td, summary, figcaption, label, s
 }
 /* 2026-11-18 실제 채널 링크: 휴대폰에서는 설명 한 줄, 버튼은 그 아래 나란히 */
 @media (max-width: 600px) { .real-links > span { flex-basis: 100%; } }
+
+/* 가치 환산 (2026-11-19): 카드 가격 위 "총 ○○원 상당의 가치" 한 줄 + 구간 머리 아래 항목별 "○○원 상당" 목록 */
+.pv { margin: 12px 0 0; font-size: 14px; color: var(--muted); letter-spacing: -0.01em; }
+.pv b { color: var(--accent); font-weight: 800; white-space: nowrap; }
+.offer-card .pv { margin: 4px 0 -4px; }
+.pv-dark { color: #d7eee0; margin-top: 14px; }
+.pv-dark b { color: #fff; }
+.vk { width: 100%; max-width: 620px; margin: 8px auto 36px; padding: 26px 26px 20px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: 0 10px 30px rgba(20, 60, 40, .07); }
+.vk:empty { display: none; }
+.vk-kicker { margin: 0 0 6px; font-size: 15px; font-weight: 700; color: var(--accent); text-align: center; }
+.vk-list { list-style: none; margin: 0; padding: 0; }
+.vk-list li { display: flex; align-items: center; gap: 16px; padding: 14px 2px; border-bottom: 1px solid var(--line); }
+.vk-ic { flex: 0 0 52px; width: 52px; height: 52px; border-radius: 50%; background: var(--soft); display: grid; place-items: center; }
+.vk-ic svg { width: 24px; height: 24px; fill: none; stroke: var(--accent); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.vk-name { min-width: 0; font-size: 16px; line-height: 1.45; color: var(--text); word-break: keep-all; overflow-wrap: break-word; }
+.vk-name b { display: block; margin-top: 2px; font-size: 17px; font-weight: 800; color: var(--ink); white-space: nowrap; }
+.vk-sum { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 16px 2px 4px; font-size: 15px; color: var(--muted); }
+.vk-sum b { font-size: 19px; color: var(--ink); white-space: nowrap; }
+.vk-price { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; margin-top: 12px; padding: 16px 18px; border-radius: var(--r-md); background: var(--accent); color: var(--accent-ink); }
+.vk-price span { font-size: 15px; font-weight: 600; }
+.vk-price b { font-size: 26px; font-weight: 800; white-space: nowrap; margin-left: auto; }
+.vk-price small { flex-basis: 100%; text-align: right; font-size: 13px; color: var(--on-accent-muted); }
+.vk-note { margin: 12px 0 0; font-size: 12.5px; color: var(--muted); text-align: center; }
+@media (max-width: 600px) {
+  .vk { padding: 20px 16px 16px; margin-bottom: 28px; }
+  .vk-list li { gap: 12px; padding: 12px 0; }
+  .vk-ic { flex-basis: 44px; width: 44px; height: 44px; }
+  .vk-ic svg { width: 21px; height: 21px; }
+  .vk-name { font-size: 15px; }
+  .vk-name b { font-size: 16px; }
+  .vk-price b { font-size: 23px; }
+}
+
+/* 2026-11-19 플레이스 BRANDING 단독 대표 카드 + BASIC 보조 상자, 블로그 단품·GROWTH 맡기는 범위 비교 */
+.ap-grid.ap-solo { grid-template-columns: minmax(0, 620px); justify-content: center; }
+.ap-lite { max-width: 620px; margin: 18px auto 0; padding: 20px 22px; border-radius: var(--r-md); background: var(--tint); border: 1px solid var(--line); }
+.ap-lite-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 12px; }
+.ap-lite-head b { font-size: 16px; color: var(--ink); }
+.ap-lite-head span { font-size: 14px; color: var(--muted); }
+.ap-lite-head strong { color: var(--ink); white-space: nowrap; }
+.ap-lite p { margin: 8px 0 4px; font-size: 14.5px; color: var(--muted); line-height: 1.6; }
+.ap-lite .scope-more { margin: 4px 0 8px; }
+.ap-lite .text-link { font-size: 14.5px; font-weight: 700; color: var(--accent); }
+.ap-name .ap-sub { font-style: normal; font-size: 12.5px; font-weight: 600; color: var(--muted); background: var(--tint); border: 1px solid var(--line); padding: 2px 8px; border-radius: 999px; margin-left: 6px; vertical-align: 2px; }
+.offer-for { margin: 0 0 10px; font-size: 14.5px; font-weight: 600; color: var(--ink); }
+.scope-cmp { list-style: none; margin: 0 0 12px; padding: 0; border-top: 1px solid var(--line); }
+.scope-cmp li { display: flex; justify-content: space-between; gap: 10px; padding: 9px 0 9px 24px; border-bottom: 1px solid var(--line); font-size: 14px; position: relative; }
+.scope-cmp li::before { position: absolute; left: 0; top: 9px; font-weight: 800; }
+.scope-cmp li.y::before { content: "✓"; color: var(--accent); }
+.scope-cmp li.n::before { content: "–"; color: var(--muted); }
+.scope-cmp li span { color: var(--text); }
+.scope-cmp li b { font-weight: 700; color: var(--ink); text-align: right; }
+.scope-cmp li.n span, .scope-cmp li.n b { color: var(--muted); font-weight: 500; }
+
+/* 2026-11-19 ALL-IN-ONE도 대표 패키지: 메인 카드 초록 테두리 */
+.core-offer-grid .core-build { border: 2px solid var(--accent); }
