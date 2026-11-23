@@ -82,7 +82,7 @@
         <div class="results" id="results"></div>
         <div class="search-foot">
           <span id="footMsg"></span>
-          <span>AI 분석 기반 브랜드 개선 예시(분석 → 차별점 도출 → 이미지·소개글 개선) · 업체명은 가상</span>
+          <span>AI 분석 기반 브랜드 개선 예시(분석 → 차별점 도출 → 이미지·소개글 개선) · 업체명은 가상 · 순위 변화는 예시(보장 아님)</span>
         </div>
       </div>
     </div>
@@ -905,8 +905,8 @@ const MOCK = {
 };
 let heroInd = "academy";
 let searchMode = "before";
-// 내 가게는 세팅 전후 모두 같은 자리입니다. 순위를 올려 보이지 않고, 대표 이미지와 정보 표시만 바뀝니다.
-const order = ["a", "b", "me", "c", "d", "e"];
+// 내 가게: 세팅 전 4번째 → 세팅 후 2번째로 올라가는 예시 (대표님 결정 2026-11-23, 아래 안내에 '예시·보장 아님' 표시)
+const ORDERS = { before: ["a", "b", "c", "me", "d", "e"], after: ["a", "me", "b", "c", "d", "e"] };
 const ROW = 88;
 const nodes = {};
 ["a", "b", "c", "d", "e", "me"].forEach(id => {
@@ -934,7 +934,7 @@ function renderSearch(mode) {
   M.shops.forEach(s => {
     const el = nodes[s.id];
     const st = s.me ? meState[mode] : s;
-    const idx = order.indexOf(s.id);
+    const idx = ORDERS[mode].indexOf(s.id);
     el.style.top = (idx * ROW) + "px";
     el.classList.toggle("hide", idx >= 5);
     $(".rk", el).textContent = "";
@@ -956,8 +956,8 @@ function renderSearch(mode) {
   $("#tAfter").setAttribute("aria-pressed", mode === "after");
   $$(".hero-inds button").forEach(b => b.setAttribute("aria-pressed", b.dataset.hero === heroInd));
   $("#footMsg").innerHTML = mode === "before"
-    ? "내 가게: <b>사진 없음</b> · 업종도 다르게 등록됨"
-    : "내 가게: <b>첫 사진은 브랜드 로고</b> · 원장 이력은 맞춤 이미지로";
+    ? "내 가게: <b>4번째</b> · 사진 없음 · 업종도 다르게 등록됨"
+    : "내 가게: <b>2번째로</b> · 첫 사진은 브랜드 로고 · 원장 이력은 맞춤 이미지로";
   fitTags();
 }
 // 업종 예시 자동 순환: 세팅 전 → 세팅 후 → 다음 업종 (손대면 멈춤)
