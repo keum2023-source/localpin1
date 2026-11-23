@@ -956,8 +956,8 @@ function renderSearch(mode) {
   $("#tAfter").setAttribute("aria-pressed", mode === "after");
   $$(".hero-inds button").forEach(b => b.setAttribute("aria-pressed", b.dataset.hero === heroInd));
   $("#footMsg").innerHTML = mode === "before"
-    ? "내 가게: <b>4번째</b> · 사진 없음 · 업종도 다르게 등록됨"
-    : "내 가게: <b>2번째로</b> · 첫 사진은 브랜드 로고 · 원장 이력은 맞춤 이미지로";
+    ? "내 가게: <b>사진 없음</b> · 업종도 다르게 등록됨"
+    : "내 가게: <b>첫 사진은 브랜드 로고</b> · 원장 이력은 맞춤 이미지로";
   fitTags();
 }
 // 업종 예시 자동 순환: 세팅 전 → 세팅 후 → 다음 업종 (손대면 멈춤)
